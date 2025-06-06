@@ -23,7 +23,7 @@ function createSearchResults(results) {
   if (results.length === 0) {
     const noResults = document.createElement('div');
     noResults.className = 'search-result-item';
-    noResults.textContent = 'No results found';
+    noResults.textContent = 'No Recipes found';
     resultsContainer.appendChild(noResults);
     return resultsContainer;
   }
