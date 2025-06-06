@@ -12,16 +12,21 @@
 
 :root {
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --background-color: #F2E8E8;
+  --light-color: #ebcece;
+  --dark-color: #994D52;
+  --text-color: #1C0D0D;
+  --text-color-secondary: #994D52;
+  --text-color-tertiary: #F2E8E8;
+  --link-color: #994D52;
+  --link-hover-color: #F2E8E8;
+  --link-color-secondary: #F2E8E8;
+  --button-color: #F2E8E8;
+  --button-hover-color: #994D52;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: epilogue, sans-serif;
+  --heading-font-family: boldonse, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -38,19 +43,6 @@
 
   /* nav height */
   --nav-height: 64px;
-}
-
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
 }
 
 @media (width >= 900px) {
@@ -105,7 +97,7 @@ h4,
 h5,
 h6 {
   margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-bottom: 0.5em;
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;

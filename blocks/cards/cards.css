@@ -7,21 +7,35 @@
   grid-gap: 24px;
 }
 
+.cards.large > ul {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
 .cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  border: 0;
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: 16px 0;
+  color: var(--text-color-secondary);
+  font-size: var(--body-font-size-s);
+}
+
+.cards .cards-card-body strong {
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
 }
 
 .cards .cards-card-image {
   line-height: 0;
+  box-shadow: 0 2px 8px var(--text-color-secondary);
+  border-radius: 4px;
 }
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 3;
   object-fit: cover;
+  border-radius: 4px;
 }
