@@ -1,0 +1,22 @@
+.instructions {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.instructions > ol {
+  list-style-type: decimal;
+  padding-left: 2em;
+}
+
+.instructions > ol > li {
+  margin-bottom: 1em;
+}
+
+.instructions > ol > li::marker {
+  color: var(--text-color-secondary);
+  font-weight: 700;
+}
+
+.instructions > ol > li > .step-image {
+  width: 100%;
+}
