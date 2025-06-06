@@ -5,7 +5,7 @@ export default function decorate(block) {
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     let li = document.createElement('li');
-    const link = row.querySelector('a')?.href;
+    const link = row.querySelector('a')?.href || '#';
     row.querySelector('a')?.remove();
     if (link) {
       const a = document.createElement('a');

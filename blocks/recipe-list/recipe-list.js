@@ -17,12 +17,12 @@ function createViewToggle() {
 
   const gridButton = document.createElement('div');
   gridButton.className = 'view-toggle-btn active';
-  gridButton.innerHTML = '<span class="icon icon-grid"></span>';
+  gridButton.innerHTML = '<span class="icon inactive icon-grid"></span><span class="icon active icon-grid-active"></span>';
   gridButton.setAttribute('aria-label', 'Grid View');
 
   const listButton = document.createElement('div');
   listButton.className = 'view-toggle-btn';
-  listButton.innerHTML = '<span class="icon icon-list"></span>';
+  listButton.innerHTML = '<span class="icon inactive icon-list"></span><span class="icon active icon-list-active"></span>';
   listButton.setAttribute('aria-label', 'List View');
 
   toggleDiv.appendChild(gridButton);
