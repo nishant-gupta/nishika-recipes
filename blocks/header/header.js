@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { decorateIcons, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
@@ -16,9 +16,18 @@ async function fetchSearchData() {
   }
 }
 
-function createSearchResults(results, searchInput) {
+function createSearchResults(results) {
   const resultsContainer = document.createElement('div');
   resultsContainer.className = 'search-results';
+
+  if (results.length === 0) {
+    const noResults = document.createElement('div');
+    noResults.className = 'search-result-item';
+    noResults.textContent = 'No results found';
+    resultsContainer.appendChild(noResults);
+    return resultsContainer;
+  }
+
   results.forEach((result) => {
     const resultItem = document.createElement('a');
     resultItem.href = result.path;
@@ -30,12 +39,6 @@ function createSearchResults(results, searchInput) {
     resultsContainer.appendChild(resultItem);
   });
 
-  // Position the results below the search input
-  const inputRect = searchInput.getBoundingClientRect();
-  resultsContainer.style.top = `${inputRect.bottom}px`;
-  resultsContainer.style.left = `${inputRect.left}px`;
-  resultsContainer.style.width = `${inputRect.width}px`;
-
   return resultsContainer;
 }
 
@@ -43,45 +46,103 @@ function setupSearch(navTools) {
   const searchContainer = document.createElement('div');
   searchContainer.className = 'search-container';
 
+  // Create search icon for mobile
+  const searchIcon = document.createElement('button');
+  searchIcon.className = 'search-icon';
+  searchIcon.innerHTML = '<span class="icon icon-search"></span>';
+  searchIcon.setAttribute('aria-label', 'Search');
+
+  // Create search input container
+  const searchInputContainer = document.createElement('div');
+  searchInputContainer.className = 'search-input-container';
+
+  // Create search input wrapper for icon
+  const searchInputWrapper = document.createElement('div');
+  searchInputWrapper.className = 'search-input-wrapper';
+
   const searchInput = document.createElement('input');
   searchInput.type = 'search';
   searchInput.placeholder = 'Search recipes...';
   searchInput.className = 'search-input';
 
+  const inputSearchIcon = document.createElement('span');
+  inputSearchIcon.className = 'icon icon-search-dark search-input-icon';
+
   let searchTimeout;
   let currentResults;
 
-  searchInput.addEventListener('input', async (e) => {
+  function handleSearch(e) {
     clearTimeout(searchTimeout);
     const query = e.target.value.toLowerCase();
 
     if (query.length < 2) {
-      if (currentResults) currentResults.remove();
+      if (currentResults) {
+        currentResults.remove();
+        currentResults = null;
+      }
       return;
     }
 
     searchTimeout = setTimeout(async () => {
-      if (currentResults) currentResults.remove();
+      if (currentResults) {
+        currentResults.remove();
+      }
 
       const searchData = await fetchSearchData();
       const filteredResults = searchData
-        .filter((item) => item.title.toLowerCase().includes(query)).slice(0, 5);
+        .filter((item) => item.title.toLowerCase().includes(query))
+        .slice(0, 5);
 
-      if (filteredResults.length > 0) {
-        currentResults = createSearchResults(filteredResults, searchInput);
-        document.body.appendChild(currentResults);
-      }
+      currentResults = createSearchResults(filteredResults);
+      searchInputContainer.appendChild(currentResults);
     }, 300);
+  }
+
+  searchInput.addEventListener('input', handleSearch);
+
+  // Mobile search toggle
+  searchIcon.addEventListener('click', () => {
+    if (!isDesktop.matches) {
+      searchInputContainer.classList.toggle('active');
+      if (searchInputContainer.classList.contains('active')) {
+        searchInput.focus();
+      }
+    }
   });
 
   // Close search results when clicking outside
   document.addEventListener('click', (e) => {
     if (!searchContainer.contains(e.target) && currentResults) {
       currentResults.remove();
+      currentResults = null;
+    }
+    // Close mobile search when clicking outside
+    if (!isDesktop.matches
+      && !searchContainer.contains(e.target)
+      && searchInputContainer.classList.contains('active')) {
+      searchInputContainer.classList.remove('active');
     }
   });
 
-  searchContainer.appendChild(searchInput);
+  // Handle escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (currentResults) {
+        currentResults.remove();
+        currentResults = null;
+      }
+      if (!isDesktop.matches && searchInputContainer.classList.contains('active')) {
+        searchInputContainer.classList.remove('active');
+      }
+    }
+  });
+
+  searchInputWrapper.appendChild(searchInput);
+  searchInputWrapper.appendChild(inputSearchIcon);
+  searchInputContainer.appendChild(searchInputWrapper);
+  searchContainer.appendChild(searchIcon);
+  searchContainer.appendChild(searchInputContainer);
+  decorateIcons(searchContainer);
   navTools.appendChild(searchContainer);
 }
 
