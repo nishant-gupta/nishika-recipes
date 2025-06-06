@@ -68,12 +68,22 @@ function setupSearch(navTools) {
   const inputSearchIcon = document.createElement('span');
   inputSearchIcon.className = 'icon icon-search-dark search-input-icon';
 
+  const clearButton = document.createElement('button');
+  clearButton.className = 'search-clear';
+  clearButton.innerHTML = '<span class="icon icon-cross"></span>';
+  clearButton.setAttribute('aria-label', 'Clear search');
+  clearButton.style.display = 'none';
+
   let searchTimeout;
   let currentResults;
 
   function handleSearch(e) {
     clearTimeout(searchTimeout);
     const query = e.target.value.toLowerCase();
+
+    // Show/hide clear button and search icon
+    clearButton.style.display = query ? 'block' : 'none';
+    inputSearchIcon.style.display = query ? 'none' : 'block';
 
     if (query.length < 2) {
       if (currentResults) {
@@ -98,7 +108,19 @@ function setupSearch(navTools) {
     }, 300);
   }
 
+  function clearSearch() {
+    searchInput.value = '';
+    clearButton.style.display = 'none';
+    inputSearchIcon.style.display = 'block';
+    if (currentResults) {
+      currentResults.remove();
+      currentResults = null;
+    }
+    searchInput.focus();
+  }
+
   searchInput.addEventListener('input', handleSearch);
+  clearButton.addEventListener('click', clearSearch);
 
   // Mobile search toggle
   searchIcon.addEventListener('click', () => {
@@ -139,6 +161,7 @@ function setupSearch(navTools) {
 
   searchInputWrapper.appendChild(searchInput);
   searchInputWrapper.appendChild(inputSearchIcon);
+  searchInputWrapper.appendChild(clearButton);
   searchInputContainer.appendChild(searchInputWrapper);
   searchContainer.appendChild(searchIcon);
   searchContainer.appendChild(searchInputContainer);

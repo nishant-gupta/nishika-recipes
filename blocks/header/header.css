@@ -310,6 +310,15 @@ header nav .nav-tools {
   background: var(--background-color);
 }
 
+/* Hide default search input clear icon */
+.nav-tools .search-input::-webkit-search-decoration,
+.nav-tools .search-input::-webkit-search-cancel-button,
+.nav-tools .search-input::-webkit-search-results-button,
+.nav-tools .search-input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .nav-tools .search-input:focus {
   outline: none;
   border-color: var(--dark-color);
@@ -322,6 +331,27 @@ header nav .nav-tools {
   color: var(--text-color-secondary);
   pointer-events: none;
   font-size: 16px;
+}
+
+.nav-tools .search-clear {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--text-color-secondary);
+  display: none;
+  transition: color 0.2s ease;
+}
+
+.nav-tools .search-clear:hover {
+  color: var(--text-color);
+}
+
+.nav-tools .search-clear .icon {
+  width: 16px;
+  height: 16px;
 }
 
 .nav-tools .search-results {
