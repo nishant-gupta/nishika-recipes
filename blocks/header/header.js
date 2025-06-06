@@ -4,6 +4,87 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+// Search functionality
+async function fetchSearchData() {
+  try {
+    const response = await fetch('/query-index.json');
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error('Error fetching search data:', error);
+    return [];
+  }
+}
+
+function createSearchResults(results, searchInput) {
+  const resultsContainer = document.createElement('div');
+  resultsContainer.className = 'search-results';
+  results.forEach((result) => {
+    const resultItem = document.createElement('a');
+    resultItem.href = result.path;
+    resultItem.className = 'search-result-item';
+    resultItem.innerHTML = `
+      <img src="${result.image}" alt="${result.title}" width="40" height="40">
+      <span>${result.title}</span>
+    `;
+    resultsContainer.appendChild(resultItem);
+  });
+
+  // Position the results below the search input
+  const inputRect = searchInput.getBoundingClientRect();
+  resultsContainer.style.top = `${inputRect.bottom}px`;
+  resultsContainer.style.left = `${inputRect.left}px`;
+  resultsContainer.style.width = `${inputRect.width}px`;
+
+  return resultsContainer;
+}
+
+function setupSearch(navTools) {
+  const searchContainer = document.createElement('div');
+  searchContainer.className = 'search-container';
+
+  const searchInput = document.createElement('input');
+  searchInput.type = 'search';
+  searchInput.placeholder = 'Search recipes...';
+  searchInput.className = 'search-input';
+
+  let searchTimeout;
+  let currentResults;
+
+  searchInput.addEventListener('input', async (e) => {
+    clearTimeout(searchTimeout);
+    const query = e.target.value.toLowerCase();
+
+    if (query.length < 2) {
+      if (currentResults) currentResults.remove();
+      return;
+    }
+
+    searchTimeout = setTimeout(async () => {
+      if (currentResults) currentResults.remove();
+
+      const searchData = await fetchSearchData();
+      const filteredResults = searchData
+        .filter((item) => item.title.toLowerCase().includes(query)).slice(0, 5);
+
+      if (filteredResults.length > 0) {
+        currentResults = createSearchResults(filteredResults, searchInput);
+        document.body.appendChild(currentResults);
+      }
+    }, 300);
+  });
+
+  // Close search results when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!searchContainer.contains(e.target) && currentResults) {
+      currentResults.remove();
+    }
+  });
+
+  searchContainer.appendChild(searchInput);
+  navTools.appendChild(searchContainer);
+}
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -144,6 +225,12 @@ export default async function decorate(block) {
         }
       });
     });
+  }
+
+  // Setup search in nav tools
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    setupSearch(navTools);
   }
 
   // hamburger for mobile
