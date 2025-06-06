@@ -3,6 +3,7 @@ indices:
     include:
       - /recipes/**
     exclude:
+      - /recipes
       - /recipes/snippets/**
     target: /query-index.json
     properties:
