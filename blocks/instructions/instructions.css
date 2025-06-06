@@ -20,3 +20,9 @@
 .instructions > ol > li > .step-image {
   width: 100%;
 }
+
+@media (width <= 768px) {
+  .instructions > ol {
+    padding-left: 1em;
+  }
+}

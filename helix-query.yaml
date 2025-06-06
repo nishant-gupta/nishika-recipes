@@ -1,0 +1,16 @@
+indices:
+  recipes:
+    include:
+      - /recipes/**
+    exclude:
+      - /recipes/snippets/**
+    target: /query-index.json
+    properties:
+      title:
+        select: h1
+        value: |
+          innerHTML(el)
+      image:
+        selectFirst: img
+        value: attribute(el, "src")
+      
