@@ -78,6 +78,7 @@ body.appear {
 
 header {
   height: var(--nav-height);
+  background-color: var(--dark-color);
 }
 
 header .header,
@@ -119,6 +120,9 @@ pre,
 blockquote {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
+}
+
+ul li {
 }
 
 code,
