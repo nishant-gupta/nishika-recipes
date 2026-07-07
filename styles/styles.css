@@ -44,6 +44,7 @@
   /* nav height */
   --nav-height: 64px;
 }
+
 /* 
 @media (width <= 768px) {
   :root {
@@ -119,6 +120,7 @@ blockquote {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
 }
+
 main ul {
   list-style-type: none;
   padding: .5rem 2em;

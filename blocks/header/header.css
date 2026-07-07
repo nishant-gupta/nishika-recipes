@@ -315,7 +315,6 @@ header nav .nav-tools {
 .nav-tools .search-input::-webkit-search-cancel-button,
 .nav-tools .search-input::-webkit-search-results-button,
 .nav-tools .search-input::-webkit-search-results-decoration {
-  -webkit-appearance: none;
   appearance: none;
 }
 
@@ -362,7 +361,7 @@ header nav .nav-tools {
   background: var(--background-color);
   border: 1px solid var(--light-color);
   border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   z-index: 1001;
   max-height: 400px;
   overflow-y: auto;
@@ -390,7 +389,7 @@ header nav .nav-tools {
 }
 
 /* Mobile styles */
-@media (max-width: 899px) {
+@media (width <= 899px) {
   .nav-tools .search-icon {
     display: block;
   }

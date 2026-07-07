@@ -39,6 +39,11 @@
     gap: 24px;
   }
 
+  .columns > div > div {
+    flex: 1;
+    order: unset;
+  }
+
   .columns.profile > div {
     align-items: flex-start;
   }
@@ -50,10 +55,5 @@
   .columns.profile > div > .columns-img-col img {
     width: 250px;
     height: 250px;
-  }
-
-  .columns > div > div {
-    flex: 1;
-    order: unset;
   }
 }
