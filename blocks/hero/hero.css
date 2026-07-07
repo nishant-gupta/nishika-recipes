@@ -13,8 +13,8 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  color: var(--background-color);
-  text-shadow: 0 0 10px var(--text-color-secondary);
+  color: var(--text-color-secondary);
+  text-shadow: 0 0 10px var(--text-color);
 }
 
 .hero picture {

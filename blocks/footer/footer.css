@@ -1,7 +1,7 @@
 footer {
   background-color: var(--dark-color);
   font-size: var(--body-font-size-xs);
-  color: var(--text-color-tertiary);
+  color: var(--text-color-secondary);
 }
 
 footer a:any-link {

@@ -12,17 +12,17 @@
 
 :root {
   /* colors */
-  --background-color: #F2E8E8;
-  --light-color: #ebcece;
-  --dark-color: #994D52;
-  --text-color: #1C0D0D;
-  --text-color-secondary: #994D52;
-  --text-color-tertiary: #F2E8E8;
-  --link-color: #994D52;
-  --link-hover-color: #F2E8E8;
-  --link-color-secondary: #F2E8E8;
-  --button-color: #F2E8E8;
-  --button-hover-color: #994D52;
+  --background-color: #a991ae;
+  --light-color: #f6f6f6;
+  --dark-color: #7c3f87;
+  --text-color: #762385;
+  --text-color-secondary: #f5f0f7;
+  --text-color-tertiary: #1c0d0d;
+  --link-color: #7c3f87;
+  --link-hover-color: #762385;
+  --link-color-secondary: #f5f0f7;
+  --button-color: #f5f0f7;
+  --button-hover-color: #7c3f87;
 
   /* fonts */
   --body-font-family: epilogue, sans-serif;

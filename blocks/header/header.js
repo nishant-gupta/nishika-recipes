@@ -62,7 +62,7 @@ function setupSearch(navTools) {
 
   const searchInput = document.createElement('input');
   searchInput.type = 'search';
-  searchInput.placeholder = 'Search recipes...';
+  searchInput.placeholder = 'Search ...';
   searchInput.className = 'search-input';
 
   const inputSearchIcon = document.createElement('span');

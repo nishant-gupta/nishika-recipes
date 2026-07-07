@@ -4,7 +4,7 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
-  color: var(--text-color-tertiary);
+  color: var(--text-color-secondary);
 }
 
 header nav {
@@ -89,7 +89,7 @@ header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
   content: '';
   position: absolute;
-  background: var(--text-color-tertiary);
+  background: var(--text-color-secondary);
 }
 
 header nav[aria-expanded='false'] .nav-hamburger-icon,
@@ -97,7 +97,7 @@ header nav[aria-expanded='false'] .nav-hamburger-icon::before,
 header nav[aria-expanded='false'] .nav-hamburger-icon::after {
   height: 2px;
   border-radius: 2px;
-  background: var(--text-color-tertiary);
+  background: var(--text-color-secondary);
 }
 
 header nav[aria-expanded='false'] .nav-hamburger-icon::before {
@@ -139,7 +139,7 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
+  flex-basis: 180px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
@@ -281,7 +281,7 @@ header nav .nav-tools {
   border: none;
   padding: 8px;
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--text-color-tertiary);
   display: none;
 }
 
@@ -307,7 +307,7 @@ header nav .nav-tools {
   font-size: var(--body-font-size-s);
   width: 200px;
   transition: all 0.3s ease;
-  background: var(--background-color);
+  background: var(--light-color);
 }
 
 /* Hide default search input clear icon */
@@ -340,7 +340,7 @@ header nav .nav-tools {
   border: none;
   padding: 4px;
   cursor: pointer;
-  color: var(--text-color-secondary);
+  color: var(--text-color-tertiary);
   display: none;
   transition: color 0.2s ease;
 }
