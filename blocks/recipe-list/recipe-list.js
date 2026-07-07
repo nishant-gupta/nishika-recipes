@@ -6,7 +6,7 @@ async function fetchRecipes() {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error('Error fetching recipes:', error);
+    console.error('Error fetching recipes:', error); // eslint-disable-line no-console
     return [];
   }
 }

@@ -269,7 +269,7 @@ main .section.highlight {
 main .section.boxed {
   border: 1px solid var(--text-color-secondary);
   background-color: var(--dark-color);
-  margin: 40px 40px;
+  margin: 40px;
   padding: 20px;
   color: var(--text-color-secondary);
 }

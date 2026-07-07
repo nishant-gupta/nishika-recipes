@@ -11,7 +11,7 @@ async function fetchSearchData() {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error('Error fetching search data:', error);
+    console.error('Error fetching search data:', error); // eslint-disable-line no-console
     return [];
   }
 }
