@@ -1,0 +1,583 @@
+.idiom-of-week {
+  max-width: min(800px, 92vw);
+  margin: 0 auto 40px;
+  padding: 0 16px;
+  min-height: 360px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Screen transitions ──────────────────────────── */
+.idiom-of-week .idiom-screen {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 24px;
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 20px;
+}
+
+.idiom-of-week .idiom-screen.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.idiom-of-week .idiom-screen.exit {
+  opacity: 0;
+  transform: translateX(-30px);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── Progress bar (5 steps) ──────────────────────── */
+.idiom-of-week .idiom-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.idiom-of-week .idiom-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.idiom-of-week .idiom-step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 12%);
+  border: 2px solid rgb(255 255 255 / 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.idiom-of-week .idiom-step.done .idiom-step-icon {
+  background: rgb(100 220 100 / 25%);
+  border-color: #64dc64;
+  color: #7fff7f;
+  font-size: 12px;
+}
+
+.idiom-of-week .idiom-step.clickable {
+  cursor: pointer;
+}
+
+.idiom-of-week .idiom-step.active .idiom-step-icon {
+  background: rgb(255 255 255 / 20%);
+  border-color: var(--text-color-secondary);
+  box-shadow: 0 0 12px rgb(245 240 247 / 30%);
+}
+
+.idiom-of-week .idiom-step.clickable:hover .idiom-step-icon {
+  background: rgb(100 220 100 / 40%);
+  transform: scale(1.1);
+}
+
+.idiom-of-week .idiom-step-label {
+  font-size: 9px;
+  color: var(--text-color-secondary);
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.idiom-of-week .idiom-step.done .idiom-step-label,
+.idiom-of-week .idiom-step.active .idiom-step-label {
+  opacity: 0.9;
+}
+
+.idiom-of-week .idiom-step-line {
+  width: 24px;
+  height: 2px;
+  background: rgb(255 255 255 / 15%);
+  margin: 0 3px;
+  margin-bottom: 18px;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.idiom-of-week .idiom-step-line.done {
+  background: #64dc64;
+}
+
+/* ── Stage label ──────────────────────────────────── */
+.idiom-of-week .idiom-stage-label {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+  opacity: 0.75;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Idiom name display (stage 1) ─────────────────── */
+.idiom-of-week .idiom-name-display {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 700;
+  color: var(--text-color-secondary);
+  text-align: center;
+  line-height: 1.2;
+  margin: 0;
+  padding: 28px 48px;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.idiom-of-week .idiom-hint-text {
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-secondary);
+  opacity: 0.6;
+  margin: 0;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ── Idiom name small (stages 2–3) ───────────────── */
+.idiom-of-week .idiom-name-small {
+  font-size: var(--heading-font-size-xs);
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* ── Definition card ──────────────────────────────── */
+.idiom-of-week .idiom-def-card {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 16px;
+  padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.idiom-of-week .idiom-def-label {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  color: var(--text-color-secondary);
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.idiom-of-week .idiom-def-text {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.idiom-of-week .idiom-example {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* ── Challenge ────────────────────────────────────── */
+.idiom-of-week .idiom-challenge-title {
+  font-size: var(--heading-font-size-xs);
+  color: var(--text-color-secondary);
+  font-weight: 600;
+  text-align: center;
+  padding: 16px 48px;
+  box-sizing: border-box;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 12px;
+  width: 100%;
+}
+
+.idiom-of-week .idiom-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.idiom-of-week .idiom-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgb(255 255 255 / 8%);
+  border: 2px solid rgb(255 255 255 / 16%);
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-secondary);
+  text-align: left;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.idiom-of-week .idiom-option:disabled {
+  cursor: default;
+}
+
+.idiom-of-week .idiom-option:hover:not(:disabled) {
+  background: rgb(255 255 255 / 16%);
+  border-color: rgb(255 255 255 / 40%);
+  transform: translateY(-1px);
+}
+
+.idiom-of-week .idiom-option.correct {
+  background: rgb(100 220 100 / 20%);
+  border-color: #64dc64;
+  color: #7fff7f;
+}
+
+.idiom-of-week .idiom-option.incorrect {
+  background: rgb(220 80 80 / 20%);
+  border-color: #dc5050;
+  color: #ff8f8f;
+}
+
+.idiom-of-week .idiom-opt-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 15%);
+  font-weight: 700;
+  font-size: var(--body-font-size-xs);
+  flex-shrink: 0;
+}
+
+.idiom-of-week .idiom-option.correct .idiom-opt-label {
+  background: #64dc64;
+  color: #1a3d1a;
+}
+
+.idiom-of-week .idiom-option.incorrect .idiom-opt-label {
+  background: #dc5050;
+  color: white;
+}
+
+.idiom-of-week .idiom-opt-text {
+  flex: 1;
+}
+
+/* ── Feedback ─────────────────────────────────────── */
+.idiom-of-week .idiom-feedback {
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  padding: 12px;
+  border-radius: 10px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.idiom-of-week .idiom-feedback.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.idiom-of-week .idiom-feedback.correct {
+  background: rgb(100 220 100 / 15%);
+  color: #7fff7f;
+}
+
+.idiom-of-week .idiom-feedback.incorrect {
+  background: rgb(220 80 80 / 15%);
+  color: #ff8f8f;
+}
+
+/* ── Buttons ──────────────────────────────────────── */
+.idiom-of-week .btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.idiom-of-week .btn-primary {
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+}
+
+.idiom-of-week .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+}
+
+.idiom-of-week .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.idiom-of-week .btn-ghost {
+  background: transparent;
+  color: var(--text-color-secondary);
+  border: 2px solid rgb(255 255 255 / 25%);
+  opacity: 0.75;
+}
+
+.idiom-of-week .btn-ghost:hover {
+  opacity: 1;
+  border-color: rgb(255 255 255 / 50%);
+  transform: translateY(-1px);
+}
+
+/* ── Use It ───────────────────────────────────────── */
+.idiom-of-week .idiom-blank-wrap {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+  line-height: 2;
+  text-align: center;
+  width: 100%;
+}
+
+.idiom-of-week .idiom-blank-input {
+  display: inline-block;
+  width: clamp(100px, 30%, 200px);
+  padding: 4px 10px;
+  background: rgb(255 255 255 / 8%);
+  border: 0;
+  border-bottom: 2px solid var(--text-color-secondary);
+  border-radius: 0;
+  color: var(--text-color-secondary);
+  font-size: var(--body-font-size-m);
+  font-family: var(--body-font-family);
+  outline: none;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 6px;
+}
+
+.idiom-of-week .idiom-blank-input:disabled {
+  opacity: 0.6;
+}
+
+.idiom-of-week .idiom-prompt {
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-secondary);
+  opacity: 0.8;
+  margin: 0;
+  text-align: center;
+}
+
+.idiom-of-week .idiom-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgb(255 255 255 / 8%);
+  border: 2px solid rgb(255 255 255 / 20%);
+  border-radius: 12px;
+  color: var(--text-color-secondary);
+  font-size: var(--body-font-size-m);
+  font-family: var(--body-font-family);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.idiom-of-week .idiom-textarea:focus {
+  border-color: rgb(255 255 255 / 50%);
+}
+
+.idiom-of-week .idiom-textarea::placeholder {
+  color: rgb(245 240 247 / 40%);
+}
+
+/* ── Complete screen ──────────────────────────────── */
+.idiom-of-week .idiom-complete-screen {
+  gap: 12px;
+  padding: 40px 24px;
+}
+
+.idiom-of-week .idiom-trophy {
+  font-size: 72px;
+  animation: idiom-pop 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.idiom-of-week .idiom-complete-heading {
+  font-size: var(--heading-font-size-m);
+  color: var(--text-color-secondary);
+  margin: 0;
+  text-align: center;
+}
+
+.idiom-of-week .idiom-complete-idiom {
+  font-size: var(--heading-font-size-xs);
+  color: var(--text-color-secondary);
+  font-weight: 600;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.idiom-of-week .idiom-stars-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.idiom-of-week .idiom-star {
+  font-size: 40px;
+  color: rgb(255 255 255 / 20%);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.idiom-of-week .idiom-star.filled {
+  color: #ffd700;
+}
+
+.idiom-of-week .idiom-star.filled.animate {
+  animation: idiom-star-pop 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+.idiom-of-week .idiom-badge {
+  padding: 10px 24px;
+  background: rgb(255 215 0 / 15%);
+  border: 1px solid rgb(255 215 0 / 30%);
+  border-radius: 24px;
+  color: #ffd700;
+  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  text-align: center;
+}
+
+/* ── Keyframes ────────────────────────────────────── */
+@keyframes idiom-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  65% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes idiom-star-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ── Carousel (multiple idioms) ───────────────────── */
+.idiom-carousel {
+  max-width: min(800px, 92vw);
+  margin: 0 auto 40px;
+}
+
+.idiom-carousel .idiom-of-week {
+  max-width: none;
+  margin: 0;
+}
+
+.idiom-carousel-hidden {
+  display: none;
+}
+
+.idiom-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 0 4px;
+}
+
+.idiom-carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.idiom-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgb(255 255 255 / 25%);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.idiom-carousel-dot.active {
+  background: var(--text-color-secondary);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.idiom-carousel-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-color-secondary);
+  border: 2px solid rgb(255 255 255 / 25%);
+  opacity: 0.75;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.idiom-carousel-btn:hover {
+  opacity: 1;
+  border-color: rgb(255 255 255 / 50%);
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (width <= 480px) {
+  .idiom-of-week .idiom-screen {
+    padding: 24px 16px;
+  }
+
+  .idiom-of-week .idiom-step-line {
+    width: 14px;
+  }
+
+  .idiom-of-week .idiom-step-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .idiom-of-week .idiom-name-display {
+    font-size: var(--heading-font-size-l);
+  }
+}

@@ -273,3 +273,7 @@ main .section.boxed {
   padding: 20px;
   color: var(--text-color-secondary);
 }
+
+main .section.center {
+  text-align: center;
+}
