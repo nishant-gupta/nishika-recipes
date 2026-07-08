@@ -73,6 +73,9 @@
 }
 
 .craft-steps .craft-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 6px 14px;
   background: rgb(255 255 255 / 12%);
   border: 1px solid rgb(255 255 255 / 20%);
@@ -80,6 +83,13 @@
   font-size: var(--body-font-size-s);
   color: var(--text-color-secondary);
   font-weight: 600;
+}
+
+.craft-steps .craft-badge img {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: block;
 }
 
 /* ── Inner slides (non-intro) ────────────────────── */
@@ -253,8 +263,19 @@
 
 /* ── Challenge slide ──────────────────────────────── */
 .craft-steps .craft-challenge-screen {
-  background: rgb(255 200 80 / 8%);
-  border-color: rgb(255 200 80 / 25%);
+  background: linear-gradient(135deg, #7c3200 0%, #b35a00 40%, #7a2e6e 100%);
+  border-color: rgb(255 160 40 / 50%);
+}
+
+.craft-steps .craft-challenge-icon {
+  animation: craft-bob 2.5s ease infinite;
+}
+
+.craft-steps .craft-challenge-icon img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
 }
 
 .craft-steps .craft-challenge-heading {
@@ -262,20 +283,30 @@
   color: #ffd700;
   margin: 0;
   text-align: center;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 30%);
 }
 
 .craft-steps .craft-challenge-text {
   font-size: var(--body-font-size-m);
-  color: var(--text-color-secondary);
+  color: #fff8ee;
   line-height: 1.6;
   text-align: center;
   margin: 0;
-  opacity: 0.9;
-  background: rgb(255 255 255 / 6%);
+  background: rgb(0 0 0 / 18%);
+  border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 14px;
   padding: 20px 24px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.craft-steps .craft-challenge-screen .btn-ghost {
+  border-color: rgb(255 255 255 / 35%);
+  color: #fff8ee;
+}
+
+.craft-steps .craft-challenge-screen .btn-ghost:hover {
+  border-color: rgb(255 255 255 / 65%);
 }
 
 /* ── Complete slide ───────────────────────────────── */

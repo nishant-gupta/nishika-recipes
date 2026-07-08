@@ -147,15 +147,22 @@ class CraftGame {
         meta.className = 'craft-meta';
 
         const badges = [
-          time ? `⏱ ${time}` : null,
-          age ? `👤 Age ${age}` : null,
-          difficulty ? `⭐ ${difficulty}` : null,
+          time ? { icon: '/icons/craft-time.svg', text: time } : null,
+          age ? { icon: '/icons/craft-age.svg', text: `Age ${age}` } : null,
+          difficulty ? { icon: '/icons/craft-difficulty.svg', text: difficulty } : null,
         ].filter(Boolean);
 
-        badges.forEach((text) => {
+        badges.forEach(({ icon, text }) => {
           const badge = document.createElement('span');
           badge.className = 'craft-badge';
-          badge.textContent = text;
+          const badgeImg = document.createElement('img');
+          badgeImg.src = icon;
+          badgeImg.width = 14;
+          badgeImg.height = 14;
+          badgeImg.alt = '';
+          const badgeText = document.createElement('span');
+          badgeText.textContent = text;
+          badge.append(badgeImg, badgeText);
           meta.appendChild(badge);
         });
 
@@ -277,6 +284,15 @@ class CraftGame {
     this.render((screen) => {
       screen.classList.add('craft-challenge-screen');
 
+      const iconEl = document.createElement('div');
+      iconEl.className = 'craft-challenge-icon';
+      const iconImg = document.createElement('img');
+      iconImg.src = '/icons/craft-challenge.svg';
+      iconImg.width = 80;
+      iconImg.height = 80;
+      iconImg.alt = '';
+      iconEl.appendChild(iconImg);
+
       const heading = document.createElement('h2');
       heading.className = 'craft-challenge-heading';
       heading.textContent = 'Creative Challenge!';
@@ -285,7 +301,7 @@ class CraftGame {
       text.className = 'craft-challenge-text';
       text.textContent = challenge;
 
-      screen.append(heading, text, this.makeNavRow('I did it!', () => this.goTo(this.current + 1)));
+      screen.append(iconEl, heading, text, this.makeNavRow('I did it!', () => this.goTo(this.current + 1)));
     });
   }
 
