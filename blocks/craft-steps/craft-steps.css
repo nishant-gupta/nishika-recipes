@@ -1,0 +1,404 @@
+.craft-steps {
+  max-width: min(780px, 92vw);
+  margin: 0 auto 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Screen transitions ──────────────────────────── */
+.craft-steps .craft-screen {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.craft-steps .craft-screen.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.craft-steps .craft-screen.exit {
+  opacity: 0;
+  transform: translateX(-30px);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── Intro slide ─────────────────────────────────── */
+.craft-steps .craft-intro-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.craft-steps .craft-intro-image picture,
+.craft-steps .craft-intro-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.craft-steps .craft-intro-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 32px 24px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.craft-steps .craft-title {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color-secondary);
+  margin: 0;
+  text-align: center;
+}
+
+.craft-steps .craft-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.craft-steps .craft-badge {
+  padding: 6px 14px;
+  background: rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 20px;
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-secondary);
+  font-weight: 600;
+}
+
+/* ── Inner slides (non-intro) ────────────────────── */
+.craft-steps .craft-screen:not(.craft-intro-screen) {
+  padding: 24px 24px 20px;
+  gap: 14px;
+}
+
+/* ── Stage label ──────────────────────────────────── */
+.craft-steps .craft-stage-label {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Supplies slide ───────────────────────────────── */
+.craft-steps .craft-hint {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.6;
+  margin: 0;
+  font-style: italic;
+}
+
+.craft-steps .craft-supply-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+.craft-steps .craft-supply-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: rgb(255 255 255 / 8%);
+  border: 2px solid rgb(255 255 255 / 14%);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-secondary);
+}
+
+.craft-steps .craft-supply-item:hover {
+  background: rgb(255 255 255 / 14%);
+}
+
+.craft-steps .craft-supply-item.checked {
+  background: rgb(100 220 100 / 15%);
+  border-color: rgb(100 220 100 / 40%);
+}
+
+.craft-steps .craft-supply-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / 30%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.craft-steps .craft-supply-item.checked .craft-supply-check {
+  background: #64dc64;
+  border-color: #64dc64;
+  color: #1a3d1a;
+}
+
+.craft-steps .craft-supply-item.checked .craft-supply-check::after {
+  content: '✓';
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.craft-steps .craft-supply-text {
+  flex: 1;
+}
+
+.craft-steps .craft-supply-item.checked .craft-supply-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ── Step slides ──────────────────────────────────── */
+.craft-steps .craft-step-progress {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.craft-steps .craft-step-counter {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  color: var(--text-color-secondary);
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.craft-steps .craft-progress-wrap {
+  height: 6px;
+  background: rgb(255 255 255 / 15%);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.craft-steps .craft-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--dark-color), var(--text-color-secondary));
+  border-radius: 3px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+.craft-steps .craft-step-num {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+  animation: craft-pop 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.craft-steps .craft-step-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.craft-steps .craft-step-image picture,
+.craft-steps .craft-step-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.craft-steps .craft-step-text {
+  font-size: var(--heading-font-size-xs);
+  color: var(--text-color-secondary);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 16px;
+  padding: 24px 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Challenge slide ──────────────────────────────── */
+.craft-steps .craft-challenge-screen {
+  background: rgb(255 200 80 / 8%);
+  border-color: rgb(255 200 80 / 25%);
+}
+
+.craft-steps .craft-challenge-heading {
+  font-size: var(--heading-font-size-m);
+  color: #ffd700;
+  margin: 0;
+  text-align: center;
+}
+
+.craft-steps .craft-challenge-text {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+  opacity: 0.9;
+  background: rgb(255 255 255 / 6%);
+  border-radius: 14px;
+  padding: 20px 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Complete slide ───────────────────────────────── */
+.craft-steps .craft-complete-screen {
+  padding: 32px 24px 20px;
+}
+
+.craft-steps .craft-complete-heading {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color-secondary);
+  margin: 0;
+  text-align: center;
+}
+
+.craft-steps .craft-complete-craft {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+  opacity: 0.7;
+  text-align: center;
+}
+
+/* ── Inline nav row (back + next) ─────────────────── */
+.craft-steps .craft-nav-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.craft-steps .craft-back-btn {
+  margin-right: auto;
+}
+
+/* ── Buttons ──────────────────────────────────────── */
+.craft-steps .btn {
+  padding: 13px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.craft-steps .btn-primary {
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+}
+
+.craft-steps .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+}
+
+.craft-steps .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.craft-steps .btn-ghost {
+  background: transparent;
+  color: var(--text-color-secondary);
+  border: 2px solid rgb(255 255 255 / 25%);
+  opacity: 0.75;
+}
+
+.craft-steps .btn-ghost:hover {
+  opacity: 1;
+  border-color: rgb(255 255 255 / 50%);
+  transform: translateY(-1px);
+}
+
+/* ── Keyframes ────────────────────────────────────── */
+@keyframes craft-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes craft-pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (width <= 480px) {
+  .craft-steps .craft-screen:not(.craft-intro-screen) {
+    padding: 24px 16px 16px;
+  }
+
+  .craft-steps .craft-step-num {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .craft-steps .craft-step-text {
+    font-size: var(--body-font-size-m);
+    padding: 18px 20px;
+  }
+
+  .craft-steps .craft-title {
+    font-size: var(--heading-font-size-m);
+  }
+
+  .craft-steps .craft-intro-body {
+    padding: 20px 20px 16px;
+  }
+}
