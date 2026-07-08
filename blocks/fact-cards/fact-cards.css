@@ -174,13 +174,11 @@
 /* ── Responsive ──────────────────────────────────── */
 @media (width <= 480px) {
   .fact-cards {
-    padding: 0 40px;
+    padding: 0;
   }
 
   .fact-arrow {
-    width: 34px;
-    height: 34px;
-    font-size: 15px;
+    display: none;
   }
 
   .fact-card {
@@ -189,21 +187,5 @@
 
   .fact-card-body {
     padding: 28px 20px;
-  }
-}
-
-@media (width <= 380px) {
-  .fact-cards {
-    padding: 0 34px;
-  }
-
-  .fact-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 13px;
-  }
-
-  .fact-card-body {
-    padding: 20px 14px;
   }
 }
