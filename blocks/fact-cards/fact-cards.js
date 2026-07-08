@@ -120,12 +120,19 @@ export default function decorate(block) {
   next.addEventListener('click', () => goTo(current + 1));
   dots.querySelectorAll('.fact-dot').forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-  // Touch swipe
+  // Touch swipe — listen on viewport (track translates away after first swipe)
   let touchStartX = 0;
-  track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', (e) => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+  let touchStartY = 0;
+  viewport.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  viewport.addEventListener('touchend', (e) => {
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    const dy = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      goTo(dx > 0 ? current + 1 : current - 1);
+    }
   });
 
   // Keyboard
