@@ -96,8 +96,9 @@ export default function decorate(block) {
   const viewport = document.createElement('div');
   viewport.className = 'fact-cards-viewport';
   viewport.appendChild(track);
+  viewport.appendChild(counter);
 
-  block.append(prev, viewport, next, dots, counter);
+  block.append(prev, viewport, next, dots);
 
   let current = 0;
 
