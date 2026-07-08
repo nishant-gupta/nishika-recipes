@@ -334,7 +334,7 @@
 
 /* ── Buttons ──────────────────────────────────────── */
 .craft-steps .btn {
-  padding: 13px 28px;
+  padding: 14px 28px;
   border: none;
   border-radius: 12px;
   font-size: var(--body-font-size-s);
