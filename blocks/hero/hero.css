@@ -4,35 +4,133 @@
 }
 
 .hero {
-  position: relative;
-  padding: 40px 24px;
-  min-height: 500px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 32px 48px;
+  flex-wrap: wrap;
 }
 
-.hero h1 {
-  max-width: 1201px;
-  margin-left: auto;
-  margin-right: auto;
+/* ── Content (left) ──────────────────────────────── */
+.hero .hero-content {
+  flex: 1;
+  min-width: 280px;
+}
+
+.hero .hero-content p:first-child {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   color: var(--text-color-secondary);
-  text-shadow: 0 0 10px var(--text-color);
+  opacity: 0.65;
+  margin: 0 0 10px;
 }
 
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+.hero .hero-content h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  color: var(--text-color-secondary);
+  line-height: 1.1;
+  margin: 0 0 16px;
 }
 
-.hero img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+.hero .hero-content p {
+  color: var(--text-color-secondary);
+  opacity: 0.8;
+  max-width: 460px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.65;
+  margin: 0 0 28px;
 }
 
-@media (width >= 900px) {
+.hero .hero-content .button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+}
+
+.hero .hero-content a.button {
+  margin: 0;
+  border-radius: 12px;
+  padding: 13px 24px;
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hero .hero-content a.button:not(.secondary) {
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+  border-color: transparent;
+}
+
+.hero .hero-content a.button:not(.secondary):hover {
+  background: var(--text-color-secondary);
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 25%);
+}
+
+.hero .hero-content a.button.secondary {
+  background: transparent;
+  color: var(--text-color-secondary);
+  border-color: rgb(255 255 255 / 35%);
+}
+
+.hero .hero-content a.button.secondary:hover {
+  border-color: rgb(255 255 255 / 70%);
+  background: rgb(255 255 255 / 8%);
+}
+
+/* ── Postcard (right) ────────────────────────────── */
+.hero .hero-postcard {
+  width: min(280px, 100%);
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 20px;
+  padding: 24px;
+  position: relative;
+}
+
+.hero .hero-postcard h2,
+.hero .hero-postcard h3 {
+  font-size: var(--heading-font-size-m);
+  color: var(--text-color-secondary);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.hero .hero-postcard p {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.65;
+  margin: 0;
+}
+
+.hero .hero-postcard .button-container {
+  margin: 16px 0 0;
+}
+
+.hero .hero-postcard a.button {
+  margin: 0;
+  font-size: var(--body-font-size-xs);
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+  font-weight: 700;
+  border-color: transparent;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (width <= 600px) {
   .hero {
-    padding: 40px 32px;
+    padding: 40px 20px 36px;
+    gap: 28px;
+  }
+
+  .hero .hero-postcard {
+    width: 100%;
   }
 }

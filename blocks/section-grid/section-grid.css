@@ -1,0 +1,79 @@
+.section-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* ── Tile ─────────────────────────────────────────── */
+.section-tile {
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.section-tile:hover {
+  background: rgb(255 255 255 / 10%);
+  transform: translateY(-2px);
+}
+
+.section-tile-icon {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.section-tile-title {
+  font-size: var(--heading-font-size-xs);
+  color: var(--text-color-secondary);
+  margin: 0;
+}
+
+.section-tile-desc {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.65;
+  margin: 0;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.section-tile-link {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  color: var(--text-color-secondary);
+  text-decoration: none;
+  margin-top: 12px;
+  border-bottom: 1px solid rgb(255 255 255 / 30%);
+  align-self: flex-start;
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.section-tile-link:hover {
+  text-decoration: none;
+  border-color: var(--text-color-secondary);
+  opacity: 0.9;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (width <= 900px) {
+  .section-grid-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .section-grid-inner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .section-tile {
+    padding: 20px 18px;
+  }
+}

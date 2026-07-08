@@ -1,0 +1,103 @@
+.featured-picks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── Card ────────────────────────────────────────── */
+.featured-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 20px;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.featured-pick:hover {
+  text-decoration: none;
+  background: rgb(255 255 255 / 12%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 20%);
+}
+
+/* ── Tag ─────────────────────────────────────────── */
+.featured-pick-tag {
+  display: inline-block;
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: #fff;
+  align-self: flex-start;
+}
+
+.featured-pick-tag.tag-play---puzzle,
+.featured-pick-tag.tag-riddle,
+.featured-pick-tag.tag-fun-facts,
+.featured-pick-tag.tag-idiom {
+  background: #9b72cf;
+}
+
+.featured-pick-tag.tag-stories---poems,
+.featured-pick-tag.tag-story,
+.featured-pick-tag.tag-poem,
+.featured-pick-tag.tag-narrative {
+  background: #e85d75;
+}
+
+.featured-pick-tag.tag-make---do,
+.featured-pick-tag.tag-craft,
+.featured-pick-tag.tag-writing-prompt {
+  background: #4f94d4;
+}
+
+.featured-pick-tag.tag-learn,
+.featured-pick-tag.tag-science {
+  background: #5fae83;
+}
+
+/* ── Content ─────────────────────────────────────── */
+.featured-pick-title {
+  font-size: var(--heading-font-size-xs);
+  color: var(--text-color-secondary);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.featured-pick-desc {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.featured-pick-meta {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.5;
+  margin-top: auto;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (width <= 900px) {
+  .featured-picks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .featured-picks-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .featured-pick {
+    padding: 18px 16px;
+  }
+}

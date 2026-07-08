@@ -1,0 +1,110 @@
+.subscribe-strip-container .subscribe-strip-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.subscribe-strip {
+  background: var(--dark-color);
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+  padding: 56px 32px;
+}
+
+.subscribe-inner {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subscribe-heading {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color-secondary);
+  margin: 0 0 10px;
+}
+
+.subscribe-desc {
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-secondary);
+  opacity: 0.65;
+  margin: 0 0 28px;
+}
+
+.subscribe-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.subscribe-input {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 13px 18px;
+  border-radius: 12px;
+  border: 1px solid rgb(255 255 255 / 25%);
+  background: rgb(255 255 255 / 10%);
+  color: var(--text-color-secondary);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.subscribe-input::placeholder {
+  color: rgb(255 255 255 / 35%);
+}
+
+.subscribe-input:focus {
+  border-color: rgb(255 255 255 / 55%);
+}
+
+.subscribe-input.shake {
+  animation: subscribe-shake 0.4s ease;
+  border-color: #ff8f8f;
+}
+
+.subscribe-btn {
+  padding: 13px 24px;
+  border: none;
+  border-radius: 12px;
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.subscribe-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 25%);
+}
+
+.subscribe-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+@keyframes subscribe-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@media (width <= 600px) {
+  .subscribe-strip {
+    padding: 40px 20px;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .subscribe-input {
+    max-width: unset;
+  }
+}
