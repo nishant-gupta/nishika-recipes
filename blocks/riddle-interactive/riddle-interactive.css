@@ -1,10 +1,13 @@
 .riddle-interactive {
   max-width: 600px;
   margin: 0 auto;
-  padding: 0 16px 60px;
+  padding: 16px 16px 60px;
   min-height: 420px;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 6%);
 }
 
 /* ── Screen transitions ──────────────────────────── */
@@ -31,6 +34,21 @@
 .riddle-interactive .level-intro {
   text-align: center;
   padding: 56px 24px;
+}
+
+/* ── Level intro icon ────────────────────────────── */
+.riddle-interactive .level-intro-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  animation: bob 2.5s ease infinite;
+}
+
+.riddle-interactive .level-intro-icon img {
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
 }
 
 .riddle-interactive .level-badge {
@@ -141,6 +159,11 @@
   animation: bob 2.5s ease infinite;
 }
 
+.riddle-interactive .riddle-icon img {
+  width: 60px;
+  height: 60px;
+}
+
 .riddle-interactive .riddle-text {
   font-size: var(--heading-font-size-xs);
   color: var(--text-color-secondary);
@@ -174,6 +197,13 @@
 
 .riddle-interactive .btn-hint:hover:not(:disabled) {
   background: rgb(255 255 255 / 10%);
+}
+
+.riddle-interactive .btn-hint img {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 4px;
 }
 
 .riddle-interactive .hint-text {
@@ -247,6 +277,17 @@
   box-shadow: none;
 }
 
+.riddle-interactive .btn.riddle-play-again {
+  width: 56px;
+  height: 56px;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
 /* ── Result screen ───────────────────────────────── */
 .riddle-interactive .result-screen {
   text-align: center;
@@ -257,6 +298,13 @@
   font-size: 80px;
   display: block;
   margin-bottom: 16px;
+}
+
+.riddle-interactive .result-icon img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto;
 }
 
 .riddle-interactive .result-screen.correct .result-icon {
@@ -333,6 +381,13 @@
   display: block;
   margin-bottom: 10px;
   animation: pop 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.riddle-interactive .complete-icon img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto;
 }
 
 .riddle-interactive .level-complete h2 {

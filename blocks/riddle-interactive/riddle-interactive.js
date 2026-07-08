@@ -113,6 +113,15 @@ class RiddleGame {
       const el = document.createElement('div');
       el.className = 'level-intro';
 
+      const introIcon = document.createElement('div');
+      introIcon.className = 'level-intro-icon';
+      const introImg = document.createElement('img');
+      introImg.src = '/icons/riddle-mystery.svg';
+      introImg.alt = '';
+      introImg.width = 100;
+      introImg.height = 100;
+      introIcon.appendChild(introImg);
+
       const badge = document.createElement('div');
       badge.className = 'level-badge';
       badge.textContent = `Level ${level.number}`;
@@ -127,15 +136,15 @@ class RiddleGame {
 
       const btn = document.createElement('button');
       btn.className = 'btn btn-primary';
-      btn.textContent = isFirst ? '🎮 Let the mind games begin!' : '▶ Start Level';
+      btn.textContent = isFirst ? 'Let the mind games begin!' : '▶ Start Level';
 
       if (!isFirst && prevStars.length) {
         const summary = document.createElement('div');
         summary.className = 'score-summary';
         summary.innerHTML = `⭐ ${this.score} points so far`;
-        el.append(badge, title, meta, summary, btn);
+        el.append(introIcon, badge, title, meta, summary, btn);
       } else {
-        el.append(badge, title, meta, btn);
+        el.append(introIcon, badge, title, meta, btn);
       }
 
       btn.addEventListener('click', () => {
@@ -198,7 +207,12 @@ class RiddleGame {
 
       const icon = document.createElement('div');
       icon.className = 'riddle-icon';
-      icon.textContent = '🤔';
+      const thinkImg = document.createElement('img');
+      thinkImg.src = '/icons/riddle-thinking.svg';
+      thinkImg.alt = '';
+      thinkImg.width = 60;
+      thinkImg.height = 60;
+      icon.appendChild(thinkImg);
 
       const text = document.createElement('p');
       text.className = 'riddle-text';
@@ -216,7 +230,14 @@ class RiddleGame {
       if (q.hint) {
         hintBtn = document.createElement('button');
         hintBtn.className = 'btn btn-hint';
-        hintBtn.textContent = '💡 Show Hint';
+        const hintImg = document.createElement('img');
+        hintImg.src = '/icons/riddle-hint.svg';
+        hintImg.alt = '';
+        hintImg.width = 16;
+        hintImg.height = 16;
+        hintImg.style.cssText = 'vertical-align:middle;margin-right:4px';
+        hintBtn.appendChild(hintImg);
+        hintBtn.appendChild(document.createTextNode('Show Hint'));
 
         hintTextEl = document.createElement('div');
         hintTextEl.className = 'hint-text';
@@ -256,7 +277,7 @@ class RiddleGame {
           this.hintUsed = true;
           hintTextEl.hidden = false;
           hintBtn.disabled = true;
-          hintBtn.textContent = '💡 Hint shown (-50pts)';
+          hintBtn.textContent = 'Hint shown (-50pts)';
         });
       }
 
@@ -303,7 +324,12 @@ class RiddleGame {
 
       const icon = document.createElement('div');
       icon.className = 'result-icon';
-      icon.textContent = correct ? '🎉' : '😔';
+      const resultImg = document.createElement('img');
+      resultImg.src = correct ? '/icons/quiz-celebrate.svg' : '/icons/riddle-incorrect.svg';
+      resultImg.alt = '';
+      resultImg.width = 80;
+      resultImg.height = 80;
+      icon.appendChild(resultImg);
 
       const title = document.createElement('h2');
       title.className = 'result-title';
@@ -344,7 +370,7 @@ class RiddleGame {
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'btn btn-primary';
-      nextBtn.textContent = isLast ? '📊 See Results' : 'Next Riddle →';
+      nextBtn.textContent = isLast ? 'See Results' : 'Next Riddle →';
       screen.appendChild(nextBtn);
 
       wrapper.appendChild(screen);
@@ -376,7 +402,12 @@ class RiddleGame {
 
       const iconEl = document.createElement('div');
       iconEl.className = 'complete-icon';
-      iconEl.textContent = isLastLevel ? '🏆' : '✅';
+      const completeImg = document.createElement('img');
+      completeImg.src = isLastLevel ? '/icons/quiz-trophy.svg' : '/icons/riddle-complete.svg';
+      completeImg.alt = '';
+      completeImg.width = 80;
+      completeImg.height = 80;
+      iconEl.appendChild(completeImg);
 
       const heading = document.createElement('h2');
       heading.textContent = isLastLevel ? 'Game Complete!' : `Level ${level.number} Complete!`;
@@ -437,8 +468,14 @@ class RiddleGame {
         });
 
         const playAgainBtn = document.createElement('button');
-        playAgainBtn.className = 'btn btn-primary';
-        playAgainBtn.textContent = '🔄 Play Again';
+        playAgainBtn.className = 'btn btn-primary riddle-play-again';
+        playAgainBtn.setAttribute('aria-label', 'Play Again');
+        const replayImg = document.createElement('img');
+        replayImg.src = '/icons/quiz-replay.svg';
+        replayImg.alt = '';
+        replayImg.width = 32;
+        replayImg.height = 32;
+        playAgainBtn.appendChild(replayImg);
 
         screen.append(finalScore, allStarsRow, playAgainBtn);
 
