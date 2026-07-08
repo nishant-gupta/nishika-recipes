@@ -296,12 +296,30 @@
     display: none;
   }
 
+  /* Title: hide icon, center-align */
+  .poem .poem-page-heading {
+    justify-content: center;
+  }
+
+  .poem .poem-page-heading svg {
+    display: none;
+  }
+
   .poem .poem-heading {
     font-size: 24px;
+    text-align: center;
+  }
+
+  /* Verses: hide icon, center-align text */
+  .poem .verse-icon {
+    display: none;
   }
 
   .poem .poem-verse {
-    gap: 12px;
+    gap: 0;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .poem .poem-verse p {
