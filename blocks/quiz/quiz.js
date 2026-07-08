@@ -67,6 +67,7 @@ class QuizGame {
     this.data = data;
     this.current = 0;
     this.score = 0;
+    this.correct = 0;
     this.answered = false;
   }
 
@@ -124,6 +125,7 @@ class QuizGame {
   start() {
     this.current = 0;
     this.score = 0;
+    this.correct = 0;
     this.renderQuestion();
   }
 
@@ -197,7 +199,7 @@ class QuizGame {
     const correct = normalizeText(chosenText) === normalizeText(q.answer);
     const correctOpt = q.options.find((o) => normalizeText(o.text) === normalizeText(q.answer));
     const correctLabel = correctOpt?.label;
-    if (correct) this.score += 10;
+    if (correct) { this.score += 10; this.correct += 1; }
 
     // Reveal all options
     optionsEl.querySelectorAll('.quiz-option').forEach((btn) => {
@@ -235,8 +237,7 @@ class QuizGame {
 
   renderResults() {
     const total = this.data.questions.length;
-    const maxScore = total * 10;
-    const pct = Math.round((this.score / maxScore) * 100);
+    const pct = Math.round((this.correct / total) * 100);
     let grade;
     let resultIcon;
     if (pct === 100) {
@@ -268,11 +269,7 @@ class QuizGame {
 
       const scoreEl = document.createElement('div');
       scoreEl.className = 'quiz-results-score';
-      scoreEl.textContent = `${this.score} / ${maxScore}`;
-
-      const pctEl = document.createElement('div');
-      pctEl.className = 'quiz-results-pct';
-      pctEl.textContent = `${pct}% correct`;
+      scoreEl.textContent = `${this.correct} / ${total} correct`;
 
       // Score ring
       const ring = document.createElement('div');
@@ -300,7 +297,7 @@ class QuizGame {
       playAgain.appendChild(replayImg);
       playAgain.addEventListener('click', () => this.start());
 
-      results.append(emojiEl, gradeEl, ring, scoreEl, pctEl, playAgain);
+      results.append(emojiEl, gradeEl, ring, scoreEl, playAgain);
       screen.appendChild(results);
     });
   }
