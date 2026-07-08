@@ -84,6 +84,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
+  line-height: 1;
 }
 
 /* ── Game Header ─────────────────────────────────── */
@@ -111,28 +112,36 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  line-height: 1;
 }
 
 .riddle-interactive .score-display img,
-.riddle-interactive .streak-badge img,
-.riddle-interactive .streak-notice img,
 .riddle-interactive .score-total img,
 .riddle-interactive .final-score img,
 .riddle-interactive .score-summary img {
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.riddle-interactive .streak-badge img,
+.riddle-interactive .streak-notice img {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 .riddle-interactive .streak-badge {
-  background: linear-gradient(135deg, #ff6b35, #ff9500);
-  color: white;
-  padding: 3px 12px;
-  border-radius: 12px;
-  font-size: var(--body-font-size-xs);
+  color: #ff9500;
+  font-size: var(--body-font-size-m);
   font-weight: 700;
   animation: pulse 1.2s ease infinite;
   display: flex;
   align-items: center;
   gap: 4px;
+  line-height: 1;
 }
 
 /* ── Progress bar ────────────────────────────────── */
@@ -385,6 +394,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
+  line-height: 1;
 }
 
 .riddle-interactive .score-total {
@@ -395,6 +405,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
+  line-height: 1;
 }
 
 /* ── Level Complete ──────────────────────────────── */
@@ -520,6 +531,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
+  line-height: 1;
 }
 
 .riddle-interactive .all-levels-stars {

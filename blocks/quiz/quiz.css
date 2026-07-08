@@ -50,6 +50,13 @@
   animation: bob 2.5s ease infinite;
 }
 
+.quiz .quiz-score img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex-shrink: 0;
+}
+
 .quiz .quiz-lobby-icon img {
   width: 140px;
   height: 140px;
@@ -119,6 +126,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  line-height: 1;
 }
 
 /* ── Progress ────────────────────────────────────── */
