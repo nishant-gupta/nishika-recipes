@@ -289,7 +289,6 @@
 .idiom-of-week .idiom-opt-text {
   flex: 1;
   overflow-wrap: break-word;
-  word-break: break-word;
   min-width: 0;
   line-height: 1.4;
   padding-top: 5px;

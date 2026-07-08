@@ -108,7 +108,7 @@ class ScienceGame {
     else this.renderConclusion();
   }
 
-  makeProgress(activePhase) {
+  static makeProgress(activePhase) {
     const wrap = document.createElement('div');
     wrap.className = 'science-progress';
 
@@ -173,7 +173,7 @@ class ScienceGame {
     return row;
   }
 
-  makeBadge(iconSrc, text) {
+  static makeBadge(iconSrc, text) {
     const badge = document.createElement('span');
     badge.className = 'science-badge';
     const img = document.createElement('img');
@@ -229,9 +229,9 @@ class ScienceGame {
       if (time || age || difficulty) {
         const meta = document.createElement('div');
         meta.className = 'science-meta';
-        if (time) meta.appendChild(this.makeBadge('/icons/craft-time.svg', time));
-        if (age) meta.appendChild(this.makeBadge('/icons/craft-age.svg', `Age ${age}`));
-        if (difficulty) meta.appendChild(this.makeBadge('/icons/craft-difficulty.svg', difficulty));
+        if (time) meta.appendChild(ScienceGame.makeBadge('/icons/craft-time.svg', time));
+        if (age) meta.appendChild(ScienceGame.makeBadge('/icons/craft-age.svg', `Age ${age}`));
+        if (difficulty) meta.appendChild(ScienceGame.makeBadge('/icons/craft-difficulty.svg', difficulty));
         body.appendChild(meta);
       }
 
@@ -243,7 +243,7 @@ class ScienceGame {
   // ── Hypothesis ────────────────────────────────────
   renderHypothesis() {
     this.render((screen) => {
-      screen.appendChild(this.makeProgress(0));
+      screen.appendChild(ScienceGame.makeProgress(0));
 
       const label = document.createElement('p');
       label.className = 'science-stage-label';
@@ -274,7 +274,7 @@ class ScienceGame {
     const { materials } = this.data;
 
     this.render((screen) => {
-      screen.appendChild(this.makeProgress(1));
+      screen.appendChild(ScienceGame.makeProgress(1));
 
       const label = document.createElement('p');
       label.className = 'science-stage-label';
@@ -317,7 +317,7 @@ class ScienceGame {
     const { text, picture } = steps[stepIndex];
 
     this.render((screen) => {
-      screen.appendChild(this.makeProgress(2));
+      screen.appendChild(ScienceGame.makeProgress(2));
 
       const progressWrap = document.createElement('div');
       progressWrap.className = 'science-step-progress';
@@ -370,7 +370,7 @@ class ScienceGame {
   // ── Observation ───────────────────────────────────
   renderObservation() {
     this.render((screen) => {
-      screen.appendChild(this.makeProgress(3));
+      screen.appendChild(ScienceGame.makeProgress(3));
 
       const label = document.createElement('p');
       label.className = 'science-stage-label';
@@ -402,7 +402,7 @@ class ScienceGame {
 
     this.render((screen) => {
       screen.classList.add('science-conclusion-screen');
-      screen.appendChild(this.makeProgress(4));
+      screen.appendChild(ScienceGame.makeProgress(4));
 
       const iconEl = document.createElement('div');
       iconEl.className = 'science-conclusion-icon';

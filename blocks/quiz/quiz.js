@@ -274,7 +274,10 @@ class QuizGame {
       ring.className = 'quiz-ring';
       ring.style.setProperty('--pct', pct);
       const circ = 2 * Math.PI * 15.9; // ≈ 99.9
-      const ringColor = pct === 100 ? '#64dc64' : pct >= 70 ? '#ffd700' : pct >= 40 ? '#ff9f40' : '#ff6b6b';
+      let ringColor = '#ff6b6b';
+      if (pct === 100) ringColor = '#64dc64';
+      else if (pct >= 70) ringColor = '#ffd700';
+      else if (pct >= 40) ringColor = '#ff9f40';
       ring.innerHTML = `<svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9" fill="none" stroke-width="2.5" class="ring-bg"/><circle cx="18" cy="18" r="15.9" fill="none" stroke-width="2.5" stroke-linecap="round" stroke="${ringColor}" class="ring-fill" stroke-dasharray="0 ${circ}" stroke-dashoffset="0"/></svg>`;
       requestAnimationFrame(() => {
         const fill = ring.querySelector('.ring-fill');

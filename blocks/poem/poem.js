@@ -228,8 +228,8 @@ function initCarousel(viewport, stack, allPoems) {
     animating = true;
 
     const goingNext = nextIndex > current;
-    const foldOutClass = goingNext ? 'poem-page--fold-out-left' : 'poem-page--fold-out-right';
-    const unfoldInClass = goingNext ? 'poem-page--unfold-in-left' : 'poem-page--unfold-in-right';
+    const foldOutClass = goingNext ? 'poem-page-fold-out-left' : 'poem-page-fold-out-right';
+    const unfoldInClass = goingNext ? 'poem-page-unfold-in-left' : 'poem-page-unfold-in-right';
 
     const oldPage = viewport.querySelector('.poem-page');
     const newPage = buildPage(allPoems[nextIndex]);
@@ -336,7 +336,7 @@ export default async function decorate(block) {
 
   if (allPoems.length > 1) {
     // Carousel mode: apply first scheme and add bg to stage
-    block.classList.add('poem--carousel');
+    block.classList.add('poem-carousel');
     applyScheme(stack, 0);
     const nav = initCarousel(viewport, stack, allPoems);
     stage.appendChild(nav);
