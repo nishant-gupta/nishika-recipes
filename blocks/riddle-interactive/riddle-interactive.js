@@ -1,3 +1,12 @@
+function iconImg(src, size = 16) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.width = size;
+  img.height = size;
+  img.alt = '';
+  return img;
+}
+
 function parseRiddles(block) {
   const levelsMap = new Map();
 
@@ -141,7 +150,7 @@ class RiddleGame {
       if (!isFirst && prevStars.length) {
         const summary = document.createElement('div');
         summary.className = 'score-summary';
-        summary.innerHTML = `⭐ ${this.score} points so far`;
+        summary.append(iconImg('/icons/score-star.svg'), ` ${this.score} points so far`);
         el.append(introIcon, badge, title, meta, summary, btn);
       } else {
         el.append(introIcon, badge, title, meta, btn);
@@ -177,14 +186,14 @@ class RiddleGame {
 
       const scoreEl = document.createElement('div');
       scoreEl.className = 'score-display';
-      scoreEl.textContent = `⭐ ${this.score}`;
+      scoreEl.append(iconImg('/icons/score-star.svg'), ` ${this.score}`);
 
       header.append(lvlInd);
 
       if (this.streak >= 2) {
         const streakEl = document.createElement('div');
         streakEl.className = 'streak-badge';
-        streakEl.textContent = `🔥 ${this.streak}`;
+        streakEl.append(iconImg('/icons/streak-fire.svg'), ` ${this.streak}`);
         header.append(streakEl);
       }
 
@@ -358,13 +367,13 @@ class RiddleGame {
       if (this.streak >= 2) {
         const streakEl = document.createElement('div');
         streakEl.className = 'streak-notice';
-        streakEl.textContent = `🔥 ${this.streak} in a row!`;
+        streakEl.append(iconImg('/icons/streak-fire.svg'), ` ${this.streak} in a row!`);
         screen.appendChild(streakEl);
       }
 
       const totalEl = document.createElement('div');
       totalEl.className = 'score-total';
-      totalEl.textContent = `Total: ⭐ ${this.score}`;
+      totalEl.append('Total: ', iconImg('/icons/score-star.svg'), ` ${this.score}`);
       screen.appendChild(totalEl);
 
       const nextBtn = document.createElement('button');
@@ -437,7 +446,7 @@ class RiddleGame {
       statsRow.append(
         makestat(`${correctCount}/${total}`, 'Correct'),
         makestat(`+${levelPoints}`, 'Points'),
-        makestat(`${this.maxStreak}🔥`, 'Streak'),
+        makestat(`${this.maxStreak}<img src="/icons/streak-fire.svg" width="14" height="14" alt="">`, 'Streak'),
       );
 
       // Review dots
@@ -455,7 +464,7 @@ class RiddleGame {
       if (isLastLevel) {
         const finalScore = document.createElement('div');
         finalScore.className = 'final-score';
-        finalScore.textContent = `Final Score: ⭐ ${this.score}`;
+        finalScore.append('Final Score: ', iconImg('/icons/score-star.svg'), ` ${this.score}`);
 
         const allStarsRow = document.createElement('div');
         allStarsRow.className = 'all-levels-stars';

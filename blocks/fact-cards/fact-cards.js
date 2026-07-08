@@ -31,7 +31,12 @@ function buildCard(card) {
     if (!card.picture) {
       const icon = document.createElement('div');
       icon.className = 'fact-icon';
-      icon.textContent = '💡';
+      const bulbImg = document.createElement('img');
+      bulbImg.src = '/icons/idiom-bulb.svg';
+      bulbImg.width = 40;
+      bulbImg.height = 40;
+      bulbImg.alt = '';
+      icon.appendChild(bulbImg);
       body.appendChild(icon);
     }
 

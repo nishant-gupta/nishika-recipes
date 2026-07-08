@@ -116,6 +116,9 @@
 .quiz .quiz-score {
   font-weight: 700;
   color: var(--text-color-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* ── Progress ────────────────────────────────────── */

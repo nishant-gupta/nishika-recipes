@@ -144,7 +144,12 @@ class QuizGame {
 
       const scoreEl = document.createElement('div');
       scoreEl.className = 'quiz-score';
-      scoreEl.textContent = `⭐ ${this.score}`;
+      const scoreStarImg = document.createElement('img');
+      scoreStarImg.src = '/icons/score-star.svg';
+      scoreStarImg.width = 16;
+      scoreStarImg.height = 16;
+      scoreStarImg.alt = '';
+      scoreEl.append(scoreStarImg, ` ${this.score}`);
 
       header.append(titleEl, scoreEl);
 
@@ -215,7 +220,7 @@ class QuizGame {
     const isLast = this.current === this.data.questions.length - 1;
     const nextBtn = document.createElement('button');
     nextBtn.className = 'btn btn-primary quiz-next-btn';
-    nextBtn.textContent = isLast ? '📊 See Results' : 'Next →';
+    nextBtn.textContent = isLast ? 'See Results' : 'Next →';
     screen.appendChild(nextBtn);
 
     nextBtn.addEventListener('click', () => {

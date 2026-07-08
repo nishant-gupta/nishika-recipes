@@ -80,6 +80,10 @@
   color: #ffd700;
   font-weight: 700;
   margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
 /* ── Game Header ─────────────────────────────────── */
@@ -104,6 +108,18 @@
   font-weight: 700;
   font-size: var(--body-font-size-m);
   color: var(--text-color-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.riddle-interactive .score-display img,
+.riddle-interactive .streak-badge img,
+.riddle-interactive .streak-notice img,
+.riddle-interactive .score-total img,
+.riddle-interactive .final-score img,
+.riddle-interactive .score-summary img {
+  flex-shrink: 0;
 }
 
 .riddle-interactive .streak-badge {
@@ -114,6 +130,9 @@
   font-size: var(--body-font-size-xs);
   font-weight: 700;
   animation: pulse 1.2s ease infinite;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* ── Progress bar ────────────────────────────────── */
@@ -362,12 +381,20 @@
   font-weight: 700;
   font-size: var(--body-font-size-m);
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
 .riddle-interactive .score-total {
   color: var(--text-color-secondary);
   opacity: 0.75;
   margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
 /* ── Level Complete ──────────────────────────────── */
@@ -443,6 +470,10 @@
   font-size: var(--heading-font-size-m);
   font-weight: 700;
   color: var(--text-color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 }
 
 .riddle-interactive .stat-label {
@@ -485,6 +516,10 @@
   font-weight: 700;
   color: #ffd700;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .riddle-interactive .all-levels-stars {
