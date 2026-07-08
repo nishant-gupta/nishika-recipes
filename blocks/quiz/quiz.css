@@ -1,11 +1,14 @@
 .quiz {
   max-width: 600px;
   margin: 0 auto 40px;
-  padding: 0 16px;
+  padding: 16px;
   min-height: 320px;
   position: relative;
   overflow: hidden;
   transition: max-height 0.4s ease, opacity 0.3s ease;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 6%);
 }
 
 /* ── Screen transitions ──────────────────────────── */
@@ -37,15 +40,20 @@
   text-align: center;
   min-height: clamp(360px, 55vh, 540px);
   padding: 48px 32px;
-  background: rgb(255 255 255 / 6%);
-  border: 1px solid rgb(255 255 255 / 14%);
-  border-radius: 20px;
   gap: 16px;
 }
 
 .quiz .quiz-lobby-icon {
-  font-size: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: bob 2.5s ease infinite;
+}
+
+.quiz .quiz-lobby-icon img {
+  width: 140px;
+  height: 140px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
 }
 
 .quiz .quiz-title {
@@ -69,8 +77,12 @@
 }
 
 .quiz.quiz-collapsed .quiz-lobby-icon {
-  font-size: 36px;
   animation: none;
+}
+
+.quiz.quiz-collapsed .quiz-lobby-icon img {
+  width: 64px;
+  height: 64px;
 }
 
 .quiz.quiz-collapsed .quiz-title {
@@ -169,6 +181,7 @@
 .quiz .quiz-option:hover:not(:disabled) {
   background: rgb(255 255 255 / 16%);
   border-color: rgb(255 255 255 / 40%);
+  color: var(--dark-color);
   transform: translateY(-1px);
 }
 
@@ -195,6 +208,11 @@
   font-weight: 700;
   font-size: var(--body-font-size-xs);
   flex-shrink: 0;
+}
+
+.quiz .quiz-option:hover:not(:disabled) .quiz-option-label {
+  background: var(--dark-color);
+  color: var(--text-color-secondary);
 }
 
 .quiz .quiz-option.correct .quiz-option-label {
@@ -256,7 +274,14 @@
 
 .quiz .quiz-results-icon {
   font-size: 72px;
+  line-height: 1;
   animation: pop 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.quiz .quiz-results-icon img {
+  width: 80px;
+  height: 80px;
+  display: block;
 }
 
 .quiz .quiz-results-grade {
@@ -292,9 +317,19 @@
 }
 
 .quiz .ring-fill {
-  stroke: #ffd700;
-  stroke-linecap: round;
   transition: stroke-dasharray 1s ease;
+}
+
+/* ── Play again (icon-only round button) ─────────── */
+.quiz .btn.quiz-play-again {
+  width: 56px;
+  height: 56px;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 /* ── Shared buttons ──────────────────────────────── */

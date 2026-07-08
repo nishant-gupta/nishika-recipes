@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none">
+  <!-- outer ring -->
+  <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+  <!-- bulb body -->
+  <path d="M36 14c-9.4 0-17 7.6-17 17 0 6.2 3.3 11.6 8.3 14.6V50a2 2 0 0 0 2 2h13.4a2 2 0 0 0 2-2v-4.4C49.7 42.6 53 37.2 53 31c0-9.4-7.6-17-17-17z" fill="rgba(255,255,255,0.82)"/>
+  <!-- base lines -->
+  <line x1="30" y1="52" x2="42" y2="52" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="31.5" y1="55.5" x2="40.5" y2="55.5" stroke="rgba(255,255,255,0.38)" stroke-width="2" stroke-linecap="round"/>
+  <!-- shine -->
+  <path d="M29 24c1.8-4 5.6-6.8 10-7.2" stroke="rgba(255,255,255,0.45)" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- sparkle large -->
+  <path d="M55 14l1.2 3.6 3.6 1.2-3.6 1.2L55 23.6l-1.2-3.6L50.2 18.8l3.6-1.2z" fill="rgba(255,255,255,0.55)"/>
+  <!-- sparkle small -->
+  <path d="M17 50l.8 2.4 2.4.8-2.4.8L17 56.4l-.8-2.4-2.4-.8 2.4-.8z" fill="rgba(255,255,255,0.35)"/>
+</svg>

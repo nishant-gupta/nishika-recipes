@@ -95,7 +95,12 @@ class QuizGame {
 
       const icon = document.createElement('div');
       icon.className = 'quiz-lobby-icon';
-      icon.textContent = '🧠';
+      const iconImg = document.createElement('img');
+      iconImg.src = '/icons/quiz-bulb.svg';
+      iconImg.alt = '';
+      iconImg.width = 140;
+      iconImg.height = 140;
+      icon.appendChild(iconImg);
 
       const title = document.createElement('h2');
       title.className = 'quiz-title';
@@ -228,15 +233,15 @@ class QuizGame {
     const maxScore = total * 10;
     const pct = Math.round((this.score / maxScore) * 100);
     let grade;
-    let emoji;
+    let resultIcon;
     if (pct === 100) {
-      grade = 'Perfect!'; emoji = '🏆';
+      grade = 'Perfect!'; resultIcon = '/icons/quiz-trophy.svg';
     } else if (pct >= 70) {
-      grade = 'Great job!'; emoji = '🎉';
+      grade = 'Great job!'; resultIcon = '/icons/quiz-celebrate.svg';
     } else if (pct >= 40) {
-      grade = 'Good effort!'; emoji = '👍';
+      grade = 'Good effort!'; resultIcon = '/icons/quiz-celebrate.svg';
     } else {
-      grade = 'Keep trying!'; emoji = '💪';
+      grade = 'Keep trying!'; resultIcon = '/icons/quiz-strength.svg';
     }
 
     this.render((screen) => {
@@ -245,7 +250,12 @@ class QuizGame {
 
       const emojiEl = document.createElement('div');
       emojiEl.className = 'quiz-results-icon';
-      emojiEl.textContent = emoji;
+      const resultImg = document.createElement('img');
+      resultImg.src = resultIcon;
+      resultImg.alt = '';
+      resultImg.width = 80;
+      resultImg.height = 80;
+      emojiEl.appendChild(resultImg);
 
       const gradeEl = document.createElement('h2');
       gradeEl.className = 'quiz-results-grade';
@@ -263,11 +273,23 @@ class QuizGame {
       const ring = document.createElement('div');
       ring.className = 'quiz-ring';
       ring.style.setProperty('--pct', pct);
-      ring.innerHTML = `<svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9" fill="none" stroke-width="2.5" class="ring-bg"/><circle cx="18" cy="18" r="15.9" fill="none" stroke-width="2.5" class="ring-fill" stroke-dasharray="${pct} 100" stroke-dashoffset="25"/></svg>`;
+      const circ = 2 * Math.PI * 15.9; // ≈ 99.9
+      const ringColor = pct === 100 ? '#64dc64' : pct >= 70 ? '#ffd700' : pct >= 40 ? '#ff9f40' : '#ff6b6b';
+      ring.innerHTML = `<svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9" fill="none" stroke-width="2.5" class="ring-bg"/><circle cx="18" cy="18" r="15.9" fill="none" stroke-width="2.5" stroke-linecap="round" stroke="${ringColor}" class="ring-fill" stroke-dasharray="0 ${circ}" stroke-dashoffset="0"/></svg>`;
+      requestAnimationFrame(() => {
+        const fill = ring.querySelector('.ring-fill');
+        if (fill) fill.setAttribute('stroke-dasharray', `${(pct / 100) * circ} ${circ}`);
+      });
 
       const playAgain = document.createElement('button');
-      playAgain.className = 'btn btn-primary';
-      playAgain.textContent = '🔄 Play Again';
+      playAgain.className = 'btn btn-primary quiz-play-again';
+      playAgain.setAttribute('aria-label', 'Play Again');
+      const replayImg = document.createElement('img');
+      replayImg.src = '/icons/quiz-replay.svg';
+      replayImg.alt = '';
+      replayImg.width = 32;
+      replayImg.height = 32;
+      playAgain.appendChild(replayImg);
       playAgain.addEventListener('click', () => this.start());
 
       results.append(emojiEl, gradeEl, ring, scoreEl, pctEl, playAgain);
