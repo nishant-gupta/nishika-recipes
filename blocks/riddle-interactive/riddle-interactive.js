@@ -121,7 +121,7 @@ class RiddleGame {
 
       const btn = document.createElement('button');
       btn.className = 'btn btn-primary';
-      btn.textContent = isFirst ? '🎮 Start Game' : '▶ Start Level';
+      btn.textContent = isFirst ? '🎮 Let the mind games begin!' : '▶ Start Level';
 
       if (!isFirst && prevStars.length) {
         const summary = document.createElement('div');
