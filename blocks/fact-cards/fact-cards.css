@@ -10,6 +10,7 @@
 .fact-cards-viewport {
   overflow: hidden;
   border-radius: 20px;
+  border: 1px solid rgb(255 255 255 / 16%);
 }
 
 /* ── Track ───────────────────────────────────────── */
@@ -23,8 +24,6 @@
   flex: 0 0 100%;
   min-height: clamp(300px, 45vh, 520px);
   background: rgb(255 255 255 / 10%);
-  border: 1px solid rgb(255 255 255 / 16%);
-  overflow: hidden;
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
