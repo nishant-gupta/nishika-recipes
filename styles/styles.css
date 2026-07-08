@@ -277,3 +277,20 @@ main .section.boxed {
 main .section.center {
   text-align: center;
 }
+
+/* ── Homepage section headings ───────────────────── */
+main > .section > div > h2 {
+  font-size: var(--heading-font-size-m);
+  color: var(--text-color-secondary);
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+main > .section > div > h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgb(255 255 255 / 12%);
+}

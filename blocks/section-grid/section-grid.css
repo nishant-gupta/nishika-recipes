@@ -1,34 +1,46 @@
 .section-grid-inner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 16px;
 }
 
 /* ── Tile ─────────────────────────────────────────── */
 .section-tile {
   background: rgb(255 255 255 / 6%);
-  border: 1px solid rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 20px;
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  transition: background 0.2s ease, transform 0.2s ease;
+  gap: 8px;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  cursor: default;
 }
 
-.section-tile:hover {
+.section-tile:has(.section-tile-link[href]:not([href="#"])):hover {
   background: rgb(255 255 255 / 10%);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  border-color: rgb(255 255 255 / 20%);
 }
 
+/* ── Icon badge ──────────────────────────────────── */
 .section-tile-icon {
-  font-size: 28px;
-  line-height: 1;
-  margin-bottom: 6px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 4px;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 10%);
 }
 
+/* ── Text ────────────────────────────────────────── */
 .section-tile-title {
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
   color: var(--text-color-secondary);
   margin: 0;
 }
@@ -36,7 +48,7 @@
 .section-tile-desc {
   font-size: var(--body-font-size-xs);
   color: var(--text-color-secondary);
-  opacity: 0.65;
+  opacity: 0.6;
   margin: 0;
   line-height: 1.55;
   flex: 1;
@@ -47,18 +59,24 @@
   font-weight: 700;
   color: var(--text-color-secondary);
   text-decoration: none;
-  margin-top: 12px;
-  border-bottom: 1px solid rgb(255 255 255 / 30%);
+  margin-top: 10px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
   align-self: flex-start;
-  padding-bottom: 2px;
-  transition: border-color 0.2s ease, opacity 0.2s ease;
 }
 
 .section-tile-link:hover {
   text-decoration: none;
-  border-color: var(--text-color-secondary);
-  opacity: 0.9;
+  opacity: 1;
 }
+
+/* ── Category accent colours on icon ────────────── */
+.section-tile:nth-child(1) .section-tile-icon { background: rgb(192 132 252 / 15%); border-color: rgb(192 132 252 / 25%); }
+.section-tile:nth-child(2) .section-tile-icon { background: rgb(244 114 182 / 15%); border-color: rgb(244 114 182 / 25%); }
+.section-tile:nth-child(3) .section-tile-icon { background: rgb(96 165 250 / 15%); border-color: rgb(96 165 250 / 25%); }
+.section-tile:nth-child(4) .section-tile-icon { background: rgb(74 222 128 / 12%); border-color: rgb(74 222 128 / 20%); }
+.section-tile:nth-child(5) .section-tile-icon { background: rgb(251 146 60 / 15%); border-color: rgb(251 146 60 / 25%); }
+.section-tile:nth-child(6) .section-tile-icon { background: rgb(253 224 71 / 12%); border-color: rgb(253 224 71 / 20%); }
 
 /* ── Responsive ──────────────────────────────────── */
 @media (width <= 900px) {
@@ -70,7 +88,7 @@
 @media (width <= 600px) {
   .section-grid-inner {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 
   .section-tile {

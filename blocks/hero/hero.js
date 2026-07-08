@@ -1,29 +1,25 @@
 export default function decorate(block) {
-  const rows = [...block.children];
+  const [row] = block.children;
+  if (!row) return;
 
-  // Two-column layout: content | postcard
-  if (rows.length === 1 && rows[0].children.length === 2) {
-    const [contentCell, postcardCell] = [...rows[0].children];
+  const cells = [...row.children];
 
+  if (cells.length >= 2) {
     const content = document.createElement('div');
     content.className = 'hero-content';
-    while (contentCell.firstElementChild) content.append(contentCell.firstElementChild);
+    while (cells[0].firstChild) content.append(cells[0].firstChild);
 
     const postcard = document.createElement('div');
     postcard.className = 'hero-postcard';
-    while (postcardCell.firstChild) postcard.append(postcardCell.firstChild);
+    while (cells[1].firstChild) postcard.append(cells[1].firstChild);
 
     block.textContent = '';
     block.append(content, postcard);
-    return;
+  } else {
+    const content = document.createElement('div');
+    content.className = 'hero-content';
+    while (cells[0].firstChild) content.append(cells[0].firstChild);
+    block.textContent = '';
+    block.append(content);
   }
-
-  // Single-column fallback
-  const content = document.createElement('div');
-  content.className = 'hero-content';
-  rows.forEach((row) => {
-    while (row.firstElementChild) content.append(row.firstElementChild);
-  });
-  block.textContent = '';
-  block.append(content);
 }

@@ -1,63 +1,131 @@
 .featured-picks-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 /* ── Card ────────────────────────────────────────── */
 .featured-pick {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 24px 20px;
-  background: rgb(255 255 255 / 8%);
-  border: 1px solid rgb(255 255 255 / 14%);
+  background: rgb(255 255 255 / 7%);
+  border: 1px solid rgb(255 255 255 / 12%);
   border-radius: 20px;
+  overflow: hidden;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .featured-pick:hover {
   text-decoration: none;
-  background: rgb(255 255 255 / 12%);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgb(0 0 0 / 20%);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 25%);
 }
 
-/* ── Tag ─────────────────────────────────────────── */
+/* ── Image area (shown when image present) ───────── */
+.featured-pick-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: rgb(255 255 255 / 5%);
+}
+
+.featured-pick-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.featured-pick:hover .featured-pick-image img {
+  transform: scale(1.04);
+}
+
+/* ── Category colour stripe (no image) ──────────── */
+.featured-pick:not(:has(.featured-pick-image)) {
+  border-top: 4px solid transparent;
+}
+
+.featured-pick.cat-riddle,
+.featured-pick.cat-play--puzzle,
+.featured-pick.cat-idiom,
+.featured-pick.cat-fun-facts {
+  border-top-color: #c084fc;
+}
+
+.featured-pick.cat-story,
+.featured-pick.cat-stories--poems,
+.featured-pick.cat-poem,
+.featured-pick.cat-narrative {
+  border-top-color: #f472b6;
+}
+
+.featured-pick.cat-craft,
+.featured-pick.cat-make--do,
+.featured-pick.cat-writing-prompt {
+  border-top-color: #60a5fa;
+}
+
+.featured-pick.cat-learn,
+.featured-pick.cat-science {
+  border-top-color: #4ade80;
+}
+
+/* ── Body ────────────────────────────────────────── */
+.featured-pick-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 20px 20px;
+  flex: 1;
+}
+
+/* ── Tag pill ────────────────────────────────────── */
 .featured-pick-tag {
-  display: inline-block;
-  font-size: var(--body-font-size-xs);
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
   font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   padding: 4px 12px;
   border-radius: 20px;
   color: #fff;
   align-self: flex-start;
 }
 
-.featured-pick-tag.tag-play---puzzle,
 .featured-pick-tag.tag-riddle,
-.featured-pick-tag.tag-fun-facts,
-.featured-pick-tag.tag-idiom {
-  background: #9b72cf;
+.featured-pick-tag.tag-play--puzzle,
+.featured-pick-tag.tag-idiom,
+.featured-pick-tag.tag-fun-facts {
+  background: rgb(192 132 252 / 25%);
+  color: #c084fc;
+  border: 1px solid rgb(192 132 252 / 35%);
 }
 
-.featured-pick-tag.tag-stories---poems,
 .featured-pick-tag.tag-story,
+.featured-pick-tag.tag-stories--poems,
 .featured-pick-tag.tag-poem,
 .featured-pick-tag.tag-narrative {
-  background: #e85d75;
+  background: rgb(244 114 182 / 20%);
+  color: #f472b6;
+  border: 1px solid rgb(244 114 182 / 35%);
 }
 
-.featured-pick-tag.tag-make---do,
 .featured-pick-tag.tag-craft,
+.featured-pick-tag.tag-make--do,
 .featured-pick-tag.tag-writing-prompt {
-  background: #4f94d4;
+  background: rgb(96 165 250 / 20%);
+  color: #60a5fa;
+  border: 1px solid rgb(96 165 250 / 35%);
 }
 
 .featured-pick-tag.tag-learn,
 .featured-pick-tag.tag-science {
-  background: #5fae83;
+  background: rgb(74 222 128 / 15%);
+  color: #4ade80;
+  border: 1px solid rgb(74 222 128 / 30%);
 }
 
 /* ── Content ─────────────────────────────────────── */
@@ -71,17 +139,19 @@
 .featured-pick-desc {
   font-size: var(--body-font-size-xs);
   color: var(--text-color-secondary);
-  opacity: 0.7;
+  opacity: 0.65;
   margin: 0;
-  line-height: 1.55;
+  line-height: 1.6;
   flex: 1;
 }
 
 .featured-pick-meta {
-  font-size: var(--body-font-size-xs);
+  font-size: 12px;
   color: var(--text-color-secondary);
-  opacity: 0.5;
-  margin-top: auto;
+  opacity: 0.45;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid rgb(255 255 255 / 8%);
 }
 
 /* ── Responsive ──────────────────────────────────── */
@@ -95,9 +165,5 @@
   .featured-picks-grid {
     grid-template-columns: 1fr;
     gap: 14px;
-  }
-
-  .featured-pick {
-    padding: 18px 16px;
   }
 }
