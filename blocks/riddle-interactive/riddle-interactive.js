@@ -7,10 +7,16 @@ function parseRiddles(block) {
 
     const levelText = cells[0].textContent.trim();
     const question = cells[1].textContent.trim();
-    const answer = cells[2].textContent.trim();
+    const answerCell = cells[2];
     const hint = cells[3] ? cells[3].textContent.trim() : '';
 
-    if (!question || !answer) return;
+    // Support both <ul><li> list and plain text answers
+    const listItems = answerCell.querySelectorAll('li');
+    const answers = listItems.length
+      ? [...listItems].map((li) => li.textContent.trim()).filter(Boolean)
+      : answerCell.textContent.split(/[,|]/).map((a) => a.trim()).filter(Boolean);
+
+    if (!question || !answers.length) return;
 
     // Extract number from "Level 1", "Level 2", etc.
     const match = levelText.match(/(\d+)/);
@@ -21,7 +27,7 @@ function parseRiddles(block) {
       levelsMap.set(levelKey, { name: levelText, number: levelNum, questions: [] });
     }
 
-    levelsMap.get(levelKey).questions.push({ question, answer, hint });
+    levelsMap.get(levelKey).questions.push({ question, answers, hint });
   });
 
   return [...levelsMap.values()].sort((a, b) => a.number - b.number);
@@ -47,8 +53,8 @@ function normalize(s) {
     .join(' ');
 }
 
-function checkAnswer(userAnswer, correctAnswer) {
-  return normalize(userAnswer) === normalize(correctAnswer);
+function checkAnswer(userAnswer, answers) {
+  return answers.some((a) => normalize(userAnswer) === normalize(a));
 }
 
 function getStarCount(correct, total) {
@@ -271,7 +277,7 @@ class RiddleGame {
   }
 
   handleAnswer(userAnswer, q) {
-    const correct = checkAnswer(userAnswer, q.answer);
+    const correct = checkAnswer(userAnswer, q.answers);
     let points = 0;
     if (correct) points = this.hintUsed ? 50 : 100;
 
@@ -284,10 +290,10 @@ class RiddleGame {
     }
 
     this.levelResults.push({ correct, usedHint: this.hintUsed, points });
-    this.renderResult(correct, q.answer, points, userAnswer);
+    this.renderResult(correct, q.answers, points, userAnswer);
   }
 
-  renderResult(correct, correctAnswer, points, userAnswer) {
+  renderResult(correct, answers, points, userAnswer) {
     const level = this.levels[this.currentLevel];
     const isLast = this.currentQuestion === level.questions.length - 1;
 
@@ -319,7 +325,7 @@ class RiddleGame {
 
         const correctEl = document.createElement('div');
         correctEl.className = 'correct-answer';
-        correctEl.innerHTML = `The answer was: <strong>${this.escapeHtml(correctAnswer)}</strong>`;
+        correctEl.innerHTML = `The answer was: <strong>${answers.map((a) => this.escapeHtml(a)).join(' or ')}</strong>`;
 
         screen.append(yourAnswerEl, correctEl);
       }
