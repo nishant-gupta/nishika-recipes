@@ -276,8 +276,7 @@ class RiddleGame {
         hintBtn.addEventListener('click', () => {
           this.hintUsed = true;
           hintTextEl.hidden = false;
-          hintBtn.disabled = true;
-          hintBtn.textContent = 'Hint shown (-50pts)';
+          hintBtn.style.display = 'none';
         });
       }
 
