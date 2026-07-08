@@ -360,6 +360,7 @@
 }
 
 .craft-steps .btn-ghost {
+  padding: 12px 26px;
   background: transparent;
   color: var(--text-color-secondary);
   border: 2px solid rgb(255 255 255 / 25%);
@@ -436,6 +437,10 @@
   .craft-steps .btn {
     padding: 10px 14px;
     font-size: var(--body-font-size-xs);
+  }
+
+  .craft-steps .btn-ghost {
+    padding: 8px 12px;
   }
 
   .craft-steps .craft-nav-row .btn-primary {
