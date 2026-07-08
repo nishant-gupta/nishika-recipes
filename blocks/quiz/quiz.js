@@ -44,20 +44,14 @@ function renderChooser() {
   if (chooserRendered || quizRegistry.length < 2) return;
   chooserRendered = true;
 
-  quizRegistry.forEach(({ block, data }) => {
+  quizRegistry.forEach(({ block }) => {
     block.classList.add('quiz-collapsed');
 
     const lobby = block.querySelector('.quiz-lobby');
     if (!lobby) return;
 
-    // Add question count to lobby
-    const meta = document.createElement('p');
-    meta.className = 'quiz-meta';
-    meta.textContent = `${data.questions.length} question${data.questions.length !== 1 ? 's' : ''}`;
-    const btn = lobby.querySelector('.quiz-start-btn');
-    if (btn) lobby.insertBefore(meta, btn);
-
     // Clicking start collapses others — game.start() is handled by lobby button's own listener
+    const btn = lobby.querySelector('.quiz-start-btn');
     btn?.addEventListener('click', () => {
       quizRegistry.forEach(({ block: b }) => {
         if (b !== block) b.classList.add('quiz-collapsed');
@@ -107,11 +101,15 @@ class QuizGame {
       title.className = 'quiz-title';
       title.textContent = this.data.title;
 
+      const meta = document.createElement('p');
+      meta.className = 'quiz-meta';
+      meta.textContent = `${this.data.questions.length} question${this.data.questions.length !== 1 ? 's' : ''}`;
+
       const btn = document.createElement('button');
       btn.className = 'btn btn-primary quiz-start-btn';
       btn.textContent = '▶ Start Quiz';
 
-      lobby.append(icon, title, btn);
+      lobby.append(icon, title, meta, btn);
       screen.appendChild(lobby);
 
       btn.addEventListener('click', () => this.start(), { once: true });
