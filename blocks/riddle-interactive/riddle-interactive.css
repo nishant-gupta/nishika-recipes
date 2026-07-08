@@ -1,0 +1,565 @@
+.riddle-interactive {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Screen transitions ──────────────────────────── */
+.riddle-interactive .riddle-screen {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.riddle-interactive .riddle-screen.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.riddle-interactive .riddle-screen.exit {
+  opacity: 0;
+  transform: translateX(-40px);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── Level Intro ─────────────────────────────────── */
+.riddle-interactive .level-intro {
+  text-align: center;
+  padding: 56px 24px;
+}
+
+.riddle-interactive .level-badge {
+  display: inline-block;
+  background: var(--dark-color);
+  color: var(--text-color-secondary);
+  padding: 8px 28px;
+  border-radius: 24px;
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.riddle-interactive .level-title {
+  font-size: var(--heading-font-size-xl);
+  color: var(--text-color-secondary);
+  margin: 0 0 8px;
+}
+
+.riddle-interactive .level-meta {
+  color: var(--text-color-secondary);
+  opacity: 0.75;
+  margin: 0 0 12px;
+}
+
+.riddle-interactive .score-summary {
+  color: #ffd700;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+/* ── Game Header ─────────────────────────────────── */
+.riddle-interactive .game-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.riddle-interactive .level-indicator {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  color: var(--text-color-secondary);
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.riddle-interactive .score-display {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  color: var(--text-color-secondary);
+}
+
+.riddle-interactive .streak-badge {
+  background: linear-gradient(135deg, #ff6b35, #ff9500);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  animation: pulse 1.2s ease infinite;
+}
+
+/* ── Progress bar ────────────────────────────────── */
+.riddle-interactive .progress-bar-wrap {
+  height: 6px;
+  background: rgb(255 255 255 / 18%);
+  border-radius: 3px;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.riddle-interactive .progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--dark-color), var(--text-color-secondary));
+  border-radius: 3px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+.riddle-interactive .question-counter {
+  text-align: right;
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+
+/* ── Riddle Card ─────────────────────────────────── */
+.riddle-interactive .riddle-card {
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.riddle-interactive .riddle-icon {
+  font-size: 52px;
+  margin-bottom: 16px;
+  display: block;
+  animation: bob 2.5s ease infinite;
+}
+
+.riddle-interactive .riddle-text {
+  font-size: var(--heading-font-size-xs);
+  color: var(--text-color-secondary);
+  line-height: 1.65;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── Hint ────────────────────────────────────────── */
+.riddle-interactive .hint-section {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.riddle-interactive .btn-hint {
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 28%);
+  color: var(--text-color-secondary);
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: var(--body-font-size-xs);
+  font-family: var(--body-font-family);
+  transition: all 0.2s ease;
+}
+
+.riddle-interactive .btn-hint:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.riddle-interactive .btn-hint:hover:not(:disabled) {
+  background: rgb(255 255 255 / 10%);
+}
+
+.riddle-interactive .hint-text {
+  margin-top: 10px;
+  color: #ffd700;
+  font-size: var(--body-font-size-s);
+  padding: 12px 20px;
+  background: rgb(255 215 0 / 10%);
+  border-radius: 10px;
+  border: 1px solid rgb(255 215 0 / 28%);
+  animation: fade-in 0.3s ease;
+}
+
+/* ── Answer input ────────────────────────────────── */
+.riddle-interactive .answer-section {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.riddle-interactive .answer-input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 2px solid rgb(255 255 255 / 20%);
+  background: rgb(255 255 255 / 10%);
+  color: var(--text-color-secondary);
+  font-size: var(--body-font-size-m);
+  font-family: var(--body-font-family);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.riddle-interactive .answer-input::placeholder {
+  color: rgb(255 255 255 / 35%);
+}
+
+.riddle-interactive .answer-input:focus {
+  border-color: rgb(255 255 255 / 55%);
+}
+
+.riddle-interactive .answer-input.shake {
+  animation: shake 0.4s ease;
+  border-color: #ff8f8f;
+}
+
+/* ── Buttons ─────────────────────────────────────── */
+.riddle-interactive .btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.riddle-interactive .btn-primary {
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+}
+
+.riddle-interactive .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+}
+
+.riddle-interactive .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ── Result screen ───────────────────────────────── */
+.riddle-interactive .result-screen {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.riddle-interactive .result-icon {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.riddle-interactive .result-screen.correct .result-icon {
+  animation: bounce 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.riddle-interactive .result-screen.incorrect .result-icon {
+  animation: headshake 0.6s ease;
+}
+
+.riddle-interactive .result-title {
+  font-size: var(--heading-font-size-l);
+  margin: 0 0 14px;
+}
+
+.riddle-interactive .result-screen.correct .result-title {
+  color: #7fff7f;
+}
+
+.riddle-interactive .result-screen.incorrect .result-title {
+  color: #ff8f8f;
+}
+
+.riddle-interactive .points-gained {
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 12px;
+  animation: pop 0.4s ease;
+}
+
+.riddle-interactive .your-answer {
+  color: var(--text-color-secondary);
+  opacity: 0.7;
+  font-size: var(--body-font-size-s);
+  margin-bottom: 8px;
+}
+
+.riddle-interactive .correct-answer {
+  background: rgb(255 143 143 / 12%);
+  border: 1px solid rgb(255 143 143 / 28%);
+  border-radius: 12px;
+  padding: 14px 24px;
+  color: var(--text-color-secondary);
+  margin-bottom: 16px;
+  font-size: var(--body-font-size-s);
+}
+
+.riddle-interactive .correct-answer strong {
+  color: #ff8f8f;
+}
+
+.riddle-interactive .streak-notice {
+  color: #ff9500;
+  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  margin-bottom: 8px;
+}
+
+.riddle-interactive .score-total {
+  color: var(--text-color-secondary);
+  opacity: 0.75;
+  margin-bottom: 28px;
+}
+
+/* ── Level Complete ──────────────────────────────── */
+.riddle-interactive .level-complete {
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.riddle-interactive .complete-icon {
+  font-size: 68px;
+  display: block;
+  margin-bottom: 10px;
+  animation: pop 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.riddle-interactive .level-complete h2 {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-color-secondary);
+  margin: 0 0 24px;
+}
+
+/* Stars */
+.riddle-interactive .stars-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.riddle-interactive .star {
+  font-size: 52px;
+  color: rgb(255 255 255 / 18%);
+  display: inline-block;
+}
+
+.riddle-interactive .star.filled {
+  color: #ffd700;
+  text-shadow: 0 0 20px rgb(255 215 0 / 60%);
+}
+
+.riddle-interactive .star.filled.animate {
+  animation: star-pop 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+}
+
+/* Stats row */
+.riddle-interactive .level-stats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.riddle-interactive .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 14px;
+  padding: 16px 20px;
+  min-width: 80px;
+}
+
+.riddle-interactive .stat-val {
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  color: var(--text-color-secondary);
+}
+
+.riddle-interactive .stat-label {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.65;
+}
+
+/* Review dots */
+.riddle-interactive .question-review {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.riddle-interactive .review-item {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+}
+
+.riddle-interactive .review-correct {
+  background: rgb(127 255 127 / 15%);
+  color: #7fff7f;
+  border: 1px solid rgb(127 255 127 / 35%);
+}
+
+.riddle-interactive .review-wrong {
+  background: rgb(255 143 143 / 15%);
+  color: #ff8f8f;
+  border: 1px solid rgb(255 143 143 / 35%);
+}
+
+/* Final / game complete */
+.riddle-interactive .final-score {
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+.riddle-interactive .all-levels-stars {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.riddle-interactive .lvl-star-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 20px;
+  color: #ffd700;
+}
+
+.riddle-interactive .lvl-label {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  color: var(--text-color-secondary);
+  opacity: 0.7;
+  margin-right: 4px;
+}
+
+.riddle-interactive .star-empty {
+  color: rgb(255 255 255 / 18%);
+}
+
+/* ── Keyframes ───────────────────────────────────── */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes bounce {
+  0% { transform: scale(0.3); }
+  50% { transform: scale(1.12); }
+  70% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+@keyframes headshake {
+  0% { transform: translateX(0) rotate(0); }
+  20% { transform: translateX(-10px) rotate(-5deg); }
+  40% { transform: translateX(10px) rotate(5deg); }
+  60% { transform: translateX(-6px) rotate(-2deg); }
+  80% { transform: translateX(6px) rotate(2deg); }
+  100% { transform: translateX(0) rotate(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+
+  65% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes star-pop {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.35) rotate(15deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (width <= 480px) {
+  .riddle-interactive .answer-section {
+    flex-direction: column;
+  }
+
+  .riddle-interactive .level-stats {
+    gap: 10px;
+  }
+
+  .riddle-interactive .stat {
+    padding: 12px 14px;
+    min-width: 72px;
+  }
+
+  .riddle-interactive .riddle-card {
+    padding: 24px 18px;
+  }
+
+  .riddle-interactive .star {
+    font-size: 40px;
+  }
+}
