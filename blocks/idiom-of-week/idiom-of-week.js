@@ -42,11 +42,11 @@ function containsIdiom(input, idiom) {
 }
 
 const STEPS = [
-  { icon: '📖', label: 'Idiom' },
-  { icon: '💡', label: 'Meaning' },
-  { icon: '💬', label: 'Example' },
-  { icon: '🧠', label: 'Challenge' },
-  { icon: '✏️', label: 'Use It' },
+  { icon: '/icons/idiom-book.svg', label: 'Idiom' },
+  { icon: '/icons/idiom-bulb.svg', label: 'Meaning' },
+  { icon: '/icons/idiom-chat.svg', label: 'Example' },
+  { icon: '/icons/idiom-target.svg', label: 'Challenge' },
+  { icon: '/icons/idiom-pencil.svg', label: 'Use It' },
 ];
 
 class IdiomGame {
@@ -90,7 +90,16 @@ class IdiomGame {
 
       const iconEl = document.createElement('div');
       iconEl.className = 'idiom-step-icon';
-      iconEl.textContent = i < active ? '✓' : icon;
+      if (i < active) {
+        iconEl.textContent = '✓';
+      } else {
+        const stepImg = document.createElement('img');
+        stepImg.src = icon;
+        stepImg.width = 16;
+        stepImg.height = 16;
+        stepImg.alt = '';
+        iconEl.appendChild(stepImg);
+      }
 
       const labelEl = document.createElement('div');
       labelEl.className = 'idiom-step-label';
@@ -259,7 +268,7 @@ class IdiomGame {
 
           const fb = document.createElement('div');
           fb.className = `idiom-feedback ${correct ? 'correct' : 'incorrect'}`;
-          fb.textContent = correct ? '✓ Correct! +⭐' : `✗ It was: "${answer}"`;
+          fb.textContent = correct ? '✓ Correct!' : `✗ It was: "${answer}"`;
           screen.appendChild(fb);
           requestAnimationFrame(() => fb.classList.add('visible'));
 
@@ -343,14 +352,14 @@ class IdiomGame {
         const fb = document.createElement('div');
         fb.className = `idiom-feedback ${correct ? 'correct' : 'incorrect'}`;
         fb.textContent = correct
-          ? '🌟 Great sentence! +⭐'
-          : `💡 Try to include "${idiom}" in your answer`;
+          ? '✓ Great sentence!'
+          : `Try to include "${idiom}" in your answer`;
         screen.appendChild(fb);
         requestAnimationFrame(() => fb.classList.add('visible'));
 
         const nextBtn = document.createElement('button');
         nextBtn.className = 'btn btn-primary';
-        nextBtn.textContent = '🏆 See my results';
+        nextBtn.textContent = 'See my results →';
         screen.appendChild(nextBtn);
         nextBtn.addEventListener('click', () => this.renderComplete());
       };
@@ -367,20 +376,25 @@ class IdiomGame {
     const { idiom } = this.data;
     const { stars } = this;
 
-    let trophyEmoji = '🥉';
-    if (stars === 2) trophyEmoji = '🏆';
-    else if (stars === 1) trophyEmoji = '🥈';
+    let trophyIcon = '/icons/quiz-strength.svg';
+    if (stars === 2) trophyIcon = '/icons/quiz-trophy.svg';
+    else if (stars === 1) trophyIcon = '/icons/idiom-star.svg';
 
-    let badge = 'Keep Practising 💪';
-    if (stars === 2) badge = 'Idiom Master 🏆';
-    else if (stars === 1) badge = 'Word Wizard 🧙';
+    let badge = 'Keep Practising';
+    if (stars === 2) badge = 'Idiom Master';
+    else if (stars === 1) badge = 'Word Wizard';
 
     this.render((screen) => {
       screen.className = 'idiom-screen idiom-complete-screen';
 
       const trophy = document.createElement('div');
       trophy.className = 'idiom-trophy';
-      trophy.textContent = trophyEmoji;
+      const trophyImg = document.createElement('img');
+      trophyImg.src = trophyIcon;
+      trophyImg.width = 80;
+      trophyImg.height = 80;
+      trophyImg.alt = '';
+      trophy.appendChild(trophyImg);
 
       const heading = document.createElement('h2');
       heading.className = 'idiom-complete-heading';
@@ -406,8 +420,14 @@ class IdiomGame {
       badgeEl.textContent = badge;
 
       const againBtn = document.createElement('button');
-      againBtn.className = 'btn btn-ghost';
-      againBtn.textContent = '🔄 Try Again';
+      againBtn.className = 'btn idiom-play-again';
+      againBtn.setAttribute('aria-label', 'Try Again');
+      const replayImg = document.createElement('img');
+      replayImg.src = '/icons/quiz-replay.svg';
+      replayImg.width = 32;
+      replayImg.height = 32;
+      replayImg.alt = '';
+      againBtn.appendChild(replayImg);
       againBtn.addEventListener('click', () => {
         this.stars = 0;
         this.renderIdiom();

@@ -64,6 +64,12 @@
   transition: all 0.3s ease;
 }
 
+.idiom-of-week .idiom-step-icon img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
 .idiom-of-week .idiom-step.done .idiom-step-icon {
   background: rgb(100 220 100 / 25%);
   border-color: #64dc64;
@@ -215,9 +221,10 @@
 
 .idiom-of-week .idiom-option {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 14px 16px;
+  min-height: 56px;
   background: rgb(255 255 255 / 8%);
   border: 2px solid rgb(255 255 255 / 16%);
   border-radius: 12px;
@@ -228,10 +235,13 @@
   text-align: left;
   transition: all 0.2s ease;
   width: 100%;
+  box-sizing: border-box;
+  white-space: normal;
 }
 
 .idiom-of-week .idiom-option:disabled {
   cursor: default;
+  pointer-events: none;
 }
 
 .idiom-of-week .idiom-option:hover:not(:disabled) {
@@ -263,6 +273,7 @@
   font-weight: 700;
   font-size: var(--body-font-size-xs);
   flex-shrink: 0;
+  margin-top: 1px;
 }
 
 .idiom-of-week .idiom-option.correct .idiom-opt-label {
@@ -277,6 +288,11 @@
 
 .idiom-of-week .idiom-opt-text {
   flex: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+  line-height: 1.4;
+  padding-top: 5px;
 }
 
 /* ── Feedback ─────────────────────────────────────── */
@@ -348,6 +364,23 @@
   transform: translateY(-1px);
 }
 
+.idiom-of-week .btn.idiom-play-again {
+  width: 56px;
+  height: 56px;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: var(--text-color-secondary);
+}
+
+.idiom-of-week .btn.idiom-play-again:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+}
+
 /* ── Use It ───────────────────────────────────────── */
 .idiom-of-week .idiom-blank-wrap {
   font-size: var(--body-font-size-m);
@@ -416,8 +449,13 @@
 }
 
 .idiom-of-week .idiom-trophy {
-  font-size: 72px;
   animation: idiom-pop 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.idiom-of-week .idiom-trophy img {
+  width: 80px;
+  height: 80px;
+  display: block;
 }
 
 .idiom-of-week .idiom-complete-heading {
@@ -564,11 +602,13 @@
 /* ── Responsive ───────────────────────────────────── */
 @media (width <= 480px) {
   .idiom-of-week .idiom-screen {
-    padding: 24px 16px;
+    padding: 20px 12px;
   }
 
   .idiom-of-week .idiom-step-line {
-    width: 14px;
+    width: 10px;
+    margin: 0 2px;
+    margin-bottom: 18px;
   }
 
   .idiom-of-week .idiom-step-icon {
@@ -577,7 +617,20 @@
     font-size: 12px;
   }
 
+  .idiom-of-week .idiom-step-label {
+    font-size: 8px;
+  }
+
   .idiom-of-week .idiom-name-display {
     font-size: var(--heading-font-size-l);
+    padding: 20px 16px;
+  }
+
+  .idiom-of-week .idiom-def-card {
+    padding: 16px 20px;
+  }
+
+  .idiom-of-week .idiom-challenge-title {
+    padding: 12px 16px;
   }
 }
