@@ -1,5 +1,5 @@
 .quiz {
-  max-width: 600px;
+  max-width: min(600px, 92vw);
   margin: 0 auto 40px;
   padding: 16px;
   min-height: 320px;

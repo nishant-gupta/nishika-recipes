@@ -1,7 +1,6 @@
 .idiom-of-week {
-  max-width: min(800px, 92vw);
+  max-width: min(600px, 92vw);
   margin: 0 auto 40px;
-  padding: 0 16px;
   min-height: 360px;
   position: relative;
   overflow: hidden;
@@ -536,7 +535,7 @@
 
 /* ── Carousel (multiple idioms) ───────────────────── */
 .idiom-carousel {
-  max-width: min(800px, 92vw);
+  max-width: min(600px, 92vw);
   margin: 0 auto 40px;
 }
 
