@@ -517,37 +517,92 @@
 
 /* ── Keyframes ───────────────────────────────────── */
 @keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
 }
 
 @keyframes bounce {
-  0% { transform: scale(0.3); }
-  50% { transform: scale(1.12); }
-  70% { transform: scale(0.92); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0.3);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  70% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes headshake {
-  0% { transform: translateX(0) rotate(0); }
-  20% { transform: translateX(-10px) rotate(-5deg); }
-  40% { transform: translateX(10px) rotate(5deg); }
-  60% { transform: translateX(-6px) rotate(-2deg); }
-  80% { transform: translateX(6px) rotate(2deg); }
-  100% { transform: translateX(0) rotate(0); }
+  0% {
+    transform: translateX(0) rotate(0);
+  }
+
+  20% {
+    transform: translateX(-10px) rotate(-5deg);
+  }
+
+  40% {
+    transform: translateX(10px) rotate(5deg);
+  }
+
+  60% {
+    transform: translateX(-6px) rotate(-2deg);
+  }
+
+  80% {
+    transform: translateX(6px) rotate(2deg);
+  }
+
+  100% {
+    transform: translateX(0) rotate(0);
+  }
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-8px); }
-  40% { transform: translateX(8px); }
-  60% { transform: translateX(-5px); }
-  80% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-8px);
+  }
+
+  40% {
+    transform: translateX(8px);
+  }
+
+  60% {
+    transform: translateX(-5px);
+  }
+
+  80% {
+    transform: translateX(5px);
+  }
 }
 
 @keyframes pop {

@@ -585,4 +585,42 @@
   .science-experiment .science-intro-body {
     padding: 20px 16px 16px;
   }
+
+  .science-experiment .btn {
+    padding: 10px 14px;
+    font-size: var(--body-font-size-xs);
+  }
+
+  .science-experiment .science-nav-row .btn-primary {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .science-experiment .science-back-btn {
+    flex-shrink: 0;
+  }
+}
+
+@media (width <= 360px) {
+  .science-experiment .science-phase-label {
+    display: none;
+  }
+
+  .science-experiment .science-phase-line {
+    width: 8px;
+    margin: 0 1px;
+    margin-bottom: 0;
+  }
+
+  .science-experiment .science-phase-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .science-experiment .science-screen:not(.science-intro-screen) {
+    padding: 16px 10px 14px;
+  }
 }

@@ -633,3 +633,24 @@
     padding: 12px 16px;
   }
 }
+
+@media (width <= 360px) {
+  .idiom-of-week .idiom-step-label {
+    display: none;
+  }
+
+  .idiom-of-week .idiom-step-line {
+    width: 8px;
+    margin: 0 1px;
+    margin-bottom: 0;
+  }
+
+  .idiom-of-week .idiom-step-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .idiom-of-week .idiom-screen {
+    padding: 16px 10px;
+  }
+}

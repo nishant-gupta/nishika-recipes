@@ -432,4 +432,21 @@
   .craft-steps .craft-intro-body {
     padding: 20px 20px 16px;
   }
+
+  .craft-steps .btn {
+    padding: 10px 14px;
+    font-size: var(--body-font-size-xs);
+  }
+
+  .craft-steps .craft-nav-row .btn-primary {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .craft-steps .craft-back-btn {
+    flex-shrink: 0;
+  }
 }

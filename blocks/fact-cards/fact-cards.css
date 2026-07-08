@@ -161,8 +161,14 @@
 
 /* ── Animation ───────────────────────────────────── */
 @keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* ── Responsive ──────────────────────────────────── */
@@ -183,5 +189,21 @@
 
   .fact-card-body {
     padding: 28px 20px;
+  }
+}
+
+@media (width <= 380px) {
+  .fact-cards {
+    padding: 0 34px;
+  }
+
+  .fact-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .fact-card-body {
+    padding: 20px 14px;
   }
 }
