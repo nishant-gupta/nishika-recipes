@@ -500,16 +500,19 @@
 
 /* ── Responsive ───────────────────────────────────── */
 @media (width <= 768px) {
-  .issue-hero { flex-direction: column; }
+  .issue-hero {
+    flex-direction: column;
+    max-width: 92vw;
+  }
 
   .issue-hero-right {
     width: 100%;
     border-left: none;
     border-top: 1px solid rgb(168 85 247 / 12%);
-    flex-flow: row wrap;
     padding: 16px 20px 20px;
     gap: 8px;
     justify-content: flex-start;
+    overflow: visible;
   }
 
   .issue-hero-number {
@@ -518,36 +521,37 @@
 
   .issue-hero-contents {
     flex-flow: row wrap;
+    width: 100%;
+  }
+
+  .issue-hero-content-item {
+    flex: 0 0 auto;
   }
 
   .issue-cover-title {
     font-size: var(--heading-font-size-l);
   }
 
-  .issue-progress-item {
-    padding: 10px;
-    font-size: 12px;
-  }
-
-  .issue-progress-connector {
-    width: 10px;
-  }
-}
-
-@media (width <= 480px) {
-  .issue-hero-left { padding: 32px 20px 24px; }
-
+  /* Progress strip: icons only on mobile */
   .issue-progress-label {
     display: none;
   }
 
   .issue-progress-item {
     padding: 10px 8px;
+    font-size: 12px;
   }
 
   .issue-progress-icon {
     width: 32px;
     height: 32px;
-    font-size: 16px;
   }
+
+  .issue-progress-connector {
+    width: 8px;
+  }
+}
+
+@media (width <= 480px) {
+  .issue-hero-left { padding: 32px 20px 24px; }
 }
