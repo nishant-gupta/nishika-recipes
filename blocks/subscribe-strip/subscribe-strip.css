@@ -54,6 +54,7 @@
   display: flex;
   gap: 10px;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -61,7 +62,9 @@
   flex: 1;
   min-width: 200px;
   max-width: 300px;
-  padding: 14px 20px;
+  padding: 0 20px;
+  height: 52px;
+  box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid rgb(255 255 255 / 22%);
   background: rgb(255 255 255 / 8%);
@@ -87,7 +90,9 @@
 }
 
 .subscribe-btn {
-  padding: 14px 28px;
+  padding: 0 28px;
+  height: 52px;
+  box-sizing: border-box;
   border: none;
   border-radius: 12px;
   background: var(--text-color-secondary);
@@ -97,7 +102,7 @@
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .subscribe-btn:disabled {
@@ -106,8 +111,17 @@
 }
 
 .subscribe-btn:hover:not(:disabled) {
+  background: var(--accent-yellow);
+  color: #2d0a3e;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
+  box-shadow: 0 6px 20px rgb(251 191 36 / 45%);
+}
+
+.subscribe-btn:active:not(:disabled) {
+  background: #f59e0b;
+  color: #2d0a3e;
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 @keyframes subscribe-shake {
