@@ -1,5 +1,9 @@
 import { loadFragment } from '../fragment/fragment.js';
 
+// Guard against re-entrant decoration (e.g. when the issue page itself
+// appears in the query index and gets loaded as a fragment)
+const decorating = new Set();
+
 // Canonical content type order — determines section sequence on the issue page
 const CONTENT_TYPES = [
   {
@@ -63,6 +67,10 @@ function makeNavBtn(href, text, className) {
 }
 
 export default async function decorate(block) {
+  const currentPath = window.location.pathname;
+  if (decorating.has(currentPath)) return;
+  decorating.add(currentPath);
+
   const rows = [...block.children];
 
   // Row 0: issue number | date | title
@@ -85,8 +93,6 @@ export default async function decorate(block) {
     coverSection.style.background = 'linear-gradient(135deg, #2d0a3e 0%, #5a1878 50%, #7c3f87 100%)';
   }
 
-  block.textContent = '';
-
   // ── Fetch content pieces from query index ────────────
   let sections = [];
   let prevPath = null;
@@ -96,7 +102,7 @@ export default async function decorate(block) {
     if (resp.ok) {
       const { data } = await resp.json();
       sections = data
-        .filter((p) => p.issue === issueTag && p.type)
+        .filter((p) => p.issue === issueTag && p.type && p.path !== currentPath)
         .sort((a, b) => {
           const ai = CONTENT_TYPES.findIndex((t) => t.id === a.type);
           const bi = CONTENT_TYPES.findIndex((t) => t.id === b.type);
@@ -210,6 +216,8 @@ export default async function decorate(block) {
 
   heroRight.append(decorNum, contentList);
   hero.append(heroLeft, heroRight);
+
+  block.textContent = '';
   block.append(hero);
 
   // No content sections — hero-only render, nothing more to do
@@ -320,7 +328,12 @@ export default async function decorate(block) {
 
   // Load all fragments in parallel, preserve order
   const loadedSections = await Promise.all(sections.map(async (sec) => {
-    const fragment = await loadFragment(sec.path, sec.blockType);
+    let fragment;
+    try {
+      fragment = await loadFragment(sec.path, sec.blockType);
+    } catch {
+      return null;
+    }
     if (!fragment) return null;
 
     const section = document.createElement('div');
