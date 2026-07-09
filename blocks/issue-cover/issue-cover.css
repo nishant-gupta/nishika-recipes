@@ -21,6 +21,7 @@
   overflow: hidden;
   position: relative;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .issue-hero::before {
@@ -104,34 +105,32 @@
   box-shadow: 0 4px 12px rgb(80 20 110 / 12%);
 }
 
+/* ── Hero footer nav bar ──────────────────────────── */
+.issue-hero-footer {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 28px;
+  border-top: 1px solid rgb(0 0 0 / 7%);
+  background: #faf9ff;
+}
+
 /* ── Prev / Next nav buttons ──────────────────────── */
 .issue-nav-btn {
   display: inline-flex;
   align-items: center;
   font-size: 13px;
-  font-weight: 700;
-  padding: 7px 14px;
-  border-radius: 20px;
+  font-weight: 600;
+  color: #7c3aed;
   text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.15s;
   white-space: nowrap;
-  transition: background 0.2s;
 }
 
-.issue-hero-nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.issue-hero-nav .issue-nav-btn {
-  color: var(--dark-color);
-  background: #f3e8ff;
-  border: 1px solid #d8b4fe;
-}
-
-.issue-hero-nav .issue-nav-btn:hover {
-  background: #ede9fe;
+.issue-nav-btn:hover {
+  color: #5b21b6;
   text-decoration: none;
 }
 
@@ -139,6 +138,9 @@
   color: #fff;
   background: rgb(255 255 255 / 15%);
   border: 1px solid rgb(255 255 255 / 25%);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 700;
 }
 
 .issue-sticky-nav .issue-nav-btn:hover {

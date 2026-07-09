@@ -178,15 +178,6 @@ export default async function decorate(block) {
     heroLeft.append(countBtn);
   }
 
-  // Prev / Next navigation on the hero card
-  if (prevPath || nextPath) {
-    const heroNav = document.createElement('div');
-    heroNav.className = 'issue-hero-nav';
-    if (prevPath) heroNav.append(makeNavBtn(prevPath, '← Prev issue', 'issue-nav-prev'));
-    if (nextPath) heroNav.append(makeNavBtn(nextPath, 'Next issue →', 'issue-nav-next'));
-    heroLeft.append(heroNav);
-  }
-
   // Right column
   const heroRight = document.createElement('div');
   heroRight.className = 'issue-hero-right';
@@ -216,6 +207,16 @@ export default async function decorate(block) {
 
   heroRight.append(decorNum, contentList);
   hero.append(heroLeft, heroRight);
+
+  // Prev / Next footer bar spanning the full card bottom
+  if (prevPath || nextPath) {
+    const heroFooter = document.createElement('div');
+    heroFooter.className = 'issue-hero-footer';
+    if (prevPath) heroFooter.append(makeNavBtn(prevPath, '← Prev issue', 'issue-nav-prev'));
+    else heroFooter.append(document.createElement('span'));
+    if (nextPath) heroFooter.append(makeNavBtn(nextPath, 'Next issue →', 'issue-nav-next'));
+    hero.append(heroFooter);
+  }
 
   block.textContent = '';
   block.append(hero);
