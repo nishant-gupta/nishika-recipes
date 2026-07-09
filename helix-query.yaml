@@ -17,4 +17,9 @@ indices:
       image:
         selectFirst: img
         value: attribute(el, "src")
-      
+      issue:
+        select: meta[name="issue"]
+        value: attribute(el, "content")
+      type:
+        select: meta[name="type"]
+        value: attribute(el, "content")
