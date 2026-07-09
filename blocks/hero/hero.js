@@ -1,3 +1,12 @@
+function groupButtons(container) {
+  const btns = [...container.querySelectorAll('.button-container')];
+  if (btns.length < 2) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'hero-buttons';
+  btns[0].before(wrap);
+  btns.forEach((b) => wrap.append(b));
+}
+
 export default function decorate(block) {
   const [row] = block.children;
   if (!row) return;
@@ -22,4 +31,7 @@ export default function decorate(block) {
     block.textContent = '';
     block.append(content);
   }
+
+  const content = block.querySelector('.hero-content');
+  if (content) groupButtons(content);
 }

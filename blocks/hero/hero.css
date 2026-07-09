@@ -3,8 +3,15 @@
 }
 
 .hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
+  max-width: unset !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+/* ensure wrapper never gets capped by global section styles */
+.hero-wrapper {
+  max-width: unset !important;
+  padding: 0 !important;
 }
 
 /* ── Hero shell ───────────────────────────────────── */
@@ -47,7 +54,6 @@
 .hero .hero-content {
   flex: 1;
   min-width: 280px;
-  max-width: 580px;
   position: relative;
   z-index: 1;
 }
@@ -59,7 +65,7 @@
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--text-color-secondary);
-  opacity: 0.55;
+  opacity: 0.75;
   margin: 0 0 14px;
 }
 
@@ -77,14 +83,18 @@
   font-size: var(--body-font-size-s);
   line-height: 1.7;
   margin: 0 0 32px;
-  max-width: 440px;
+  max-width: 520px;
 }
 
 /* CTA buttons */
-.hero .hero-content .button-container {
+.hero .hero-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  align-items: center;
+}
+
+.hero .hero-buttons .button-container {
   margin: 0;
 }
 
@@ -126,7 +136,7 @@
 .hero .hero-postcard {
   position: relative;
   z-index: 1;
-  width: min(300px, 100%);
+  width: min(360px, 100%);
   background: rgb(255 255 255 / 10%);
   border: 1px solid rgb(255 255 255 / 22%);
   border-radius: 20px;
@@ -157,7 +167,7 @@
 .hero .hero-postcard p {
   font-size: var(--body-font-size-xs);
   color: var(--text-color-secondary);
-  opacity: 0.6;
+  opacity: 0.78;
   margin: 0 0 4px;
   line-height: 1.5;
 }

@@ -6,8 +6,8 @@
 
 /* ── Tile ─────────────────────────────────────────── */
 .section-tile {
-  background: rgb(255 255 255 / 6%);
-  border: 1px solid rgb(255 255 255 / 10%);
+  background: rgb(70 20 90 / 35%);
+  border: 1px solid rgb(255 255 255 / 14%);
   border-radius: 20px;
   padding: 28px 24px;
   display: flex;
@@ -18,9 +18,9 @@
 }
 
 .section-tile:has(.section-tile-link[href]:not([href="#"])):hover {
-  background: rgb(255 255 255 / 10%);
+  background: rgb(70 20 90 / 48%);
   transform: translateY(-3px);
-  border-color: rgb(255 255 255 / 20%);
+  border-color: rgb(255 255 255 / 22%);
 }
 
 /* ── Icon badge ──────────────────────────────────── */
@@ -48,24 +48,24 @@
 .section-tile-desc {
   font-size: var(--body-font-size-xs);
   color: var(--text-color-secondary);
-  opacity: 0.6;
+  opacity: 0.78;
   margin: 0;
   line-height: 1.55;
   flex: 1;
 }
 
-.section-tile-link {
+.section-tile .section-tile-link {
   font-size: var(--body-font-size-xs);
   font-weight: 700;
   color: var(--text-color-secondary);
   text-decoration: none;
   margin-top: 10px;
-  opacity: 0.7;
+  opacity: 0.85;
   transition: opacity 0.2s ease;
   align-self: flex-start;
 }
 
-.section-tile-link:hover {
+.section-tile .section-tile-link:hover {
   text-decoration: none;
   opacity: 1;
 }

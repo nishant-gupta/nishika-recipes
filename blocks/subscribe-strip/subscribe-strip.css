@@ -45,7 +45,7 @@
 .subscribe-desc {
   font-size: var(--body-font-size-s);
   color: var(--text-color-secondary);
-  opacity: 0.6;
+  opacity: 0.78;
   margin: 0 0 32px;
 }
 
