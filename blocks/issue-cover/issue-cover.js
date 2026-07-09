@@ -69,6 +69,14 @@ export default async function decorate(block) {
   // Issue tag derived from page URL: /issues/issue-1 → issue-1
   const issueTag = window.location.pathname.split('/').filter(Boolean).pop() || '';
 
+  // Force the section flush against the header — eliminates any gap
+  // from the global `main > .section { margin: 40px 0 }` rule
+  const coverSection = block.closest('.section');
+  if (coverSection) {
+    coverSection.style.margin = '0';
+    coverSection.style.background = 'linear-gradient(135deg, #2d0a3e 0%, #5a1878 50%, #7c3f87 100%)';
+  }
+
   block.textContent = '';
 
   // ── Fetch content pieces from query index ────────────
@@ -210,11 +218,13 @@ export default async function decorate(block) {
 
   strip.append(inner);
 
-  const headerEl = document.querySelector('header');
-  if (headerEl) {
-    headerEl.after(strip);
+  const issueSection = block.closest('.section');
+  if (issueSection) {
+    issueSection.after(strip);
   } else {
-    document.body.prepend(strip);
+    const headerEl = document.querySelector('header');
+    if (headerEl) headerEl.after(strip);
+    else document.body.prepend(strip);
   }
 
   // ── Progress strip interaction ───────────────────────
