@@ -142,9 +142,18 @@
 
   .subscribe-form {
     flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
   }
 
   .subscribe-input {
+    flex: none;
+    width: 100%;
     max-width: unset;
+    min-width: unset;
+  }
+
+  .subscribe-btn {
+    width: 100%;
   }
 }
