@@ -1,19 +1,17 @@
 export default function decorate(block) {
   const tiles = [...block.children].map((row) => {
     const cells = [...row.children];
-    const linkEl = row.querySelector('a');
-    const picture = row.querySelector('picture');
-    if (picture) picture.remove();
-    // Support EDS :icon-name: syntax — decorateIcons renders it as .icon span before block loads
-    const iconSpan = cells[0]?.querySelector('.icon');
+    // Cell 0: optional image | Cell 1: title | Cell 2: description | Cell 3: link (authored <a>)
+    const picture = cells[0]?.querySelector('picture') || null;
+    const title = cells[1]?.textContent.trim() || '';
+    const description = cells[2]?.textContent.trim() || '';
+    const linkEl = cells[3]?.querySelector('a');
     return {
-      iconSpan: iconSpan ? iconSpan.cloneNode(true) : null,
-      icon: iconSpan ? '' : (cells[0]?.textContent.trim() || ''),
-      title: cells[1]?.textContent.trim() || '',
-      description: cells[2]?.textContent.trim() || '',
-      linkText: cells[3]?.textContent.trim() || 'Browse →',
+      picture,
+      title,
+      description,
+      linkText: linkEl?.textContent.trim() || 'Browse →',
       href: linkEl?.href || '#',
-      picture: picture || null,
     };
   }).filter((t) => t.title);
 
@@ -27,27 +25,20 @@ export default function decorate(block) {
     item.className = 'section-tile';
 
     if (tile.picture) {
+      const img = tile.picture.querySelector('img');
+      if (img) img.loading = 'lazy';
       const imgWrap = document.createElement('div');
       imgWrap.className = 'section-tile-image';
-      imgWrap.appendChild(tile.picture);
+      imgWrap.append(tile.picture);
       item.append(imgWrap);
-    } else {
-      const icon = document.createElement('div');
-      icon.className = 'section-tile-icon';
-      if (tile.iconSpan) {
-        icon.appendChild(tile.iconSpan);
-      } else {
-        icon.textContent = tile.icon;
-      }
-      item.append(icon);
     }
 
     const body = document.createElement('div');
     body.className = 'section-tile-body';
 
-    const title = document.createElement('h3');
-    title.className = 'section-tile-title';
-    title.textContent = tile.title;
+    const titleEl = document.createElement('h3');
+    titleEl.className = 'section-tile-title';
+    titleEl.textContent = tile.title;
 
     const desc = document.createElement('p');
     desc.className = 'section-tile-desc';
@@ -58,7 +49,7 @@ export default function decorate(block) {
     link.className = 'section-tile-link';
     link.textContent = tile.linkText;
 
-    body.append(title, desc, link);
+    body.append(titleEl, desc, link);
     item.append(body);
     grid.append(item);
   });

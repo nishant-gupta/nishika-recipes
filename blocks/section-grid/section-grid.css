@@ -22,7 +22,7 @@
   box-shadow: 0 8px 28px rgb(80 20 110 / 12%);
 }
 
-/* ── Image (when provided) ───────────────────────── */
+/* ── Image ───────────────────────────────────────── */
 .section-tile-image {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -31,37 +31,18 @@
   flex-shrink: 0;
 }
 
+.section-tile-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .section-tile-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
-}
-
-/* ── Icon badge (no-image fallback) ─────────────── */
-.section-tile-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  margin: 24px 0 0 24px;
-  flex-shrink: 0;
-}
-
-.section-tile-icon .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.section-tile-icon .icon img {
-  width: 24px;
-  height: 24px;
-  display: block;
 }
 
 .section-tile:hover .section-tile-image img {
@@ -75,10 +56,6 @@
   gap: 8px;
   padding: 16px 24px 20px;
   flex: 1;
-}
-
-.section-tile:not(:has(.section-tile-image)) .section-tile-body {
-  padding-top: 12px;
 }
 
 /* ── Text ────────────────────────────────────────── */
@@ -113,37 +90,6 @@
   opacity: 1;
 }
 
-/* ── Category accent colours on icon badge ───────── */
-.section-tile:nth-child(1) .section-tile-icon {
-  background: #f3e8ff;
-  border: 1px solid #d8b4fe;
-}
-
-.section-tile:nth-child(2) .section-tile-icon {
-  background: #fce7f3;
-  border: 1px solid #fbcfe8;
-}
-
-.section-tile:nth-child(3) .section-tile-icon {
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
-}
-
-.section-tile:nth-child(4) .section-tile-icon {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-}
-
-.section-tile:nth-child(5) .section-tile-icon {
-  background: #fff7ed;
-  border: 1px solid #fed7aa;
-}
-
-.section-tile:nth-child(6) .section-tile-icon {
-  background: #fefce8;
-  border: 1px solid #fde68a;
-}
-
 /* ── Responsive ──────────────────────────────────── */
 @media (width <= 900px) {
   .section-grid-inner {
@@ -155,10 +101,6 @@
   .section-grid-inner {
     grid-template-columns: 1fr;
     gap: 10px;
-  }
-
-  .section-tile-icon {
-    margin: 20px 0 0 20px;
   }
 
   .section-tile-body {
