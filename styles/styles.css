@@ -12,17 +12,23 @@
 
 :root {
   /* colors */
-  --background-color: #a991ae;
+  --background-color: #f5f0fb;
   --light-color: #f6f6f6;
   --dark-color: #7c3f87;
-  --text-color: #762385;
+  --text-color: #4a1a5c;
   --text-color-secondary: #f5f0f7;
   --text-color-tertiary: #1c0d0d;
   --link-color: #7c3f87;
-  --link-hover-color: #762385;
+  --link-hover-color: #5e2070;
   --link-color-secondary: #f5f0f7;
   --button-color: #f5f0f7;
-  --button-hover-color: #7c3f87;
+  --button-hover-color: #5e2070;
+
+  /* accent palette */
+  --accent-yellow: #fbbf24;
+  --accent-coral: #f87171;
+  --accent-teal: #34d399;
+  --accent-blue: #60a5fa;
 
   /* fonts */
   --body-font-family: epilogue, sans-serif;
@@ -276,4 +282,21 @@ main .section.boxed {
 
 main .section.center {
   text-align: center;
+}
+
+/* ── Homepage section headings ───────────────────── */
+main > .section > div > h2 {
+  font-size: var(--heading-font-size-m);
+  color: var(--dark-color);
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+main > .section > div > h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgb(80 20 110 / 12%);
 }

@@ -1,0 +1,155 @@
+.section-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* ── Tile ─────────────────────────────────────────── */
+.section-tile {
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgb(80 20 110 / 6%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.section-tile:has(.section-tile-link[href]:not([href="#"])):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgb(80 20 110 / 12%);
+}
+
+/* ── Image (when provided) ───────────────────────── */
+.section-tile-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+  flex-shrink: 0;
+}
+
+.section-tile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.section-tile:hover .section-tile-image img {
+  transform: scale(1.04);
+}
+
+/* ── Icon badge (no-image fallback) ─────────────── */
+.section-tile-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin: 24px 0 0 24px;
+  flex-shrink: 0;
+}
+
+/* ── Body ────────────────────────────────────────── */
+.section-tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px 20px;
+  flex: 1;
+}
+
+.section-tile:not(:has(.section-tile-image)) .section-tile-body {
+  padding-top: 12px;
+}
+
+/* ── Text ────────────────────────────────────────── */
+.section-tile-title {
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+  color: var(--dark-color);
+  margin: 0;
+}
+
+.section-tile-desc {
+  font-size: var(--body-font-size-xs);
+  color: #555;
+  margin: 0;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.section-tile .section-tile-link {
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  color: var(--dark-color);
+  text-decoration: none;
+  margin-top: 6px;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+  align-self: flex-start;
+}
+
+.section-tile .section-tile-link:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+/* ── Category accent colours on icon badge ───────── */
+.section-tile:nth-child(1) .section-tile-icon {
+  background: #f3e8ff;
+  border: 1px solid #d8b4fe;
+}
+
+.section-tile:nth-child(2) .section-tile-icon {
+  background: #fce7f3;
+  border: 1px solid #fbcfe8;
+}
+
+.section-tile:nth-child(3) .section-tile-icon {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.section-tile:nth-child(4) .section-tile-icon {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.section-tile:nth-child(5) .section-tile-icon {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+.section-tile:nth-child(6) .section-tile-icon {
+  background: #fefce8;
+  border: 1px solid #fde68a;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (width <= 900px) {
+  .section-grid-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .section-grid-inner {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .section-tile-icon {
+    margin: 20px 0 0 20px;
+  }
+
+  .section-tile-body {
+    padding: 12px 20px 18px;
+  }
+}

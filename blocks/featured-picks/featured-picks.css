@@ -1,0 +1,167 @@
+.featured-picks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ── Card ────────────────────────────────────────── */
+.featured-pick {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgb(80 20 110 / 7%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featured-pick:hover {
+  text-decoration: none;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgb(80 20 110 / 14%);
+}
+
+/* ── Image area ──────────────────────────────────── */
+.featured-pick-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+}
+
+.featured-pick-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.featured-pick:hover .featured-pick-image img {
+  transform: scale(1.04);
+}
+
+/* ── Category colour stripe (no image) ──────────── */
+.featured-pick:not(:has(.featured-pick-image)) {
+  border-top: 4px solid transparent;
+}
+
+.featured-pick.cat-riddle,
+.featured-pick.cat-play-puzzle,
+.featured-pick.cat-idiom,
+.featured-pick.cat-fun-facts {
+  border-top-color: #a855f7;
+}
+
+.featured-pick.cat-story,
+.featured-pick.cat-stories-poems,
+.featured-pick.cat-poem,
+.featured-pick.cat-narrative {
+  border-top-color: #ec4899;
+}
+
+.featured-pick.cat-craft,
+.featured-pick.cat-make-do,
+.featured-pick.cat-writing-prompt {
+  border-top-color: #3b82f6;
+}
+
+.featured-pick.cat-learn,
+.featured-pick.cat-science {
+  border-top-color: #10b981;
+}
+
+/* ── Body ────────────────────────────────────────── */
+.featured-pick-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 20px 18px;
+  flex: 1;
+}
+
+/* ── Tag pill ────────────────────────────────────── */
+.featured-pick-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.featured-pick-tag.tag-riddle,
+.featured-pick-tag.tag-play-puzzle,
+.featured-pick-tag.tag-idiom,
+.featured-pick-tag.tag-fun-facts {
+  background: #f3e8ff;
+  color: #7c3f87;
+  border: 1px solid #d8b4fe;
+}
+
+.featured-pick-tag.tag-story,
+.featured-pick-tag.tag-stories-poems,
+.featured-pick-tag.tag-poem,
+.featured-pick-tag.tag-narrative {
+  background: #fce7f3;
+  color: #be185d;
+  border: 1px solid #fbcfe8;
+}
+
+.featured-pick-tag.tag-craft,
+.featured-pick-tag.tag-make-do,
+.featured-pick-tag.tag-writing-prompt {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.featured-pick-tag.tag-learn,
+.featured-pick-tag.tag-science {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+/* ── Content ─────────────────────────────────────── */
+.featured-pick-title {
+  font-size: var(--heading-font-size-xs);
+  color: var(--dark-color);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.featured-pick-desc {
+  font-size: var(--body-font-size-xs);
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.featured-pick-meta {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid rgb(0 0 0 / 6%);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (width <= 900px) {
+  .featured-picks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .featured-picks-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

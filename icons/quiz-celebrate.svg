@@ -1,13 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none">
-  <!-- outer ring -->
-  <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
-  <!-- 6-point star -->
-  <polygon points="36,16 40,30 54,30 43,39 47,53 36,44 25,53 29,39 18,30 32,30" fill="rgba(255,255,255,0.88)"/>
-  <!-- sparkle top-right -->
-  <path d="M56 13l1.2 3.6 3.6 1.2-3.6 1.2L56 22.6l-1.2-3.6L51.2 17.8l3.6-1.2z" fill="rgba(255,255,255,0.65)"/>
-  <!-- sparkle bottom-left -->
-  <path d="M15 51l.8 2.4 2.4.8-2.4.8L15 57.4l-.8-2.4-2.4-.8 2.4-.8z" fill="rgba(255,255,255,0.45)"/>
-  <!-- dot -->
-  <circle cx="18" cy="20" r="2.5" fill="rgba(255,255,255,0.45)"/>
-  <circle cx="56" cy="54" r="1.8" fill="rgba(255,255,255,0.35)"/>
+  <circle cx="36" cy="36" r="34" fill="#fef3c7" stroke="#fde68a" stroke-width="1.5"/>
+  <polygon points="36,16 40,30 54,30 43,39 47,53 36,44 25,53 29,39 18,30 32,30" fill="#fbbf24"/>
+  <path d="M56 13l1.2 3.6 3.6 1.2-3.6 1.2L56 22.6l-1.2-3.6L51.2 17.8l3.6-1.2z" fill="#a855f7"/>
+  <path d="M15 51l.8 2.4 2.4.8-2.4.8L15 57.4l-.8-2.4-2.4-.8 2.4-.8z" fill="#a855f7"/>
+  <circle cx="18" cy="20" r="2.5" fill="#f87171"/>
+  <circle cx="56" cy="54" r="1.8" fill="#34d399"/>
 </svg>

@@ -15,9 +15,11 @@ import {
 /**
  * Loads a fragment.
  * @param {string} path The path to the fragment
+ * @param {string|null} blockType Optional block type to extract (e.g. 'idiom-of-week').
+ *   When provided, only the section containing that block is kept and loaded.
  * @returns {HTMLElement} The root element of the fragment
  */
-export async function loadFragment(path) {
+export async function loadFragment(path, blockType = null) {
   if (path && path.startsWith('/')) {
     const resp = await fetch(`${path}.plain.html`);
     if (resp.ok) {
@@ -34,6 +36,14 @@ export async function loadFragment(path) {
       resetAttributeBase('source', 'srcset');
 
       decorateMain(main);
+
+      if (blockType) {
+        // Keep only the section that contains the requested block type
+        const target = [...main.querySelectorAll(':scope > .section')]
+          .find((s) => s.querySelector(`.${blockType}`));
+        if (target) main.replaceChildren(target);
+      }
+
       await loadSections(main);
       return main;
     }
@@ -44,7 +54,11 @@ export async function loadFragment(path) {
 export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();
-  const fragment = await loadFragment(path);
+
+  // Optional block type variant: Fragment (idiom-of-week) → class 'idiom-of-week'
+  const blockType = [...block.classList].find((c) => c !== 'fragment' && c !== 'block') || null;
+
+  const fragment = await loadFragment(path, blockType);
   if (fragment) {
     const fragmentSection = fragment.querySelector(':scope .section');
     if (fragmentSection) {
