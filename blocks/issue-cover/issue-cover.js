@@ -54,6 +54,14 @@ function buildSectionHeading(sec) {
   return heading;
 }
 
+function makeNavBtn(href, text, className) {
+  const btn = document.createElement('a');
+  btn.className = `issue-nav-btn ${className}`;
+  btn.href = href;
+  btn.textContent = text;
+  return btn;
+}
+
 export default async function decorate(block) {
   const rows = [...block.children];
 
@@ -81,6 +89,8 @@ export default async function decorate(block) {
 
   // ── Fetch content pieces from query index ────────────
   let sections = [];
+  let prevPath = null;
+  let nextPath = null;
   try {
     const resp = await fetch('/query-index.json');
     if (resp.ok) {
@@ -98,6 +108,18 @@ export default async function decorate(block) {
           };
           return { ...meta, path: p.path };
         });
+
+      // Derive prev/next issue paths from the index
+      const numMatch = issueTag.match(/^(.*?)(\d+)$/);
+      if (numMatch) {
+        const prefix = numMatch[1];
+        const n = parseInt(numMatch[2], 10);
+        const issuePaths = new Set(
+          data.filter((p) => p.path?.startsWith('/issues/')).map((p) => p.path),
+        );
+        if (n > 1 && issuePaths.has(`/issues/${prefix}${n - 1}`)) prevPath = `/issues/${prefix}${n - 1}`;
+        if (issuePaths.has(`/issues/${prefix}${n + 1}`)) nextPath = `/issues/${prefix}${n + 1}`;
+      }
     }
   } catch {
     // query-index unavailable — hero renders without dynamic sections
@@ -143,11 +165,20 @@ export default async function decorate(block) {
       const first = document.getElementById(sections[0].id);
       if (!first) return;
       const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 64;
-      const stripEl = document.querySelector('.issue-progress');
-      const stripHeight = stripEl ? stripEl.getBoundingClientRect().height : 0;
+      const wrapperEl = document.querySelector('.issue-sticky-wrapper');
+      const stripHeight = wrapperEl ? wrapperEl.getBoundingClientRect().height : 0;
       window.scrollTo({ top: first.getBoundingClientRect().top + window.scrollY - navHeight - stripHeight - 16, behavior: 'smooth' });
     });
     heroLeft.append(countBtn);
+  }
+
+  // Prev / Next navigation on the hero card
+  if (prevPath || nextPath) {
+    const heroNav = document.createElement('div');
+    heroNav.className = 'issue-hero-nav';
+    if (prevPath) heroNav.append(makeNavBtn(prevPath, '← Prev issue', 'issue-nav-prev'));
+    if (nextPath) heroNav.append(makeNavBtn(nextPath, 'Next issue →', 'issue-nav-next'));
+    heroLeft.append(heroNav);
   }
 
   // Right column
@@ -180,6 +211,32 @@ export default async function decorate(block) {
   heroRight.append(decorNum, contentList);
   hero.append(heroLeft, heroRight);
   block.append(hero);
+
+  // ── Build sticky context bar ──────────────────────────
+  const context = document.createElement('div');
+  context.className = 'issue-sticky-context';
+
+  const ctxMeta = document.createElement('div');
+  ctxMeta.className = 'issue-sticky-meta';
+
+  const ctxBadge = document.createElement('span');
+  ctxBadge.className = 'issue-cover-badge';
+  ctxBadge.textContent = `✦ ${issueNum}`;
+
+  const ctxTitle = document.createElement('span');
+  ctxTitle.className = 'issue-sticky-title';
+  ctxTitle.textContent = issueTitle;
+
+  ctxMeta.append(ctxBadge, ctxTitle);
+  context.append(ctxMeta);
+
+  if (prevPath || nextPath) {
+    const ctxNav = document.createElement('div');
+    ctxNav.className = 'issue-sticky-nav';
+    if (prevPath) ctxNav.append(makeNavBtn(prevPath, '← Prev', 'issue-nav-prev'));
+    if (nextPath) ctxNav.append(makeNavBtn(nextPath, 'Next →', 'issue-nav-next'));
+    context.append(ctxNav);
+  }
 
   // ── Build sticky progress strip ──────────────────────
   const strip = document.createElement('div');
@@ -218,13 +275,18 @@ export default async function decorate(block) {
 
   strip.append(inner);
 
+  // ── Wrap context bar + strip in a single sticky container ──
+  const stickyWrapper = document.createElement('div');
+  stickyWrapper.className = 'issue-sticky-wrapper';
+  stickyWrapper.append(context, strip);
+
   const issueSection = block.closest('.section');
   if (issueSection) {
-    issueSection.after(strip);
+    issueSection.after(stickyWrapper);
   } else {
     const headerEl = document.querySelector('header');
-    if (headerEl) headerEl.after(strip);
-    else document.body.prepend(strip);
+    if (headerEl) headerEl.after(stickyWrapper);
+    else document.body.prepend(stickyWrapper);
   }
 
   // ── Progress strip interaction ───────────────────────
@@ -245,7 +307,7 @@ export default async function decorate(block) {
     const target = document.getElementById(link.dataset.cat);
     if (!target) return;
     const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 64;
-    const stripHeight = strip.getBoundingClientRect().height;
+    const stripHeight = stickyWrapper.getBoundingClientRect().height;
     window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navHeight - stripHeight - 16, behavior: 'smooth' });
   });
 
@@ -280,7 +342,7 @@ export default async function decorate(block) {
     if (section) main.append(section);
   });
 
-  // ── IntersectionObserver (set up after sections are in DOM) ──
+  // ── IntersectionObserver for section progress (set up after sections are in DOM) ──
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -294,4 +356,14 @@ export default async function decorate(block) {
     const anchor = document.getElementById(sec.id);
     if (anchor) observer.observe(anchor);
   });
+
+  // ── Hero observer — reveal sticky context bar on scroll ──
+  const heroObserver = new IntersectionObserver(
+    ([entry]) => context.classList.toggle('visible', !entry.isIntersecting),
+    {
+      rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height'), 10) || 64}px 0px 0px 0px`,
+      threshold: 0,
+    },
+  );
+  heroObserver.observe(hero);
 }

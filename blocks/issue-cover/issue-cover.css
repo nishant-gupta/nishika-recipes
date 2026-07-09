@@ -2,7 +2,7 @@
 .issue-cover-container {
   margin: 0 !important;
   background: linear-gradient(135deg, #2d0a3e 0%, #5a1878 50%, #7c3f87 100%);
-  padding-bottom: 32px;
+  padding: 32px 0;
 }
 
 .issue-cover-container .issue-cover-wrapper {
@@ -13,7 +13,7 @@
 /* ── Hero card ────────────────────────────────────── */
 .issue-hero {
   max-width: min(80%, 1100px);
-  margin: 32px auto 0;
+  margin: 0 auto;
   background: #fff;
   border: 1px solid rgb(0 0 0 / 7%);
   box-shadow: 0 4px 32px rgb(80 20 110 / 12%);
@@ -104,6 +104,48 @@
   box-shadow: 0 4px 12px rgb(80 20 110 / 12%);
 }
 
+/* ── Prev / Next nav buttons ──────────────────────── */
+.issue-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.issue-hero-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.issue-hero-nav .issue-nav-btn {
+  color: var(--dark-color);
+  background: #f3e8ff;
+  border: 1px solid #d8b4fe;
+}
+
+.issue-hero-nav .issue-nav-btn:hover {
+  background: #ede9fe;
+  text-decoration: none;
+}
+
+.issue-sticky-nav .issue-nav-btn {
+  color: #fff;
+  background: rgb(255 255 255 / 15%);
+  border: 1px solid rgb(255 255 255 / 25%);
+}
+
+.issue-sticky-nav .issue-nav-btn:hover {
+  background: rgb(255 255 255 / 28%);
+  text-decoration: none;
+}
+
 /* ── Right column ─────────────────────────────────── */
 .issue-hero-right {
   width: 220px;
@@ -186,11 +228,70 @@
 .issue-hero-content-item-narrative { border-color: rgb(236 72 153 / 30%); }
 .issue-hero-content-item-craft   { border-color: rgb(59 130 246 / 30%); }
 
-/* ── Sticky progress strip ────────────────────────── */
-.issue-progress {
+/* ── Sticky wrapper (context bar + progress strip) ── */
+.issue-sticky-wrapper {
   position: sticky;
   top: var(--nav-height, 64px);
   z-index: 80;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Sticky context bar ───────────────────────────── */
+.issue-sticky-context {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 32px;
+  background: linear-gradient(135deg, #2d0a3e 0%, #5a1878 100%);
+  overflow: hidden;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: max-height 0.25s ease, padding-top 0.25s ease, padding-bottom 0.25s ease;
+  box-sizing: border-box;
+}
+
+.issue-sticky-context.visible {
+  max-height: 64px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.issue-sticky-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.issue-sticky-context .issue-cover-badge {
+  flex-shrink: 0;
+  background: rgb(255 255 255 / 15%);
+  border-color: rgb(255 255 255 / 30%);
+  color: #fff;
+}
+
+.issue-sticky-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.issue-sticky-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Sticky progress strip ────────────────────────── */
+.issue-progress {
   background: #fff;
   border-bottom: 1px solid rgb(0 0 0 / 8%);
   box-shadow: 0 2px 10px rgb(80 20 110 / 6%);
