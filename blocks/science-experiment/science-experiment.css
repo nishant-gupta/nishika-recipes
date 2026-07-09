@@ -3,6 +3,7 @@
   margin: 0 auto 48px;
   position: relative;
   overflow: hidden;
+  border-radius: 20px;
 }
 
 /* ── Screen transitions ──────────────────────────── */
@@ -13,8 +14,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(255 255 255 / 6%);
-  border: 1px solid rgb(255 255 255 / 14%);
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  box-shadow: 0 4px 24px rgb(80 20 110 / 10%);
   border-radius: 20px;
   overflow: hidden;
 }
@@ -71,7 +73,7 @@
 
 .science-experiment .science-title {
   font-size: var(--heading-font-size-l);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   margin: 0;
   text-align: center;
 }
@@ -89,11 +91,11 @@
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  background: rgb(255 255 255 / 12%);
-  border: 1px solid rgb(255 255 255 / 20%);
+  background: #f3e8ff;
+  border: 1px solid rgb(168 85 247 / 20%);
   border-radius: 20px;
   font-size: var(--body-font-size-s);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   font-weight: 600;
 }
 
@@ -130,8 +132,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgb(255 255 255 / 10%);
-  border: 2px solid rgb(255 255 255 / 18%);
+  background: #f3e8ff;
+  border: 2px solid rgb(168 85 247 / 20%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,21 +148,21 @@
 }
 
 .science-experiment .science-phase.done .science-phase-icon {
-  background: rgb(100 220 100 / 25%);
-  border-color: #64dc64;
-  color: #7fff7f;
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #16a34a;
   font-size: 12px;
 }
 
 .science-experiment .science-phase.active .science-phase-icon {
-  background: rgb(255 255 255 / 20%);
-  border-color: var(--text-color-secondary);
-  box-shadow: 0 0 12px rgb(245 240 247 / 30%);
+  background: #e9d5ff;
+  border-color: #a855f7;
+  box-shadow: 0 0 12px rgb(168 85 247 / 25%);
 }
 
 .science-experiment .science-phase-label {
   font-size: 9px;
-  color: var(--text-color-secondary);
+  color: #888;
   opacity: 0.5;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -175,7 +177,7 @@
 .science-experiment .science-phase-line {
   width: 20px;
   height: 2px;
-  background: rgb(255 255 255 / 15%);
+  background: #e9d5ff;
   margin: 0 2px;
   margin-bottom: 18px;
   flex-shrink: 0;
@@ -183,13 +185,13 @@
 }
 
 .science-experiment .science-phase-line.done {
-  background: #64dc64;
+  background: #16a34a;
 }
 
 /* ── Stage label ──────────────────────────────────── */
 .science-experiment .science-stage-label {
   font-size: var(--body-font-size-m);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   font-weight: 700;
   margin: 0;
   text-align: center;
@@ -197,8 +199,8 @@
 
 .science-experiment .science-hint {
   font-size: var(--body-font-size-xs);
-  color: var(--text-color-secondary);
-  opacity: 0.6;
+  color: #555;
+  opacity: 0.8;
   margin: 0;
   font-style: italic;
 }
@@ -207,12 +209,12 @@
 .science-experiment .science-question-card {
   width: 100%;
   box-sizing: border-box;
-  background: rgb(255 255 255 / 8%);
-  border: 1px solid rgb(255 255 255 / 14%);
+  background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+  border: 1px solid rgb(168 85 247 / 15%);
   border-radius: 16px;
   padding: 18px 20px;
   font-size: var(--body-font-size-m);
-  color: var(--text-color-secondary);
+  color: #555;
   line-height: 1.5;
   text-align: center;
   font-style: italic;
@@ -222,10 +224,10 @@
 .science-experiment .science-textarea {
   width: 100%;
   padding: 14px 16px;
-  background: rgb(255 255 255 / 8%);
-  border: 2px solid rgb(255 255 255 / 20%);
+  background: #fff;
+  border: 2px solid rgb(0 0 0 / 12%);
   border-radius: 12px;
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   font-size: var(--body-font-size-m);
   font-family: var(--body-font-family);
   resize: vertical;
@@ -235,11 +237,11 @@
 }
 
 .science-experiment .science-textarea:focus {
-  border-color: rgb(255 255 255 / 50%);
+  border-color: #a855f7;
 }
 
 .science-experiment .science-textarea::placeholder {
-  color: rgb(245 240 247 / 35%);
+  color: #aaa;
 }
 
 /* ── Materials checklist ──────────────────────────── */
@@ -255,30 +257,31 @@
   align-items: center;
   gap: 14px;
   padding: 12px 16px;
-  background: rgb(255 255 255 / 8%);
-  border: 2px solid rgb(255 255 255 / 14%);
+  background: #fff;
+  border: 2px solid rgb(0 0 0 / 10%);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: var(--body-font-size-s);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   box-sizing: border-box;
 }
 
 .science-experiment .science-supply-item:hover {
-  background: rgb(255 255 255 / 14%);
+  background: #f3e8ff;
+  border-color: #a855f7;
 }
 
 .science-experiment .science-supply-item.checked {
-  background: rgb(100 220 100 / 15%);
-  border-color: rgb(100 220 100 / 40%);
+  background: #dcfce7;
+  border-color: #16a34a;
 }
 
 .science-experiment .science-supply-check {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 2px solid rgb(255 255 255 / 30%);
+  border: 2px solid rgb(0 0 0 / 15%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,9 +290,9 @@
 }
 
 .science-experiment .science-supply-item.checked .science-supply-check {
-  background: #64dc64;
-  border-color: #64dc64;
-  color: #1a3d1a;
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
 }
 
 .science-experiment .science-supply-item.checked .science-supply-check::after {
@@ -318,7 +321,7 @@
 .science-experiment .science-step-counter {
   font-size: var(--body-font-size-xs);
   font-weight: 700;
-  color: var(--text-color-secondary);
+  color: #888;
   opacity: 0.65;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -327,14 +330,14 @@
 
 .science-experiment .science-progress-wrap {
   height: 6px;
-  background: rgb(255 255 255 / 15%);
+  background: #e9d5ff;
   border-radius: 3px;
   overflow: hidden;
 }
 
 .science-experiment .science-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--dark-color), var(--text-color-secondary));
+  background: linear-gradient(90deg, #a855f7, #ec4899);
   border-radius: 3px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: 0%;
@@ -344,14 +347,14 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
+  background: var(--dark-color);
+  color: #fff;
   font-size: 32px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+  box-shadow: 0 4px 16px rgb(80 20 110 / 25%);
   animation: science-pop 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
 
@@ -372,12 +375,12 @@
 
 .science-experiment .science-step-text {
   font-size: var(--heading-font-size-xs);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   font-weight: 600;
   line-height: 1.5;
   text-align: center;
-  background: rgb(255 255 255 / 8%);
-  border: 1px solid rgb(255 255 255 / 14%);
+  background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+  border: 1px solid rgb(168 85 247 / 15%);
   border-radius: 16px;
   padding: 24px 32px;
   width: 100%;
@@ -388,8 +391,8 @@
 .science-experiment .science-conclusion-screen {
   padding: 28px 24px 24px;
   gap: 16px;
-  background: rgb(255 215 0 / 10%);
-  border-color: rgb(255 215 0 / 35%);
+  background: #fef3c7;
+  border-color: #fde68a;
 }
 
 .science-experiment .science-conclusion-icon {
@@ -404,7 +407,7 @@
 
 .science-experiment .science-conclusion-heading {
   font-size: var(--heading-font-size-m);
-  color: #ffd700;
+  color: #92400e;
   margin: 0;
   text-align: center;
 }
@@ -412,12 +415,12 @@
 .science-experiment .science-explanation-card {
   width: 100%;
   box-sizing: border-box;
-  background: rgb(255 255 255 / 8%);
-  border: 1px solid rgb(255 255 255 / 14%);
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
   border-radius: 16px;
   padding: 20px 24px;
   font-size: var(--body-font-size-m);
-  color: var(--text-color-secondary);
+  color: #555;
   line-height: 1.65;
   text-align: center;
 }
@@ -425,8 +428,8 @@
 .science-experiment .science-hypothesis-recap {
   width: 100%;
   box-sizing: border-box;
-  background: rgb(255 255 255 / 10%);
-  border: 1px solid rgb(255 255 255 / 25%);
+  background: #fffbeb;
+  border: 1px solid #fde68a;
   border-radius: 12px;
   padding: 14px 20px;
   text-align: center;
@@ -435,7 +438,7 @@
 .science-experiment .science-recap-label {
   font-size: var(--body-font-size-xs);
   font-weight: 700;
-  color: #ffd700;
+  color: #d97706;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 6px;
@@ -443,7 +446,7 @@
 
 .science-experiment .science-recap-text {
   font-size: var(--body-font-size-s);
-  color: var(--text-color-secondary);
+  color: #555;
   font-style: italic;
 }
 
@@ -457,12 +460,15 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background: var(--text-color-secondary);
+  background: #f59e0b;
+  color: #fff;
+  margin: 0 auto;
 }
 
 .science-experiment .btn.science-play-again:hover {
+  background: #d97706;
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+  box-shadow: 0 6px 20px rgb(245 158 11 / 40%);
 }
 
 /* ── Nav row ──────────────────────────────────────── */
@@ -491,13 +497,13 @@
 }
 
 .science-experiment .btn-primary {
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
+  background: var(--dark-color);
+  color: #fff;
 }
 
 .science-experiment .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+  box-shadow: 0 6px 24px rgb(80 20 110 / 28%);
 }
 
 .science-experiment .btn-primary:active {
@@ -508,14 +514,12 @@
 .science-experiment .btn-ghost {
   padding: 12px 26px;
   background: transparent;
-  color: var(--text-color-secondary);
-  border: 2px solid rgb(255 255 255 / 25%);
-  opacity: 0.75;
+  color: var(--dark-color);
+  border: 2px solid rgb(0 0 0 / 15%);
 }
 
 .science-experiment .btn-ghost:hover {
-  opacity: 1;
-  border-color: rgb(255 255 255 / 50%);
+  border-color: var(--dark-color);
   transform: translateY(-1px);
 }
 

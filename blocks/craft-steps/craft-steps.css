@@ -3,6 +3,7 @@
   margin: 0 auto 48px;
   position: relative;
   overflow: hidden;
+  border-radius: 20px;
 }
 
 /* ── Screen transitions ──────────────────────────── */
@@ -13,8 +14,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(255 255 255 / 6%);
-  border: 1px solid rgb(255 255 255 / 14%);
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 7%);
+  box-shadow: 0 4px 24px rgb(80 20 110 / 10%);
   border-radius: 20px;
   overflow: hidden;
 }
@@ -60,7 +62,7 @@
 
 .craft-steps .craft-title {
   font-size: var(--heading-font-size-l);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   margin: 0;
   text-align: center;
 }
@@ -77,11 +79,11 @@
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
-  background: rgb(255 255 255 / 12%);
-  border: 1px solid rgb(255 255 255 / 20%);
+  background: #f3e8ff;
+  border: 1px solid rgb(168 85 247 / 20%);
   border-radius: 20px;
   font-size: var(--body-font-size-s);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   font-weight: 600;
 }
 
@@ -101,7 +103,7 @@
 /* ── Stage label ──────────────────────────────────── */
 .craft-steps .craft-stage-label {
   font-size: var(--body-font-size-m);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   font-weight: 700;
   margin: 0;
   text-align: center;
@@ -110,8 +112,8 @@
 /* ── Supplies slide ───────────────────────────────── */
 .craft-steps .craft-hint {
   font-size: var(--body-font-size-xs);
-  color: var(--text-color-secondary);
-  opacity: 0.6;
+  color: #555;
+  opacity: 0.8;
   margin: 0;
   font-style: italic;
 }
@@ -126,35 +128,35 @@
   gap: 8px;
 }
 
-
 .craft-steps .craft-supply-item {
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 12px 16px;
-  background: rgb(255 255 255 / 8%);
-  border: 2px solid rgb(255 255 255 / 14%);
+  background: #fff;
+  border: 2px solid rgb(0 0 0 / 10%);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: var(--body-font-size-s);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
 }
 
 .craft-steps .craft-supply-item:hover {
-  background: rgb(255 255 255 / 14%);
+  background: #f3e8ff;
+  border-color: #a855f7;
 }
 
 .craft-steps .craft-supply-item.checked {
-  background: rgb(100 220 100 / 15%);
-  border-color: rgb(100 220 100 / 40%);
+  background: #dcfce7;
+  border-color: #16a34a;
 }
 
 .craft-steps .craft-supply-check {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 2px solid rgb(255 255 255 / 30%);
+  border: 2px solid rgb(0 0 0 / 15%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,9 +166,9 @@
 }
 
 .craft-steps .craft-supply-item.checked .craft-supply-check {
-  background: #64dc64;
-  border-color: #64dc64;
-  color: #1a3d1a;
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
 }
 
 .craft-steps .craft-supply-item.checked .craft-supply-check::after {
@@ -195,7 +197,7 @@
 .craft-steps .craft-step-counter {
   font-size: var(--body-font-size-xs);
   font-weight: 700;
-  color: var(--text-color-secondary);
+  color: #888;
   opacity: 0.65;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -204,14 +206,14 @@
 
 .craft-steps .craft-progress-wrap {
   height: 6px;
-  background: rgb(255 255 255 / 15%);
+  background: #e9d5ff;
   border-radius: 3px;
   overflow: hidden;
 }
 
 .craft-steps .craft-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--dark-color), var(--text-color-secondary));
+  background: linear-gradient(90deg, #a855f7, #ec4899);
   border-radius: 3px;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: 0%;
@@ -221,14 +223,14 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
+  background: var(--dark-color);
+  color: #fff;
   font-size: 32px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
+  box-shadow: 0 4px 16px rgb(80 20 110 / 25%);
   animation: craft-pop 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
 
@@ -249,12 +251,12 @@
 
 .craft-steps .craft-step-text {
   font-size: var(--heading-font-size-xs);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   font-weight: 600;
   line-height: 1.5;
   text-align: center;
-  background: rgb(255 255 255 / 8%);
-  border: 1px solid rgb(255 255 255 / 14%);
+  background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+  border: 1px solid rgb(168 85 247 / 15%);
   border-radius: 16px;
   padding: 24px 32px;
   width: 100%;
@@ -263,8 +265,8 @@
 
 /* ── Challenge slide ──────────────────────────────── */
 .craft-steps .craft-challenge-screen {
-  background: linear-gradient(135deg, #7c3200 0%, #b35a00 40%, #7a2e6e 100%);
-  border-color: rgb(255 160 40 / 50%);
+  background: linear-gradient(135deg, #fef3c7 0%, #ffedd5 60%, #f3e8ff 100%);
+  border-color: rgb(251 191 36 / 40%);
 }
 
 .craft-steps .craft-challenge-icon {
@@ -280,20 +282,19 @@
 
 .craft-steps .craft-challenge-heading {
   font-size: var(--heading-font-size-m);
-  color: #ffd700;
+  color: #92400e;
   margin: 0;
   text-align: center;
-  text-shadow: 0 2px 12px rgb(0 0 0 / 30%);
 }
 
 .craft-steps .craft-challenge-text {
   font-size: var(--body-font-size-m);
-  color: #fff8ee;
+  color: #555;
   line-height: 1.6;
   text-align: center;
   margin: 0;
-  background: rgb(0 0 0 / 18%);
-  border: 1px solid rgb(255 255 255 / 15%);
+  background: rgb(255 255 255 / 70%);
+  border: 1px solid rgb(0 0 0 / 7%);
   border-radius: 14px;
   padding: 20px 24px;
   width: 100%;
@@ -307,14 +308,14 @@
 
 .craft-steps .craft-complete-heading {
   font-size: var(--heading-font-size-l);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   margin: 0;
   text-align: center;
 }
 
 .craft-steps .craft-complete-craft {
   font-size: var(--body-font-size-m);
-  color: var(--text-color-secondary);
+  color: #555;
   opacity: 0.7;
   text-align: center;
 }
@@ -345,13 +346,13 @@
 }
 
 .craft-steps .btn-primary {
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
+  background: var(--dark-color);
+  color: #fff;
 }
 
 .craft-steps .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgb(0 0 0 / 25%);
+  box-shadow: 0 6px 24px rgb(80 20 110 / 28%);
 }
 
 .craft-steps .btn-primary:active {
@@ -362,24 +363,22 @@
 .craft-steps .btn-ghost {
   padding: 12px 26px;
   background: transparent;
-  color: var(--text-color-secondary);
-  border: 2px solid rgb(255 255 255 / 25%);
-  opacity: 0.75;
+  color: var(--dark-color);
+  border: 2px solid rgb(0 0 0 / 15%);
 }
 
 .craft-steps .btn-ghost:hover {
-  opacity: 1;
-  border-color: rgb(255 255 255 / 50%);
+  border-color: var(--dark-color);
   transform: translateY(-1px);
 }
 
 .craft-steps .craft-challenge-screen .btn-ghost {
-  border-color: rgb(255 255 255 / 35%);
-  color: #fff8ee;
+  color: #92400e;
+  border-color: rgb(146 64 14 / 25%);
 }
 
 .craft-steps .craft-challenge-screen .btn-ghost:hover {
-  border-color: rgb(255 255 255 / 65%);
+  border-color: #92400e;
 }
 
 /* ── Keyframes ────────────────────────────────────── */
