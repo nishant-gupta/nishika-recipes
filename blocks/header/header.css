@@ -138,15 +138,36 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 100px;
+  flex-shrink: 0;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
 }
 
+header .nav-brand .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 header nav .nav-brand img {
-  width: 70px;
-  height: auto;
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+header .nav-brand-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+header .nav-brand-title:hover {
+  text-decoration: none;
+  opacity: 0.85;
 }
 
 /* sections */

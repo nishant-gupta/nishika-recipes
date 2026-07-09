@@ -79,6 +79,11 @@
   flex-shrink: 0;
 }
 
+.schedule-icon .icon {
+  width: 18px;
+  height: 18px;
+}
+
 .schedule-icon img {
   width: 18px;
   height: 18px;

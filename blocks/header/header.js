@@ -297,6 +297,17 @@ export default async function decorate(block) {
     brandLink.closest('.button-container').className = '';
   }
 
+  // Wrap site title (any text element without an img) in a home link
+  const brandTitleEl = [...navBrand.querySelectorAll('p, h1, h2, h3')]
+    .find((el) => !el.querySelector('img') && el.textContent.trim());
+  if (brandTitleEl) {
+    const titleLink = document.createElement('a');
+    titleLink.href = '/';
+    titleLink.className = 'nav-brand-title';
+    titleLink.textContent = brandTitleEl.textContent.trim();
+    brandTitleEl.replaceWith(titleLink);
+  }
+
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {

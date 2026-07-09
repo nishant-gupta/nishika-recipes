@@ -58,18 +58,27 @@
 
 /* kicker — first <p> before h2/h3 */
 .fact-feature-content > p:first-child:not(:last-child) {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 11px;
+  line-height: 1;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
   background: var(--accent-yellow);
   color: #1a1a1a;
   opacity: 1;
-  padding: 4px 12px;
+  padding: 6px 12px;
   border-radius: 4px;
   margin: 0 0 16px;
   max-width: unset;
+}
+
+.fact-feature-content > p:first-child:not(:last-child) .icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 /* ── Visual (right) ──────────────────────────────── */
