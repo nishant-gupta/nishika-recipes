@@ -8,8 +8,8 @@
 }
 
 .subscribe-strip {
-  background: linear-gradient(135deg, #3b1248 0%, var(--dark-color) 100%);
-  border-top: 1px solid rgb(255 255 255 / 12%);
+  background: linear-gradient(135deg, #2d0a3e 0%, #5a1878 50%, #7c3f87 100%);
+  border-top: 4px solid var(--accent-yellow);
   padding: 72px 32px;
   position: relative;
   overflow: hidden;
@@ -21,9 +21,9 @@
   top: -80px;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  height: 300px;
-  background: radial-gradient(ellipse, rgb(200 100 255 / 12%) 0%, transparent 70%);
+  width: 700px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgb(251 191 36 / 10%) 0%, transparent 70%);
   pointer-events: none;
 }
 

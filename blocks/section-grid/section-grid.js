@@ -2,12 +2,15 @@ export default function decorate(block) {
   const tiles = [...block.children].map((row) => {
     const cells = [...row.children];
     const linkEl = row.querySelector('a');
+    const picture = row.querySelector('picture');
+    if (picture) picture.remove();
     return {
       icon: cells[0]?.textContent.trim() || '',
       title: cells[1]?.textContent.trim() || '',
       description: cells[2]?.textContent.trim() || '',
       linkText: cells[3]?.textContent.trim() || 'Browse →',
       href: linkEl?.href || '#',
+      picture: picture || null,
     };
   }).filter((t) => t.title);
 
@@ -20,9 +23,20 @@ export default function decorate(block) {
     const item = document.createElement('div');
     item.className = 'section-tile';
 
-    const icon = document.createElement('div');
-    icon.className = 'section-tile-icon';
-    icon.textContent = tile.icon;
+    if (tile.picture) {
+      const imgWrap = document.createElement('div');
+      imgWrap.className = 'section-tile-image';
+      imgWrap.appendChild(tile.picture);
+      item.append(imgWrap);
+    } else {
+      const icon = document.createElement('div');
+      icon.className = 'section-tile-icon';
+      icon.textContent = tile.icon;
+      item.append(icon);
+    }
+
+    const body = document.createElement('div');
+    body.className = 'section-tile-body';
 
     const title = document.createElement('h3');
     title.className = 'section-tile-title';
@@ -37,7 +51,8 @@ export default function decorate(block) {
     link.className = 'section-tile-link';
     link.textContent = tile.linkText;
 
-    item.append(icon, title, desc, link);
+    body.append(title, desc, link);
+    item.append(body);
     grid.append(item);
   });
 

@@ -7,6 +7,20 @@ function groupButtons(container) {
   btns.forEach((b) => wrap.append(b));
 }
 
+function buildPostcard(postcard) {
+  const picture = postcard.querySelector('picture');
+  if (!picture) return;
+  picture.remove();
+  const imgWrap = document.createElement('div');
+  imgWrap.className = 'hero-postcard-image';
+  imgWrap.appendChild(picture);
+  const body = document.createElement('div');
+  body.className = 'hero-postcard-body';
+  while (postcard.firstChild) body.appendChild(postcard.firstChild);
+  postcard.appendChild(imgWrap);
+  postcard.appendChild(body);
+}
+
 export default function decorate(block) {
   const [row] = block.children;
   if (!row) return;
@@ -24,6 +38,7 @@ export default function decorate(block) {
 
     block.textContent = '';
     block.append(content, postcard);
+    buildPostcard(postcard);
   } else {
     const content = document.createElement('div');
     content.className = 'hero-content';
@@ -32,6 +47,6 @@ export default function decorate(block) {
     block.append(content);
   }
 
-  const content = block.querySelector('.hero-content');
-  if (content) groupButtons(content);
+  const heroContent = block.querySelector('.hero-content');
+  if (heroContent) groupButtons(heroContent);
 }

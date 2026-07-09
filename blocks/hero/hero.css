@@ -20,34 +20,74 @@
   display: flex;
   align-items: center;
   gap: 48px;
-  padding: 72px 48px 64px;
+  padding: 64px 56px 60px;
   min-height: 52vh;
-  background: linear-gradient(135deg, #3b1248 0%, var(--dark-color) 50%, #5a2070 100%);
+  background: linear-gradient(135deg, #fff 0%, #f5e8ff 55%, #ffe4f0 100%);
   overflow: hidden;
   flex-wrap: wrap;
 }
 
-/* decorative glow circles */
+/* decorative colour blobs */
 .hero::before {
   content: '';
   position: absolute;
-  top: -120px;
-  right: -80px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgb(255 255 255 / 7%) 0%, transparent 65%);
+  top: -100px;
+  right: -60px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgb(251 191 36 / 20%) 0%, transparent 65%);
   pointer-events: none;
 }
 
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -100px;
-  left: 10%;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgb(200 120 255 / 10%) 0%, transparent 65%);
+  bottom: -80px;
+  left: 5%;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgb(192 132 252 / 16%) 0%, transparent 65%);
   pointer-events: none;
+}
+
+/* ── Shared paragraph base (lower-specificity first) ── */
+.hero .hero-postcard p {
+  font-size: var(--body-font-size-xs);
+  color: #555;
+  margin: 0 0 6px;
+  line-height: 1.55;
+}
+
+.hero .hero-postcard h2,
+.hero .hero-postcard h3 {
+  font-size: var(--heading-font-size-xs);
+  color: var(--dark-color);
+  margin: 16px 0 8px;
+  line-height: 1.3;
+}
+
+.hero .hero-content > p {
+  font-size: var(--body-font-size-s);
+  color: #555;
+  line-height: 1.7;
+  margin: 0 0 28px;
+  max-width: 520px;
+}
+
+/* Eyebrow — first <p> before h1 (higher specificity, comes after base) */
+.hero .hero-content > p:first-child:not(:last-child) {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: var(--accent-yellow);
+  color: #1a1a1a;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin: 0 0 18px;
+  max-width: unset;
+  line-height: 1.4;
 }
 
 /* ── Content (left) ──────────────────────────────── */
@@ -58,43 +98,15 @@
   z-index: 1;
 }
 
-.hero .hero-postcard p {
-  font-size: var(--body-font-size-xs);
-  color: var(--text-color-secondary);
-  opacity: 0.78;
-  margin: 0 0 4px;
-  line-height: 1.5;
-}
-
-.hero .hero-content > p {
-  color: var(--text-color-secondary);
-  opacity: 0.75;
-  font-size: var(--body-font-size-s);
-  line-height: 1.7;
-  margin: 0 0 32px;
-  max-width: 520px;
-}
-
-/* Eyebrow — first <p> before h1 */
-.hero .hero-content > p:first-child:not(:last-child) {
-  font-size: var(--body-font-size-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--text-color-secondary);
-  opacity: 0.75;
-  margin: 0 0 14px;
-}
-
 .hero .hero-content h1 {
   font-size: clamp(32px, 5.5vw, 52px);
-  color: var(--text-color-secondary);
+  color: var(--dark-color);
   line-height: 1.1;
   margin: 0 0 20px;
   letter-spacing: -0.02em;
 }
 
-/* CTA buttons */
+/* ── CTA buttons ─────────────────────────────────── */
 .hero .hero-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -106,40 +118,54 @@
   margin: 0;
 }
 
-/* ── Postcard (right) ────────────────────────────── */
+/* ── Postcard card (right) ───────────────────────── */
 .hero .hero-postcard {
   position: relative;
   z-index: 1;
   width: min(360px, 100%);
-  background: rgb(255 255 255 / 10%);
-  border: 1px solid rgb(255 255 255 / 22%);
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 8%);
   border-radius: 20px;
-  padding: 28px 24px;
-  backdrop-filter: blur(12px);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgb(100 40 130 / 12%);
 }
 
-/* top accent stripe */
-.hero .hero-postcard::before {
+/* top colour stripe when no image */
+.hero .hero-postcard:not(:has(.hero-postcard-image))::before {
   content: '';
-  position: absolute;
-  top: 0;
-  left: 24px;
-  right: 24px;
-  height: 3px;
-  background: linear-gradient(90deg, #c084fc, #f472b6);
-  border-radius: 0 0 3px 3px;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-yellow), var(--accent-coral), #c084fc);
 }
 
-.hero .hero-postcard h2,
-.hero .hero-postcard h3 {
-  font-size: var(--heading-font-size-s);
-  color: var(--text-color-secondary);
-  margin: 4px 0 10px;
-  line-height: 1.3;
+/* no-image: pad content directly in postcard */
+.hero .hero-postcard:not(:has(.hero-postcard-image)) {
+  padding: 0 22px 22px;
+}
+
+/* image area when picture provided */
+.hero .hero-postcard-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffd93d 0%, #f87171 50%, #c084fc 100%);
+}
+
+.hero .hero-postcard-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* body below image */
+.hero .hero-postcard-body {
+  padding: 20px 22px 22px;
 }
 
 .hero .hero-postcard .button-container {
-  margin: 18px 0 0;
+  margin: 14px 0 0;
 }
 
 .hero .hero-postcard a.button {
@@ -147,16 +173,17 @@
   font-size: var(--body-font-size-xs);
   padding: 9px 18px;
   border-radius: 8px;
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
+  background: var(--dark-color);
+  color: #fff;
   font-weight: 700;
   border-color: transparent;
 }
 
+/* ── Content buttons ─────────────────────────────── */
 .hero .hero-content a.button {
   margin: 0;
   border-radius: 12px;
-  padding: 14px 28px;
+  padding: 13px 26px;
   font-size: var(--body-font-size-s);
   font-weight: 700;
   white-space: nowrap;
@@ -164,26 +191,26 @@
 }
 
 .hero .hero-content a.button:not(.secondary) {
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
+  background: var(--dark-color);
+  color: #fff;
   border-color: transparent;
 }
 
 .hero .hero-content a.button:not(.secondary):hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
+  box-shadow: 0 8px 24px rgb(80 20 110 / 25%);
   text-decoration: none;
 }
 
 .hero .hero-content a.button.secondary {
   background: transparent;
-  color: var(--text-color-secondary);
-  border: 2px solid rgb(255 255 255 / 30%);
+  color: var(--dark-color);
+  border: 2px solid rgb(80 20 110 / 28%);
 }
 
 .hero .hero-content a.button.secondary:hover {
-  border-color: rgb(255 255 255 / 65%);
-  background: rgb(255 255 255 / 8%);
+  border-color: var(--dark-color);
+  background: rgb(80 20 110 / 5%);
   text-decoration: none;
 }
 
@@ -202,6 +229,6 @@
 
 @media (width <= 480px) {
   .hero {
-    padding: 40px 20px 36px;
+    padding: 36px 20px 32px;
   }
 }

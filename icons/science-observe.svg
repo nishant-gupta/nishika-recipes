@@ -1,9 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-  <!-- magnifying glass circle -->
-  <circle cx="10" cy="10" r="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
-  <!-- handle -->
-  <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round"/>
-  <!-- inner detail — small circle -->
-  <circle cx="10" cy="10" r="3.5" fill="rgba(80,180,255,0.4)"/>
-  <circle cx="8.5" cy="8.5" r="1.2" fill="rgba(255,255,255,0.35)"/>
+  <circle cx="10" cy="10" r="7" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="10" cy="10" r="3.5" fill="#bfdbfe"/>
+  <circle cx="8.5" cy="8.5" r="1.2" fill="#fff"/>
 </svg>
