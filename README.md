@@ -146,6 +146,62 @@ No fragment blocks needed — content is assembled dynamically from the query in
 
 ---
 
+## Icons
+
+Icons live in `/icons/` as SVG files and are referenced either via EDS icon syntax in Google Docs or directly in block JavaScript.
+
+### EDS icon syntax
+
+Type `:icon-name:` in a Google Doc cell. EDS renders it as `<span class="icon icon-name"><img src="/icons/icon-name.svg"></span>` before blocks load. Blocks that support icons (section-grid, schedule-strip) detect and render these spans automatically.
+
+### Nav icons (section-grid)
+
+Used in the first column of a `section-grid` table row.
+
+| File | EDS syntax | Section |
+|---|---|---|
+| `nav-play-puzzle.svg` | `:nav-play-puzzle:` | Play & Puzzle |
+| `nav-stories-poems.svg` | `:nav-stories-poems:` | Stories & Poems |
+| `nav-make-do.svg` | `:nav-make-do:` | Make & Do |
+| `nav-learn.svg` | `:nav-learn:` | Learn |
+| `nav-issues.svg` | `:nav-issues:` | Issues |
+| `nav-archive.svg` | `:nav-archive:` | Archive |
+| `nav-about.svg` | `:nav-about:` | About |
+
+### Content type icons
+
+Used inline in `schedule-strip` content cells and referenced directly in `issue-cover` (progress strip, hero pills, section headings).
+
+| File | EDS syntax | Content type |
+|---|---|---|
+| `type-riddle.svg` | `:type-riddle:` | Riddle |
+| `type-idiom.svg` | `:type-idiom:` | Idiom |
+| `type-science.svg` | `:type-science:` | Science |
+| `type-poem.svg` | `:type-poem:` | Poem |
+| `type-story.svg` | `:type-story:` | Story |
+| `type-narrative.svg` | `:type-narrative:` | Narrative |
+| `type-craft.svg` | `:type-craft:` | Craft |
+| `type-facts.svg` | `:type-facts:` | Fun Facts (also used as fallback for unknown types) |
+
+### Block-specific icons
+
+These are used internally by blocks and are not intended for Google Doc authoring.
+
+| File | Used by |
+|---|---|
+| `riddle-*.svg` | `riddle-interactive` |
+| `idiom-*.svg` | `idiom-of-week` |
+| `science-*.svg` | `science-experiment` |
+| `craft-*.svg` | `craft-steps` |
+| `quiz-*.svg` | `quiz` |
+| `score-star.svg`, `streak-fire.svg` | `riddle-interactive`, `quiz` |
+| `search.svg`, `search-dark.svg` | Nav / search UI |
+| `grid.svg`, `grid-active.svg`, `list.svg`, `list-active.svg` | `fact-cards` view toggle |
+| `bullet.svg` | General list decoration |
+| `cross.svg` | Modal / dismiss UI |
+
+---
+
 ## Development
 
 ### Installation
