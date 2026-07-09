@@ -1,0 +1,347 @@
+/* ── Wrapper ────────────────────────────────────────── */
+.content-listing-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* ── Featured wrap ──────────────────────────────────── */
+.listing-featured-wrap {
+  margin-bottom: 48px;
+}
+
+/* ── Grid heading ───────────────────────────────────── */
+.listing-grid-heading {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 16px;
+}
+
+/* ── Grid ───────────────────────────────────────────── */
+.listing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── Base card ──────────────────────────────────────── */
+.listing-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 8%);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.listing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 10%);
+}
+
+.listing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #f97316, #c084fc);
+}
+
+/* ── Watermark ──────────────────────────────────────── */
+.listing-card-watermark {
+  position: absolute;
+  bottom: -8px;
+  right: 12px;
+  font-size: 90px;
+  font-weight: 800;
+  color: rgb(124 63 135 / 6%);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* ── Featured badge ─────────────────────────────────── */
+.listing-featured-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 3px 10px;
+}
+
+/* ── Featured issue card ────────────────────────────── */
+.listing-card-issue.listing-card-featured {
+  background: linear-gradient(135deg, #2d0a3e 0%, #5a1878 50%, #7c3f87 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+}
+
+.listing-card-issue.listing-card-featured::before {
+  display: none;
+}
+
+.listing-card-issue.listing-card-featured .listing-featured-badge {
+  background: rgb(255 255 255 / 15%);
+  border: 1px solid rgb(255 255 255 / 40%);
+  color: #fff;
+  grid-column: 1 / -1;
+}
+
+/* Content in col 1, watermark in col 2 */
+.listing-card-issue.listing-card-featured .listing-card-watermark {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.listing-card-issue.listing-card-featured .listing-card-content {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.listing-card-issue.listing-card-featured .listing-issue-badge {
+  background: rgb(255 255 255 / 15%);
+  border-color: rgb(255 255 255 / 30%);
+  color: #fff;
+}
+
+.listing-card-issue.listing-card-featured .listing-card-title {
+  font-size: var(--heading-font-size-l);
+  color: #fff;
+}
+
+.listing-card-issue.listing-card-featured .listing-card-meta {
+  color: rgb(255 255 255 / 70%);
+}
+
+.listing-card-issue.listing-card-featured .listing-card-link {
+  background: #fff;
+  color: var(--dark-color);
+  border-radius: 20px;
+  padding: 10px 22px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  align-self: flex-start;
+  margin-top: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.listing-card-issue.listing-card-featured .listing-card-link:hover {
+  background: #f3e8ff;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 15%);
+  text-decoration: none;
+}
+
+.listing-card-issue.listing-card-featured .listing-card-watermark {
+  position: relative;
+  bottom: unset;
+  right: unset;
+  font-size: 120px;
+  color: rgb(255 255 255 / 8%);
+  align-self: center;
+  line-height: 1;
+  padding: 0 16px;
+}
+
+/* ── Non-featured issue card ────────────────────────── */
+.listing-card-issue:not(.listing-card-featured) .listing-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Featured content card ──────────────────────────── */
+.listing-card-content.listing-card-featured {
+  background: #f5f0ff;
+  border-left: 4px solid #a855f7;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.listing-card-content.listing-card-featured .listing-featured-badge {
+  background: #e9d5ff;
+  border: 1px solid #c084fc;
+  color: var(--dark-color);
+}
+
+/* ── Card eyebrow ───────────────────────────────────── */
+.listing-card-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Issue badge ────────────────────────────────────── */
+.listing-issue-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #f3e8ff;
+  border: 1px solid #d8b4fe;
+  border-radius: 20px;
+  padding: 3px 10px;
+  color: var(--dark-color);
+}
+
+/* ── Card title ─────────────────────────────────────── */
+.listing-card-title {
+  font-size: var(--heading-font-size-s);
+  color: var(--dark-color);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ── Card types row ─────────────────────────────────── */
+.listing-card-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── Card meta ──────────────────────────────────────── */
+.listing-card-meta {
+  font-size: 13px;
+  color: #888;
+}
+
+/* ── Card link ──────────────────────────────────────── */
+.listing-card-link {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 700;
+  color: #7c3aed;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.listing-card-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Type pills ─────────────────────────────────────── */
+.listing-type-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 3px 9px;
+  background: #f3e8ff;
+  border: 1px solid #d8b4fe;
+  color: var(--dark-color);
+}
+
+.listing-type-pill img {
+  width: 12px;
+  height: 12px;
+  display: block;
+  flex-shrink: 0;
+  filter: brightness(0) opacity(0.6);
+}
+
+/* Type-specific overrides */
+.listing-type-pill-idiom {
+  background: #fef3c7;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.listing-type-pill-science {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.listing-type-pill-poem,
+.listing-type-pill-story,
+.listing-type-pill-narrative {
+  background: #fce7f3;
+  border-color: #fbcfe8;
+  color: #be185d;
+}
+
+.listing-type-pill-craft {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+/* ── Content card image ─────────────────────────────── */
+.listing-card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ── Content card type row ──────────────────────────── */
+.listing-card-type-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.listing-card-issue-ref {
+  font-size: 12px;
+  color: #888;
+  margin-left: auto;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (width <= 900px) {
+  .listing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width <= 600px) {
+  .listing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .listing-card-issue.listing-card-featured {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .listing-card-issue.listing-card-featured .listing-card-watermark {
+    display: none;
+  }
+
+  .listing-card-content.listing-card-featured {
+    padding: 20px;
+  }
+}
