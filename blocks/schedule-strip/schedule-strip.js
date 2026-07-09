@@ -1,9 +1,14 @@
 export default function decorate(block) {
   const items = [...block.children].map((row) => {
     const cells = [...row.children];
+    // Support EDS :icon-name: syntax in the content cell
+    const contentCell = cells[1];
+    const iconSpan = contentCell?.querySelector('.icon');
+    if (iconSpan) iconSpan.remove();
     return {
       day: cells[0]?.textContent.trim() || '',
-      content: cells[1]?.textContent.trim() || '',
+      content: contentCell?.textContent.trim() || '',
+      iconSpan: iconSpan ? iconSpan.cloneNode(true) : null,
     };
   }).filter((item) => item.day);
 
@@ -22,7 +27,17 @@ export default function decorate(block) {
 
     const content = document.createElement('div');
     content.className = 'schedule-content';
-    content.textContent = item.content;
+
+    if (item.iconSpan) {
+      const iconWrap = document.createElement('span');
+      iconWrap.className = 'schedule-icon';
+      iconWrap.appendChild(item.iconSpan);
+      content.append(iconWrap);
+    }
+
+    const text = document.createElement('span');
+    text.textContent = item.content;
+    content.append(text);
 
     slot.append(day, content);
     strip.append(slot);

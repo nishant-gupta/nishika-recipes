@@ -156,7 +156,17 @@
   box-shadow: 0 1px 4px rgb(80 20 110 / 5%);
 }
 
-.issue-hero-content-emoji { font-size: 15px; }
+.issue-hero-content-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.issue-hero-content-icon img {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
 
 .issue-hero-content-item-riddle  { border-color: rgb(168 85 247 / 30%); }
 .issue-hero-content-item-idiom   { border-color: rgb(245 158 11 / 30%); }
@@ -220,6 +230,23 @@
   font-size: 13px;
   flex-shrink: 0;
   transition: background 0.2s;
+}
+
+.issue-progress-icon img {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.issue-section-pill-icon {
+  display: flex;
+  align-items: center;
+}
+
+.issue-section-pill-icon img {
+  width: 14px;
+  height: 14px;
+  display: block;
 }
 
 /* ── Active state ─────────────────────────────────── */
@@ -326,10 +353,6 @@
   background: #f3e8ff;
   color: var(--dark-color);
   border: 1px solid #d8b4fe;
-}
-
-.issue-section-pill-icon {
-  font-size: 14px;
 }
 
 .issue-section-heading-idiom .issue-section-pill {

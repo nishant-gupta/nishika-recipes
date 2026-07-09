@@ -2,14 +2,38 @@ import { loadFragment } from '../fragment/fragment.js';
 
 // Canonical content type order — determines section sequence on the issue page
 const CONTENT_TYPES = [
-  { id: 'riddle',  label: 'Riddle',   emoji: '🧩', blockType: 'riddle-interactive' },
-  { id: 'idiom',   label: 'Idiom',    emoji: '💬', blockType: 'idiom-of-week' },
-  { id: 'science', label: 'Science',  emoji: '🔬', blockType: 'science-experiment' },
-  { id: 'poem',      label: 'Poem',      emoji: '📖', blockType: 'poem' },
-  { id: 'story',     label: 'Story',     emoji: '📚', blockType: 'narrative-writing' },
-  { id: 'narrative', label: 'Narrative', emoji: '✍️', blockType: 'narrative-writing' },
-  { id: 'craft',     label: 'Craft',     emoji: '✂️', blockType: 'craft-steps' },
+  {
+    id: 'riddle', label: 'Riddle', icon: '/icons/type-riddle.svg', blockType: 'riddle-interactive',
+  },
+  {
+    id: 'idiom', label: 'Idiom', icon: '/icons/type-idiom.svg', blockType: 'idiom-of-week',
+  },
+  {
+    id: 'science', label: 'Science', icon: '/icons/type-science.svg', blockType: 'science-experiment',
+  },
+  {
+    id: 'poem', label: 'Poem', icon: '/icons/type-poem.svg', blockType: 'poem',
+  },
+  {
+    id: 'story', label: 'Story', icon: '/icons/type-story.svg', blockType: 'narrative-writing',
+  },
+  {
+    id: 'narrative', label: 'Narrative', icon: '/icons/type-narrative.svg', blockType: 'narrative-writing',
+  },
+  {
+    id: 'craft', label: 'Craft', icon: '/icons/type-craft.svg', blockType: 'craft-steps',
+  },
 ];
+
+function makeIcon(src, alt) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = alt;
+  img.width = 16;
+  img.height = 16;
+  img.setAttribute('aria-hidden', 'true');
+  return img;
+}
 
 function buildSectionHeading(sec) {
   const heading = document.createElement('div');
@@ -18,15 +42,14 @@ function buildSectionHeading(sec) {
   const pill = document.createElement('span');
   pill.className = 'issue-section-pill';
 
-  const icon = document.createElement('span');
-  icon.className = 'issue-section-pill-icon';
-  icon.setAttribute('aria-hidden', 'true');
-  icon.textContent = sec.emoji;
+  const iconWrap = document.createElement('span');
+  iconWrap.className = 'issue-section-pill-icon';
+  iconWrap.appendChild(makeIcon(sec.icon, sec.label));
 
   const label = document.createElement('span');
   label.textContent = sec.label;
 
-  pill.append(icon, label);
+  pill.append(iconWrap, label);
   heading.append(pill);
   return heading;
 }
@@ -36,7 +59,7 @@ export default async function decorate(block) {
 
   // Row 0: issue number | date | title
   const headerCells = [...(rows[0]?.children || [])];
-  const issueNum  = headerCells[0]?.textContent.trim() || '';
+  const issueNum = headerCells[0]?.textContent.trim() || '';
   const issueDate = headerCells[1]?.textContent.trim() || '';
   const issueTitle = headerCells[2]?.textContent.trim() || '';
 
@@ -62,8 +85,9 @@ export default async function decorate(block) {
           return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
         })
         .map((p) => {
-          const meta = CONTENT_TYPES.find((t) => t.id === p.type)
-            || { id: p.type, label: p.type, emoji: '📄', blockType: p.type };
+          const meta = CONTENT_TYPES.find((t) => t.id === p.type) || {
+            id: p.type, label: p.type, icon: '/icons/type-facts.svg', blockType: p.type,
+          };
           return { ...meta, path: p.path };
         });
     }
@@ -134,15 +158,14 @@ export default async function decorate(block) {
     const li = document.createElement('li');
     li.className = `issue-hero-content-item issue-hero-content-item-${sec.id}`;
 
-    const emojiSpan = document.createElement('span');
-    emojiSpan.className = 'issue-hero-content-emoji';
-    emojiSpan.setAttribute('aria-hidden', 'true');
-    emojiSpan.textContent = sec.emoji;
+    const iconWrap = document.createElement('span');
+    iconWrap.className = 'issue-hero-content-icon';
+    iconWrap.appendChild(makeIcon(sec.icon, sec.label));
 
     const labelSpan = document.createElement('span');
     labelSpan.textContent = sec.label;
 
-    li.append(emojiSpan, labelSpan);
+    li.append(iconWrap, labelSpan);
     contentList.append(li);
   });
 
@@ -175,8 +198,7 @@ export default async function decorate(block) {
 
     const icon = document.createElement('span');
     icon.className = 'issue-progress-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    icon.textContent = sec.emoji;
+    icon.appendChild(makeIcon(sec.icon, sec.label));
 
     const label = document.createElement('span');
     label.className = 'issue-progress-label';

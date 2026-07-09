@@ -65,9 +65,24 @@
 }
 
 .schedule-content {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: var(--body-font-size-s);
   font-weight: 700;
   color: #1a1a1a;
+}
+
+.schedule-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.schedule-icon img {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 @media (width <= 600px) {
