@@ -161,7 +161,9 @@
 .issue-hero-content-item-riddle  { border-color: rgb(168 85 247 / 30%); }
 .issue-hero-content-item-idiom   { border-color: rgb(245 158 11 / 30%); }
 .issue-hero-content-item-science { border-color: rgb(16 185 129 / 30%); }
-.issue-hero-content-item-poem    { border-color: rgb(236 72 153 / 30%); }
+.issue-hero-content-item-poem      { border-color: rgb(236 72 153 / 30%); }
+.issue-hero-content-item-story     { border-color: rgb(236 72 153 / 30%); }
+.issue-hero-content-item-narrative { border-color: rgb(236 72 153 / 30%); }
 .issue-hero-content-item-craft   { border-color: rgb(59 130 246 / 30%); }
 
 /* ── Sticky progress strip ────────────────────────── */
@@ -258,13 +260,15 @@
 }
 
 .issue-progress-item[data-cat="poem"].active,
-.issue-progress-item[data-cat="story"].active {
+.issue-progress-item[data-cat="story"].active,
+.issue-progress-item[data-cat="narrative"].active {
   color: #be185d;
   border-bottom-color: #ec4899;
 }
 
 .issue-progress-item[data-cat="poem"].active .issue-progress-icon,
-.issue-progress-item[data-cat="story"].active .issue-progress-icon {
+.issue-progress-item[data-cat="story"].active .issue-progress-icon,
+.issue-progress-item[data-cat="narrative"].active .issue-progress-icon {
   background: #fce7f3;
 }
 
@@ -341,7 +345,8 @@
 }
 
 .issue-section-heading-poem .issue-section-pill,
-.issue-section-heading-story .issue-section-pill {
+.issue-section-heading-story .issue-section-pill,
+.issue-section-heading-narrative .issue-section-pill {
   background: #fce7f3;
   color: #be185d;
   border-color: #fbcfe8;

@@ -5,8 +5,10 @@ const CONTENT_TYPES = [
   { id: 'riddle',  label: 'Riddle',   emoji: '🧩', blockType: 'riddle-interactive' },
   { id: 'idiom',   label: 'Idiom',    emoji: '💬', blockType: 'idiom-of-week' },
   { id: 'science', label: 'Science',  emoji: '🔬', blockType: 'science-experiment' },
-  { id: 'poem',    label: 'Poem',     emoji: '📖', blockType: 'poem' },
-  { id: 'craft',   label: 'Craft',    emoji: '✂️', blockType: 'craft-steps' },
+  { id: 'poem',      label: 'Poem',      emoji: '📖', blockType: 'poem' },
+  { id: 'story',     label: 'Story',     emoji: '📚', blockType: 'narrative-writing' },
+  { id: 'narrative', label: 'Narrative', emoji: '✍️', blockType: 'narrative-writing' },
+  { id: 'craft',     label: 'Craft',     emoji: '✂️', blockType: 'craft-steps' },
 ];
 
 function buildSectionHeading(sec) {

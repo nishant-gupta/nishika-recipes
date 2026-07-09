@@ -1,25 +1,45 @@
 footer {
-  background-color: var(--dark-color);
+  background: linear-gradient(135deg, #2d0a3e 0%, #5a1878 50%, #7c3f87 100%);
   font-size: var(--body-font-size-xs);
   color: var(--text-color-secondary);
+  border-top: 4px solid var(--accent-yellow);
 }
 
 footer a:any-link {
   color: var(--link-color-secondary);
 }
 
+/* Remove constraints from outer wrapper so subscribe-strip can go full width */
 footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  max-width: unset;
+  padding: 0;
 }
 
 footer .footer p {
   margin: 0;
 }
 
+/* Non-subscribe sections get their own max-width and padding */
+footer .section:not(.subscribe-strip-container) {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 24px;
+}
+
+/* Pinstripe between subscribe area and footer links */
+footer .subscribe-strip-container {
+  border-bottom: 1px solid rgb(255 255 255 / 15%);
+}
+
+/* Subscribe strip inside footer: full width, transparent bg, no border-top */
+footer .subscribe-strip {
+  background: transparent;
+  border-top: none;
+  padding-bottom: 48px;
+}
+
 @media (width >= 900px) {
-  footer .footer > div {
+  footer .section:not(.subscribe-strip-container) {
     padding: 40px 32px 24px;
   }
 }

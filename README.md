@@ -73,6 +73,7 @@ Every content page (riddle, idiom, science, poem, craft, narrative) must include
 | `science` | Science experiments | `science-experiment` |
 | `poem` | Poems | `poem` |
 | `story` | Short stories | `narrative-writing` |
+| `narrative` | Narrative writing exercises | `narrative-writing` |
 | `craft` | Step-by-step crafts | `craft-steps` |
 | `facts` | Fun fact cards + quiz | `fact-cards`, `quiz` |
 
