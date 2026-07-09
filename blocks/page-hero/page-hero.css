@@ -33,7 +33,8 @@
 
 .page-hero-bg img {
   width: 100%;
-  height: 100%;
+  height: 100% !important; /* override main img { height: auto } */
+  max-width: none;
   object-fit: cover;
   display: block;
 }
