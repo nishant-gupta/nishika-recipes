@@ -9,33 +9,33 @@
   padding: 0;
 }
 
-/* ── Intro section ──────────────────────────────────── */
+/* ── Intro section (full-width background) ──────────── */
 .about-intro {
   background: linear-gradient(135deg, #2d0a3e 0%, #5a1878 55%, #7c3f87 100%);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Inner wrapper (constrains content) ─────────────── */
+.about-intro-inner {
+  max-width: 720px;
+  margin: 0 auto;
   padding: 80px 48px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
-
-/* Single-column (no photo): center everything */
-.about-intro:not(.about-intro-split) {
   text-align: center;
-}
-
-.about-intro:not(.about-intro-split) .about-intro-text {
-  max-width: 720px;
-  align-items: center;
-}
-
-/* Split layout (with photo) */
-.about-intro-split {
-  gap: 64px;
-  max-width: 1100px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 80px 48px;
+  gap: 20px;
   box-sizing: border-box;
+}
+
+/* Split layout (with photo): side-by-side */
+.about-intro-split {
+  max-width: 1100px;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 64px;
 }
 
 /* ── Text side ──────────────────────────────────────── */
@@ -63,7 +63,7 @@
   padding: 5px 16px;
 }
 
-.about-intro:not(.about-intro-split) .about-eyebrow {
+.about-intro-inner:not(.about-intro-split) .about-eyebrow {
   align-self: center;
 }
 
@@ -113,15 +113,12 @@
 
 /* ── Responsive ─────────────────────────────────────── */
 @media (width <= 768px) {
-  .about-intro,
+  .about-intro-inner,
   .about-intro-split {
     flex-direction: column;
     padding: 56px 24px;
     gap: 40px;
     text-align: center;
-  }
-
-  .about-intro-split {
     max-width: unset;
   }
 

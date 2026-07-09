@@ -10,7 +10,11 @@ export default function decorate(block) {
   block.textContent = '';
 
   const intro = document.createElement('div');
-  intro.className = `about-intro${photoPicture ? ' about-intro-split' : ''}`;
+  intro.className = 'about-intro';
+
+  // Inner wrapper constrains content width while background stays full-width
+  const introInner = document.createElement('div');
+  introInner.className = `about-intro-inner${photoPicture ? ' about-intro-split' : ''}`;
 
   // ── Text side ────────────────────────────────────────
   const textSide = document.createElement('div');
@@ -37,7 +41,7 @@ export default function decorate(block) {
     textSide.append(desc);
   }
 
-  intro.append(textSide);
+  introInner.append(textSide);
 
   // ── Photo side ───────────────────────────────────────
   if (photoPicture) {
@@ -47,8 +51,9 @@ export default function decorate(block) {
     const photoSide = document.createElement('div');
     photoSide.className = 'about-intro-photo';
     photoSide.append(photoPicture);
-    intro.append(photoSide);
+    introInner.append(photoSide);
   }
 
+  intro.append(introInner);
   block.append(intro);
 }
