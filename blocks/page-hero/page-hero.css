@@ -3,8 +3,9 @@
   margin: 0 !important;
 }
 
-.page-hero-wrapper {
+.page-hero-container .page-hero-wrapper {
   max-width: unset;
+  margin: 0;
   padding: 0;
 }
 
