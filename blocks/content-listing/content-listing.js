@@ -91,22 +91,17 @@ function buildIssueCard(issue, featured) {
 
 function buildContentCard(item, featured) {
   const card = document.createElement('div');
-  card.className = `listing-card listing-card-content${featured ? ' listing-card-featured' : ''}`;
+  card.className = `listing-card listing-card-content${featured ? ' listing-card-featured' : ''}${item.image ? ' listing-card-has-image' : ''}`;
 
-  if (item.image) {
-    const img = document.createElement('img');
-    img.className = 'listing-card-image';
-    img.src = item.image;
-    img.alt = item.title || '';
-    img.loading = 'lazy';
-    card.append(img);
-  }
+  // Text content wrapped in body so image can sit on the right
+  const body = document.createElement('div');
+  body.className = 'listing-card-body';
 
   if (featured) {
     const badge = document.createElement('span');
     badge.className = 'listing-featured-badge';
     badge.textContent = 'Latest';
-    card.append(badge);
+    body.append(badge);
   }
 
   const typeRow = document.createElement('div');
@@ -121,18 +116,29 @@ function buildContentCard(item, featured) {
   issueRef.textContent = `Issue ${getIssueNum(item.issue)}`;
   typeRow.append(issueRef);
 
-  card.append(typeRow);
+  body.append(typeRow);
 
   const title = document.createElement('h3');
   title.className = 'listing-card-title';
   title.textContent = item.title || '';
-  card.append(title);
+  body.append(title);
 
   const link = document.createElement('a');
   link.className = 'listing-card-link';
   link.href = item.path || '#';
   link.textContent = 'Read →';
-  card.append(link);
+  body.append(link);
+
+  card.append(body);
+
+  if (item.image) {
+    const img = document.createElement('img');
+    img.className = 'listing-card-image';
+    img.src = item.image;
+    img.alt = item.title || '';
+    img.loading = 'lazy';
+    card.append(img);
+  }
 
   return card;
 }
