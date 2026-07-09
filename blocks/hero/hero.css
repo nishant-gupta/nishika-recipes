@@ -2,16 +2,16 @@
   margin: 0 !important;
 }
 
-.hero-container .hero-wrapper {
-  max-width: unset !important;
-  padding: 0 !important;
-  width: 100%;
-}
-
 /* ensure wrapper never gets capped by global section styles */
 .hero-wrapper {
   max-width: unset !important;
   padding: 0 !important;
+}
+
+.hero-container .hero-wrapper {
+  max-width: unset !important;
+  padding: 0 !important;
+  width: 100%;
 }
 
 /* ── Hero shell ───────────────────────────────────── */
@@ -58,6 +58,23 @@
   z-index: 1;
 }
 
+.hero .hero-postcard p {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-secondary);
+  opacity: 0.78;
+  margin: 0 0 4px;
+  line-height: 1.5;
+}
+
+.hero .hero-content > p {
+  color: var(--text-color-secondary);
+  opacity: 0.75;
+  font-size: var(--body-font-size-s);
+  line-height: 1.7;
+  margin: 0 0 32px;
+  max-width: 520px;
+}
+
 /* Eyebrow — first <p> before h1 */
 .hero .hero-content > p:first-child:not(:last-child) {
   font-size: var(--body-font-size-xs);
@@ -77,15 +94,6 @@
   letter-spacing: -0.02em;
 }
 
-.hero .hero-content > p {
-  color: var(--text-color-secondary);
-  opacity: 0.75;
-  font-size: var(--body-font-size-s);
-  line-height: 1.7;
-  margin: 0 0 32px;
-  max-width: 520px;
-}
-
 /* CTA buttons */
 .hero .hero-buttons {
   display: flex;
@@ -96,40 +104,6 @@
 
 .hero .hero-buttons .button-container {
   margin: 0;
-}
-
-.hero .hero-content a.button {
-  margin: 0;
-  border-radius: 12px;
-  padding: 14px 28px;
-  font-size: var(--body-font-size-s);
-  font-weight: 700;
-  white-space: nowrap;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.hero .hero-content a.button:not(.secondary) {
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
-  border-color: transparent;
-}
-
-.hero .hero-content a.button:not(.secondary):hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
-  text-decoration: none;
-}
-
-.hero .hero-content a.button.secondary {
-  background: transparent;
-  color: var(--text-color-secondary);
-  border: 2px solid rgb(255 255 255 / 30%);
-}
-
-.hero .hero-content a.button.secondary:hover {
-  border-color: rgb(255 255 255 / 65%);
-  background: rgb(255 255 255 / 8%);
-  text-decoration: none;
 }
 
 /* ── Postcard (right) ────────────────────────────── */
@@ -164,14 +138,6 @@
   line-height: 1.3;
 }
 
-.hero .hero-postcard p {
-  font-size: var(--body-font-size-xs);
-  color: var(--text-color-secondary);
-  opacity: 0.78;
-  margin: 0 0 4px;
-  line-height: 1.5;
-}
-
 .hero .hero-postcard .button-container {
   margin: 18px 0 0;
 }
@@ -185,6 +151,40 @@
   color: var(--dark-color);
   font-weight: 700;
   border-color: transparent;
+}
+
+.hero .hero-content a.button {
+  margin: 0;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hero .hero-content a.button:not(.secondary) {
+  background: var(--text-color-secondary);
+  color: var(--dark-color);
+  border-color: transparent;
+}
+
+.hero .hero-content a.button:not(.secondary):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
+  text-decoration: none;
+}
+
+.hero .hero-content a.button.secondary {
+  background: transparent;
+  color: var(--text-color-secondary);
+  border: 2px solid rgb(255 255 255 / 30%);
+}
+
+.hero .hero-content a.button.secondary:hover {
+  border-color: rgb(255 255 255 / 65%);
+  background: rgb(255 255 255 / 8%);
+  text-decoration: none;
 }
 
 /* ── Responsive ──────────────────────────────────── */

@@ -99,14 +99,14 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.subscribe-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
-}
-
 .subscribe-btn:disabled {
   opacity: 0.65;
   cursor: default;
+}
+
+.subscribe-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 30%);
 }
 
 @keyframes subscribe-shake {

@@ -71,12 +71,35 @@
 }
 
 /* ── Category accent colours on icon ────────────── */
-.section-tile:nth-child(1) .section-tile-icon { background: rgb(192 132 252 / 15%); border-color: rgb(192 132 252 / 25%); }
-.section-tile:nth-child(2) .section-tile-icon { background: rgb(244 114 182 / 15%); border-color: rgb(244 114 182 / 25%); }
-.section-tile:nth-child(3) .section-tile-icon { background: rgb(96 165 250 / 15%); border-color: rgb(96 165 250 / 25%); }
-.section-tile:nth-child(4) .section-tile-icon { background: rgb(74 222 128 / 12%); border-color: rgb(74 222 128 / 20%); }
-.section-tile:nth-child(5) .section-tile-icon { background: rgb(251 146 60 / 15%); border-color: rgb(251 146 60 / 25%); }
-.section-tile:nth-child(6) .section-tile-icon { background: rgb(253 224 71 / 12%); border-color: rgb(253 224 71 / 20%); }
+.section-tile:nth-child(1) .section-tile-icon {
+  background: rgb(192 132 252 / 15%);
+  border-color: rgb(192 132 252 / 25%);
+}
+
+.section-tile:nth-child(2) .section-tile-icon {
+  background: rgb(244 114 182 / 15%);
+  border-color: rgb(244 114 182 / 25%);
+}
+
+.section-tile:nth-child(3) .section-tile-icon {
+  background: rgb(96 165 250 / 15%);
+  border-color: rgb(96 165 250 / 25%);
+}
+
+.section-tile:nth-child(4) .section-tile-icon {
+  background: rgb(74 222 128 / 12%);
+  border-color: rgb(74 222 128 / 20%);
+}
+
+.section-tile:nth-child(5) .section-tile-icon {
+  background: rgb(251 146 60 / 15%);
+  border-color: rgb(251 146 60 / 25%);
+}
+
+.section-tile:nth-child(6) .section-tile-icon {
+  background: rgb(253 224 71 / 12%);
+  border-color: rgb(253 224 71 / 20%);
+}
 
 /* ── Responsive ──────────────────────────────────── */
 @media (width <= 900px) {

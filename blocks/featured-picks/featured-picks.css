@@ -49,21 +49,21 @@
 }
 
 .featured-pick.cat-riddle,
-.featured-pick.cat-play--puzzle,
+.featured-pick.cat-play-puzzle,
 .featured-pick.cat-idiom,
 .featured-pick.cat-fun-facts {
   border-top-color: #c084fc;
 }
 
 .featured-pick.cat-story,
-.featured-pick.cat-stories--poems,
+.featured-pick.cat-stories-poems,
 .featured-pick.cat-poem,
 .featured-pick.cat-narrative {
   border-top-color: #f472b6;
 }
 
 .featured-pick.cat-craft,
-.featured-pick.cat-make--do,
+.featured-pick.cat-make-do,
 .featured-pick.cat-writing-prompt {
   border-top-color: #60a5fa;
 }
@@ -97,7 +97,7 @@
 }
 
 .featured-pick-tag.tag-riddle,
-.featured-pick-tag.tag-play--puzzle,
+.featured-pick-tag.tag-play-puzzle,
 .featured-pick-tag.tag-idiom,
 .featured-pick-tag.tag-fun-facts {
   background: rgb(192 132 252 / 25%);
@@ -106,7 +106,7 @@
 }
 
 .featured-pick-tag.tag-story,
-.featured-pick-tag.tag-stories--poems,
+.featured-pick-tag.tag-stories-poems,
 .featured-pick-tag.tag-poem,
 .featured-pick-tag.tag-narrative {
   background: rgb(244 114 182 / 20%);
@@ -115,7 +115,7 @@
 }
 
 .featured-pick-tag.tag-craft,
-.featured-pick-tag.tag-make--do,
+.featured-pick-tag.tag-make-do,
 .featured-pick-tag.tag-writing-prompt {
   background: rgb(96 165 250 / 20%);
   color: #60a5fa;
