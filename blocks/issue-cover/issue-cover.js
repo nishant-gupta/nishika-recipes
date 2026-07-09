@@ -212,6 +212,9 @@ export default async function decorate(block) {
   hero.append(heroLeft, heroRight);
   block.append(hero);
 
+  // No content sections — hero-only render, nothing more to do
+  if (sections.length === 0) return;
+
   // ── Build sticky context bar ──────────────────────────
   const context = document.createElement('div');
   context.className = 'issue-sticky-context';
@@ -313,7 +316,7 @@ export default async function decorate(block) {
 
   // ── Load fragments and inject sections into main ──────
   const main = document.querySelector('main');
-  if (!main || sections.length === 0) return;
+  if (!main) return;
 
   // Load all fragments in parallel, preserve order
   const loadedSections = await Promise.all(sections.map(async (sec) => {
