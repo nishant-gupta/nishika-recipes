@@ -1,4 +1,5 @@
 .hlx/*
+.scratch-preview/*
 coverage/*
 logs/*
 node_modules/*
