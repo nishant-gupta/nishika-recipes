@@ -145,8 +145,8 @@ function buildContentCard(item, featured) {
 
 export default async function decorate(block) {
   const rows = [...block.children];
-  const rawType = rows[0]?.children[0]?.textContent.trim().toLowerCase() || 'issues';
-  const listingType = rawType;
+  const listingType = rows[0]?.children[0]?.textContent.trim().toLowerCase() || 'issues';
+  const authoredHeading = rows[1]?.children[0]?.textContent.trim() || '';
 
   block.textContent = '';
 
@@ -160,7 +160,7 @@ export default async function decorate(block) {
 
   let items = [];
   let featuredCard = null;
-  let gridHeadingText = 'All Issues';
+  let gridHeadingText = authoredHeading || 'All Issues';
 
   if (listingType === 'issues') {
     // Build a map of issueTag → issue aggregate
@@ -206,7 +206,7 @@ export default async function decorate(block) {
 
     // Sort descending by issue number
     items = [...issueMap.values()].sort((a, b) => b.num - a.num);
-    gridHeadingText = 'All Issues';
+    if (!authoredHeading) gridHeadingText = 'All Issues';
   } else {
     // Content type listing — listingType is a comma-separated list of type ids
     const types = listingType.split(',').map((t) => t.trim()).filter(Boolean);
@@ -215,9 +215,7 @@ export default async function decorate(block) {
       .filter((item) => item.type && types.includes(item.type))
       .sort((a, b) => getIssueNum(b.issue) - getIssueNum(a.issue));
 
-    // Determine heading label from first type's meta
-    const firstTypeMeta = TYPE_META[types[0]];
-    gridHeadingText = firstTypeMeta ? `All ${firstTypeMeta.label}s` : 'All Content';
+    if (!authoredHeading) gridHeadingText = 'All Content';
   }
 
   if (items.length === 0) {
