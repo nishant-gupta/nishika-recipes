@@ -28,7 +28,7 @@
 }
 
 .subscribe-inner {
-  max-width: 520px;
+  max-width: 720px;
   margin: 0 auto;
   text-align: center;
   position: relative;
@@ -36,10 +36,11 @@
 }
 
 .subscribe-heading {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--heading-font-size-xl);
   color: var(--text-color-secondary);
   margin: 0 0 12px;
-  line-height: 1.2;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .subscribe-desc {
@@ -118,6 +119,11 @@
 @media (width <= 600px) {
   .subscribe-strip {
     padding: 52px 20px;
+  }
+
+  .subscribe-heading {
+    font-size: var(--heading-font-size-l);
+    white-space: normal;
   }
 
   .subscribe-form {
