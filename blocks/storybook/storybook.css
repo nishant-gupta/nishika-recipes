@@ -387,10 +387,10 @@
   /* Stack pages vertically on mobile */
   .storybook-book {
     aspect-ratio: auto;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+    height: auto; /* overridden by JS after measuring max spread height */
+    display: block;
     cursor: default;
+    overflow: hidden; /* contain absolute spreads */
   }
 
   .storybook-book-wrap {
@@ -407,22 +407,21 @@
     to   { opacity: 1; transform: translateX(0); }
   }
 
+  /* Spreads overlay each other — no height changes on turn */
   .storybook-spread {
-    position: relative;
-    inset: auto;
+    position: absolute;
+    inset: 0;
     flex-direction: column;
     border-radius: 12px;
     opacity: 0;
-    height: 0;
+    pointer-events: none;
     overflow: hidden;
-    transition: opacity 0.25s;
   }
 
   .storybook-spread.active {
     opacity: 1;
-    height: auto;
-    overflow: visible;
-    z-index: auto;
+    pointer-events: auto;
+    z-index: 2;
   }
 
   .storybook-spread.active.entering-fwd {
@@ -437,23 +436,28 @@
     display: none;
   }
 
-  .storybook-page {
-    flex: none;
-  }
-
+  /* Image page: fixed proportion */
   .storybook-page-image {
+    flex: none;
     aspect-ratio: 4 / 3;
     height: auto;
   }
 
   .storybook-page-image .storybook-image-wrap {
-    inset: 8px; /* slightly tighter inset on mobile */
+    inset: 8px;
+  }
+
+  /* Text page: fills remaining space, scrolls internally */
+  .storybook-page-text {
+    flex: 1;
+    min-height: 120px;
+    overflow: hidden;
   }
 
   .storybook-page-text .storybook-page-content {
     padding: 24px 20px;
-    height: auto;
-    overflow: visible;
+    height: 100%;
+    overflow-y: auto;
   }
 
   .storybook-page-content p {

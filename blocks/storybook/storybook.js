@@ -317,4 +317,40 @@ export default function decorate(block) {
   });
 
   updateUI();
+
+  // ── Mobile: lock book to max natural spread height ─────
+  // Prevents the book from resizing on each page turn, which causes
+  // jarring layout shifts. Spreads overlay each other (position:absolute)
+  // inside a fixed-height container.
+  function lockMobileHeight() {
+    if (!mq.matches) return;
+
+    // Temporarily put all spreads in-flow so we can measure their natural heights
+    spreadEls.forEach((el) => {
+      el.style.cssText = 'position:relative;opacity:0;visibility:hidden;height:auto;overflow:visible;pointer-events:none;';
+    });
+
+    // eslint-disable-next-line no-unused-expressions
+    book.offsetHeight; // force reflow so scrollHeight is accurate
+
+    const maxH = Math.max(...spreadEls.map((el) => el.scrollHeight));
+
+    // Restore — CSS handles everything else
+    spreadEls.forEach((el) => { el.style.cssText = ''; });
+
+    if (maxH > 0) book.style.height = `${maxH}px`;
+  }
+
+  // Run after first paint so images have contributed their aspect-ratio height
+  requestAnimationFrame(lockMobileHeight);
+
+  // Re-lock on resize (orientation change, etc.)
+  window.addEventListener('resize', () => {
+    if (mq.matches) {
+      book.style.height = '';
+      requestAnimationFrame(lockMobileHeight);
+    } else {
+      book.style.height = '';
+    }
+  }, { passive: true });
 }
