@@ -144,7 +144,9 @@ export default async function decorate(block) {
 
   const badge = document.createElement('span');
   badge.className = 'issue-cover-badge';
-  badge.textContent = `✦ ${issueNum}`;
+  const issueNumOnly = issueNum.replace(/\D/g, '');
+  const issueBadgeLabel = issueNumOnly ? `Issue #${issueNumOnly}` : issueNum;
+  badge.textContent = `✦ ${issueBadgeLabel}`;
 
   const dateEl = document.createElement('span');
   dateEl.className = 'issue-cover-date';
@@ -233,7 +235,7 @@ export default async function decorate(block) {
 
   const ctxBadge = document.createElement('span');
   ctxBadge.className = 'issue-cover-badge';
-  ctxBadge.textContent = `✦ ${issueNum}`;
+  ctxBadge.textContent = `✦ ${issueBadgeLabel}`;
 
   const ctxTitle = document.createElement('span');
   ctxTitle.className = 'issue-sticky-title';

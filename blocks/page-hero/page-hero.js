@@ -1,3 +1,12 @@
+import { getMetadata } from '../../scripts/aem.js';
+
+const CONTENT_TYPES = new Set(['riddle', 'idiom', 'science', 'poem', 'story', 'narrative', 'craft']);
+
+function getIssueNum(tag) {
+  const m = tag && tag.match(/(\d+)$/);
+  return m ? parseInt(m[1], 10) : 0;
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
 
@@ -11,6 +20,10 @@ export default function decorate(block) {
 
   // Row 2: description
   const descText = rows[2]?.children[0]?.textContent.trim() || '';
+
+  // Page metadata — issue pill shown for individual content type pages
+  const pageType = getMetadata('type');
+  const issueTag = getMetadata('issue');
 
   // Flush section against nav
   const section = block.closest('.section');
@@ -48,6 +61,19 @@ export default function decorate(block) {
   // ── Content ──────────────────────────────────────────
   const content = document.createElement('div');
   content.className = 'page-hero-content';
+
+  // Issue pill — only for individual content type pages, not issue index pages themselves
+  const isIssuePage = /^\/issues\//.test(window.location.pathname);
+  if (CONTENT_TYPES.has(pageType) && issueTag && !isIssuePage) {
+    const issueNum = getIssueNum(issueTag);
+    const issuePath = `/issues/${issueTag.replace(/\/$/, '')}`;
+
+    const pill = document.createElement('a');
+    pill.className = 'page-hero-issue-pill';
+    pill.href = issuePath;
+    pill.textContent = `✦ Issue #${issueNum}`;
+    content.append(pill);
+  }
 
   if (titleText) {
     const h1 = document.createElement('h1');

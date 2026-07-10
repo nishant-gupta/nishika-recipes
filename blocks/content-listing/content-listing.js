@@ -57,7 +57,7 @@ function buildIssueCard(issue, featured) {
   eyebrow.className = 'listing-card-eyebrow';
   const issueBadge = document.createElement('span');
   issueBadge.className = 'listing-issue-badge';
-  issueBadge.textContent = `Issue ${issue.num}`;
+  issueBadge.textContent = `✦ Issue #${issue.num}`;
   eyebrow.append(issueBadge);
   content.append(eyebrow);
 
@@ -113,7 +113,7 @@ function buildContentCard(item, featured) {
 
   const issueRef = document.createElement('span');
   issueRef.className = 'listing-card-issue-ref';
-  issueRef.textContent = `Issue #${getIssueNum(item.issue)}`;
+  issueRef.textContent = `✦ Issue #${getIssueNum(item.issue)}`;
   typeRow.append(issueRef);
 
   body.append(typeRow);
