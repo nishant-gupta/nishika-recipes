@@ -19,7 +19,7 @@ const CONTENT_TYPES = [
     id: 'poem', label: 'Poem', icon: '/icons/type-poem.svg', blockType: 'poem',
   },
   {
-    id: 'story', label: 'Storybook', icon: '/icons/type-story.svg', blockType: 'storybook',
+    id: 'story', label: 'Story', icon: '/icons/type-story.svg', blockType: 'storybook',
   },
   {
     id: 'narrative', label: 'Narrative', icon: '/icons/type-narrative.svg', blockType: 'narrative-writing',

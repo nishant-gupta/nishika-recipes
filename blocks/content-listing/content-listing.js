@@ -3,7 +3,7 @@ const TYPE_META = {
   idiom: { label: 'Idiom' },
   science: { label: 'Science' },
   poem: { label: 'Poem' },
-  story: { label: 'Storybook' },
+  story: { label: 'Story' },
   narrative: { label: 'Narrative' },
   craft: { label: 'Craft' },
 };
