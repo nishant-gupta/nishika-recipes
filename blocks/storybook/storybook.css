@@ -1,0 +1,476 @@
+/* ── Outer layout ───────────────────────────────────── */
+.storybook-outer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  user-select: none;
+}
+
+/* ── Perspective wrapper ────────────────────────────── */
+.storybook-book-wrap {
+  perspective: 2500px;
+  perspective-origin: 50% 40%;
+}
+
+/* ── Book ───────────────────────────────────────────── */
+.storybook-book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  transform-style: preserve-3d;
+  box-shadow:
+    -6px 4px 16px rgb(0 0 0 / 18%),
+    0 12px 48px rgb(0 0 0 / 22%);
+  border-radius: 3px 12px 12px 3px;
+  cursor: pointer;
+}
+
+.storybook-book.dragging {
+  cursor: grabbing;
+}
+
+/* ── Spine ──────────────────────────────────────────── */
+.storybook-spine {
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgb(0 0 0 / 12%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.storybook-spine::before,
+.storybook-spine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  pointer-events: none;
+}
+
+.storybook-spine::before {
+  right: 1px;
+  background: linear-gradient(to left, rgb(0 0 0 / 7%), transparent);
+}
+
+.storybook-spine::after {
+  left: 1px;
+  background: linear-gradient(to right, rgb(0 0 0 / 7%), transparent);
+}
+
+/* ── Spread ─────────────────────────────────────────── */
+.storybook-spread {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+  transition: opacity 0.1s;
+}
+
+.storybook-spread.active,
+.storybook-spread.pending {
+  opacity: 1;
+}
+
+.storybook-spread.active {
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.storybook-spread.pending {
+  z-index: 1;
+}
+
+/* ── Page ───────────────────────────────────────────── */
+.storybook-page {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.storybook-page-left {
+  background: #fdf8f0;
+  box-shadow: inset -3px 0 10px rgb(0 0 0 / 5%), inset 0 0 0 1px rgb(0 0 0 / 6%);
+}
+
+.storybook-page-right {
+  background: #fffdf8;
+  box-shadow: inset 3px 0 10px rgb(0 0 0 / 5%), inset 0 0 0 1px rgb(0 0 0 / 6%);
+}
+
+/* Subtle page texture */
+.storybook-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    rgb(0 0 0 / 4%) 27px,
+    rgb(0 0 0 / 4%) 28px
+  );
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.storybook-page-image::after {
+  display: none;
+}
+
+/* ── Image page ─────────────────────────────────────── */
+.storybook-page-image .storybook-image-wrap {
+  position: absolute;
+  inset: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 18px rgb(0 0 0 / 24%);
+}
+
+.storybook-page-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.storybook-page-image img {
+  width: 100%;
+  height: 100% !important;
+  max-width: none;
+  object-fit: cover;
+  display: block;
+  pointer-events: none; /* let drag events pass through to the book */
+}
+
+/* ── Text page ──────────────────────────────────────── */
+.storybook-page-text .storybook-page-content {
+  padding: 36px 32px 32px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.storybook-page-content p {
+  font-size: clamp(14px, 1.5vw, 17px);
+  line-height: 1.8;
+  color: #2d1a3e;
+  margin: 0 0 14px;
+  font-family: var(--body-font-family);
+}
+
+.storybook-page-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Headings — story title / chapter heading ── */
+.storybook-page-content h2 {
+  font-family: var(--heading-font-family);
+  font-size: clamp(20px, 2.6vw, 34px);
+  color: var(--dark-color);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
+}
+
+.storybook-page-content h3 {
+  font-family: var(--heading-font-family);
+  font-size: clamp(15px, 1.9vw, 22px);
+  color: var(--dark-color);
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+
+/* ── Cover page — center content vertically and horizontally ── */
+.storybook-spread.cover .storybook-page-text .storybook-page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.storybook-spread.cover .storybook-page-content h2 + p {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+}
+
+/* ── Author / subtitle — paragraph immediately after a heading ── */
+.storybook-page-content h2 + p,
+.storybook-page-content h3 + p {
+  font-size: clamp(11px, 1.2vw, 13px);
+  color: #a0849c;
+  font-style: italic;
+  letter-spacing: 0.3px;
+  margin: 0 0 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgb(0 0 0 / 9%);
+}
+
+/* ── Bold callout — paragraph whose only content is bold ("THE END") ── */
+.storybook-page-content p > strong:only-child {
+  display: block;
+  text-align: center;
+  font-family: var(--heading-font-family);
+  font-size: clamp(13px, 1.7vw, 19px);
+  letter-spacing: 3px;
+  color: var(--dark-color);
+  padding: 14px 0;
+  border-top: 1px solid rgb(0 0 0 / 12%);
+  border-bottom: 1px solid rgb(0 0 0 / 12%);
+  margin: 4px 0;
+}
+
+/* ── Bold + italic → decorative quote / moral ── */
+.storybook-page-content p:has(> em > strong),
+.storybook-page-content p:has(> strong > em) {
+  border-left: 3px solid var(--accent-yellow);
+  background: rgb(251 191 36 / 8%);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  margin: 4px 0 14px;
+  font-style: italic;
+  font-size: clamp(13px, 1.4vw, 16px);
+  color: #5a1878;
+  line-height: 1.65;
+}
+
+.storybook-page-content strong {
+  color: var(--dark-color);
+}
+
+/* ── Ending spread ──────────────────────────────────── */
+.storybook-spread.ending .storybook-page-left {
+  background: linear-gradient(160deg, #fefce8 0%, #fef3c7 100%);
+}
+
+.storybook-spread.ending .storybook-page-right {
+  background: linear-gradient(160deg, #f5f0ff 0%, #ede9fe 100%);
+}
+
+/* Moral callout: style any blockquote on ending page */
+.storybook-spread.ending blockquote,
+.storybook-spread.ending .storybook-page-content > p:first-child {
+  background: rgb(251 191 36 / 15%);
+  border-left: 4px solid var(--accent-yellow);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin: 0 0 16px;
+  font-style: italic;
+}
+
+/* ── Turning page overlay ───────────────────────────── */
+.storybook-turn {
+  position: absolute;
+  /* use top+bottom instead of height:100% — height:100% is unreliable
+     when the parent's height is derived from aspect-ratio */
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  transform-style: preserve-3d;
+  z-index: 10;
+  visibility: hidden; /* keep in layout so height resolves; hide visually */
+  pointer-events: none;
+}
+
+.storybook-turn.turning {
+  visibility: visible;
+}
+
+/* Forward: right half flips, spine on the left edge of this element */
+.storybook-turn.turn-fwd {
+  right: 0;
+  left: auto;
+  transform-origin: 0 50%; /* explicit — "left center" is ambiguous in some engines */
+}
+
+/* Backward: left half flips, spine on the right edge of this element */
+.storybook-turn.turn-bwd {
+  left: 0;
+  right: auto;
+  transform-origin: 100% 50%;
+}
+
+.storybook-turn-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* Cloned page inside turn face is no longer in a flex container,
+   so flex:1 won't size it — force it to fill the face */
+.storybook-turn-face > .storybook-page {
+  position: absolute;
+  inset: 0;
+}
+
+.storybook-turn-back {
+  transform: rotateY(180deg);
+}
+
+/* Shadow gradient as page lifts */
+.storybook-turn-front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgb(0 0 0 / 16%) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.storybook-turn.turn-bwd .storybook-turn-front::after {
+  background: linear-gradient(to right, rgb(0 0 0 / 16%) 0%, transparent 55%);
+}
+
+/* ── Controls ───────────────────────────────────────── */
+.storybook-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.storybook-btn {
+  background: var(--dark-color);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 22px;
+  font-family: var(--body-font-family);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.storybook-btn:hover:not(:disabled) {
+  background: #5a1878;
+  transform: translateY(-1px);
+}
+
+.storybook-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.storybook-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.storybook-indicator {
+  font-size: 13px;
+  color: #888;
+  min-width: 56px;
+  text-align: center;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (width <= 700px) {
+  .storybook-outer {
+    padding: 24px 12px;
+  }
+
+  /* Stack pages vertically on mobile */
+  .storybook-book {
+    aspect-ratio: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+  }
+
+  .storybook-book-wrap {
+    perspective: none;
+  }
+
+  @keyframes sb-slide-in-right {
+    from { opacity: 0; transform: translateX(56px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes sb-slide-in-left {
+    from { opacity: 0; transform: translateX(-56px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .storybook-spread {
+    position: relative;
+    inset: auto;
+    flex-direction: column;
+    border-radius: 12px;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.25s;
+  }
+
+  .storybook-spread.active {
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+    z-index: auto;
+  }
+
+  .storybook-spread.active.entering-fwd {
+    animation: sb-slide-in-right 0.38s cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+
+  .storybook-spread.active.entering-bwd {
+    animation: sb-slide-in-left 0.38s cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+
+  .storybook-spread.pending {
+    display: none;
+  }
+
+  .storybook-page {
+    flex: none;
+  }
+
+  .storybook-page-image {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .storybook-page-image .storybook-image-wrap {
+    inset: 8px; /* slightly tighter inset on mobile */
+  }
+
+  .storybook-page-text .storybook-page-content {
+    padding: 24px 20px;
+    height: auto;
+    overflow: visible;
+  }
+
+  .storybook-page-content p {
+    font-size: 15px;
+  }
+
+  .storybook-spine {
+    display: none;
+  }
+
+  /* Disable 3D flip on mobile — only swipe slide */
+  .storybook-turn {
+    display: none !important;
+  }
+
+  .storybook-book {
+    box-shadow: 0 4px 20px rgb(0 0 0 / 14%);
+    border-radius: 12px;
+  }
+}
