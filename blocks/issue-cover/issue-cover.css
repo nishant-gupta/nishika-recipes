@@ -164,6 +164,38 @@
   overflow: hidden;
 }
 
+/* ── Left column: cover image as background ────────── */
+.issue-hero-left.has-cover {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.issue-hero-left.has-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgb(120 60 0 / 60%) 0%, rgb(180 100 10 / 45%) 100%);
+  pointer-events: none;
+}
+
+.issue-hero-left.has-cover > * {
+  position: relative;
+  z-index: 1;
+}
+
+.issue-hero-left.has-cover .issue-cover-title {
+  color: #fff;
+}
+
+.issue-hero-left.has-cover .issue-cover-tagline {
+  color: rgb(255 255 255 / 80%);
+}
+
+.issue-hero-left.has-cover .issue-cover-date {
+  color: rgb(255 255 255 / 60%);
+}
+
 /* Decorative large issue number watermark */
 .issue-hero-number {
   font-family: var(--heading-font-family);
@@ -220,6 +252,14 @@
   height: 18px;
   display: block;
   filter: brightness(0) opacity(0.6);
+}
+
+.issue-hero-content-item-more {
+  justify-content: center;
+  font-size: 12px;
+  color: #888;
+  background: #f9f9f9;
+  border-style: dashed;
 }
 
 .issue-hero-content-item-riddle  { border-color: rgb(168 85 247 / 30%); }
@@ -516,6 +556,7 @@
     justify-content: flex-start;
     overflow: visible;
   }
+
 
   .issue-hero-number {
     display: none;

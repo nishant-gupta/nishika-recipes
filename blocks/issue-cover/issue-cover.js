@@ -82,6 +82,13 @@ export default async function decorate(block) {
   // Row 1: tagline
   const tagline = rows[1]?.children[0]?.textContent.trim() || '';
 
+  // Row 2: optional cover image
+  const coverPicture = rows[2]?.querySelector('picture') || null;
+  if (coverPicture) {
+    const img = coverPicture.querySelector('img');
+    if (img) { img.loading = 'eager'; img.alt = img.alt || issueTitle; }
+  }
+
   // Issue tag derived from page URL: /issues/issue-1 → issue-1
   const issueTag = window.location.pathname.split('/').filter(Boolean).pop() || '';
 
@@ -207,7 +214,38 @@ export default async function decorate(block) {
     contentList.append(li);
   });
 
-  heroRight.append(decorNum, contentList);
+  if (coverPicture) {
+    heroLeft.classList.add('has-cover');
+    const img = coverPicture.querySelector('img');
+    if (img) heroLeft.style.backgroundImage = `url('${img.src}')`;
+  }
+
+  const MAX_TILES = 4;
+  const visibleSections = sections.slice(0, MAX_TILES);
+  const remaining = sections.length - MAX_TILES;
+
+  const limitedList = document.createElement('ul');
+  limitedList.className = 'issue-hero-contents';
+  visibleSections.forEach((sec) => {
+    const li = document.createElement('li');
+    li.className = `issue-hero-content-item issue-hero-content-item-${sec.id}`;
+    const iconWrap = document.createElement('span');
+    iconWrap.className = 'issue-hero-content-icon';
+    iconWrap.appendChild(makeIcon(sec.icon, sec.label));
+    const labelSpan = document.createElement('span');
+    labelSpan.textContent = sec.label;
+    li.append(iconWrap, labelSpan);
+    limitedList.append(li);
+  });
+
+  if (remaining > 0) {
+    const moreLi = document.createElement('li');
+    moreLi.className = 'issue-hero-content-item issue-hero-content-item-more';
+    moreLi.textContent = `+${remaining} more`;
+    limitedList.append(moreLi);
+  }
+
+  heroRight.append(decorNum, limitedList);
   hero.append(heroLeft, heroRight);
 
   // Prev / Next footer bar spanning the full card bottom
