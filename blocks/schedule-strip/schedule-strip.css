@@ -92,11 +92,33 @@
 
 @media (width <= 600px) {
   .schedule-strip {
-    padding: 0 16px;
+    padding: 0 12px;
+  }
+
+  .schedule-strip-inner {
+    overflow-x: unset;
   }
 
   .schedule-slot {
-    min-width: 110px;
-    padding: 14px 18px 14px 14px;
+    flex: 1;
+    min-width: 0;
+    padding: 10px 10px 10px 12px;
+  }
+
+  .schedule-day {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .schedule-content {
+    font-size: var(--body-font-size-xs);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .schedule-icon img {
+    width: 14px;
+    height: 14px;
   }
 }

@@ -113,7 +113,7 @@ function buildContentCard(item, featured) {
 
   const issueRef = document.createElement('span');
   issueRef.className = 'listing-card-issue-ref';
-  issueRef.textContent = `Issue ${getIssueNum(item.issue)}`;
+  issueRef.textContent = `Issue #${getIssueNum(item.issue)}`;
   typeRow.append(issueRef);
 
   body.append(typeRow);

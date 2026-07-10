@@ -40,6 +40,7 @@
   gap: 12px;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .listing-card:hover {
@@ -224,6 +225,13 @@
   text-decoration: underline;
 }
 
+/* Stretch link to cover entire card */
+.listing-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
 /* ── Type pills ─────────────────────────────────────── */
 .listing-type-pill {
   display: inline-flex;
@@ -317,8 +325,17 @@
 }
 
 .listing-card-issue-ref {
-  font-size: 12px;
-  color: #888;
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 3px 9px;
+  background: #e0f2fe;
+  border: 1px solid #7dd3fc;
+  color: #0369a1;
 }
 
 /* ── Responsive ─────────────────────────────────────── */

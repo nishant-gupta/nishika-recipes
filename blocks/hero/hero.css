@@ -231,4 +231,21 @@
   .hero {
     padding: 36px 20px 32px;
   }
+
+  .hero .hero-buttons {
+    flex-wrap: nowrap;
+  }
+
+  .hero .hero-buttons .button-container {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero .hero-content a.button {
+    width: 100%;
+    text-align: center;
+    padding: 13px 12px;
+    font-size: var(--body-font-size-xs);
+    box-sizing: border-box;
+  }
 }
