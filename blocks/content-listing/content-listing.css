@@ -183,11 +183,11 @@
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
-  background: #f3e8ff;
-  border: 1px solid #d8b4fe;
-  border-radius: 20px;
+  background: var(--accent-yellow);
+  border: none;
+  border-radius: 8px;
   padding: 3px 10px;
-  color: var(--dark-color);
+  color: #1a1a1a;
 }
 
 /* ── Card title ─────────────────────────────────────── */
@@ -328,14 +328,14 @@
   display: inline-flex;
   align-items: center;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 800;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 3px 9px;
-  background: #e0f2fe;
-  border: 1px solid #7dd3fc;
-  color: #0369a1;
+  background: var(--accent-yellow);
+  border: none;
+  color: #1a1a1a;
 }
 
 /* ── Responsive ─────────────────────────────────────── */

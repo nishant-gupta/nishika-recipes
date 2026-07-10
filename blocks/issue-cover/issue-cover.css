@@ -58,10 +58,10 @@
   font-weight: 800;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--dark-color);
-  background: #f3e8ff;
-  border: 1px solid #d8b4fe;
-  border-radius: 20px;
+  color: #1a1a1a;
+  background: var(--accent-yellow);
+  border: none;
+  border-radius: 8px;
   padding: 4px 12px;
 }
 
