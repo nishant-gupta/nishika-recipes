@@ -85,8 +85,8 @@
 .fact-feature-visual {
   position: relative;
   z-index: 1;
-  width: min(280px, 100%);
-  aspect-ratio: 4 / 3;
+  width: min(560px, 52%);
+  aspect-ratio: 8 / 3;
   border-radius: 20px;
   overflow: hidden;
   background: linear-gradient(135deg, rgb(251 191 36 / 25%) 0%, rgb(248 113 113 / 20%) 100%);
@@ -113,6 +113,7 @@
 
   .fact-feature-visual {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 8 / 3;
   }
 }
+
