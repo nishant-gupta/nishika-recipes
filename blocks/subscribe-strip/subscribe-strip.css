@@ -50,86 +50,6 @@
   margin: 0 0 32px;
 }
 
-.subscribe-form {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.subscribe-input {
-  flex: 1;
-  min-width: 200px;
-  max-width: 300px;
-  padding: 0 20px;
-  height: 52px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  border: 1px solid rgb(255 255 255 / 22%);
-  background: rgb(255 255 255 / 8%);
-  color: var(--text-color-secondary);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-s);
-  outline: none;
-  transition: border-color 0.25s ease, background 0.25s ease;
-}
-
-.subscribe-input::placeholder {
-  color: rgb(255 255 255 / 30%);
-}
-
-.subscribe-input:focus {
-  border-color: rgb(255 255 255 / 50%);
-  background: rgb(255 255 255 / 12%);
-}
-
-.subscribe-input.shake {
-  animation: subscribe-shake 0.4s ease;
-  border-color: #f87171;
-}
-
-.subscribe-btn {
-  padding: 0 28px;
-  height: 52px;
-  box-sizing: border-box;
-  border: none;
-  border-radius: 12px;
-  background: var(--text-color-secondary);
-  color: var(--dark-color);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-s);
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.subscribe-btn:disabled {
-  opacity: 0.65;
-  cursor: default;
-}
-
-.subscribe-btn:hover:not(:disabled) {
-  background: var(--accent-yellow);
-  color: #2d0a3e;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgb(251 191 36 / 45%);
-}
-
-.subscribe-btn:active:not(:disabled) {
-  background: #f59e0b;
-  color: #2d0a3e;
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-@keyframes subscribe-shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
-}
-
 @media (width <= 600px) {
   .subscribe-strip {
     padding: 52px 20px;
@@ -138,22 +58,5 @@
   .subscribe-heading {
     font-size: var(--heading-font-size-l);
     white-space: normal;
-  }
-
-  .subscribe-form {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: stretch;
-  }
-
-  .subscribe-input {
-    flex: none;
-    width: 100%;
-    max-width: unset;
-    min-width: unset;
-  }
-
-  .subscribe-btn {
-    width: 100%;
   }
 }
