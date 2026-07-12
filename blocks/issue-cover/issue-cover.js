@@ -372,26 +372,33 @@ export default async function decorate(block) {
   const main = document.querySelector('main');
   if (!main) return;
 
-  // Pre-append section containers in canonical order immediately so the page
-  // structure (anchors, headings) is in the DOM without waiting for any fetch.
-  // Each container is filled in as its fragment resolves — the first section's
-  // content appears as soon as it loads instead of waiting for all of them,
-  // which was the root cause of the 12s+ LCP on this page.
-  const sectionContainers = sections.map((sec) => {
+  function makeSectionContainer(sec) {
     const section = document.createElement('div');
     section.className = 'section';
-
     const anchor = document.createElement('span');
     anchor.id = sec.id;
     anchor.className = 'issue-section-anchor';
     anchor.setAttribute('aria-hidden', 'true');
-
     section.append(anchor, buildSectionHeading(sec));
-    main.append(section);
     return section;
-  });
+  }
 
-  // ── IntersectionObserver for section progress — anchors already in DOM ──
+  function fillSectionContainer(container, fragment) {
+    fragment.querySelectorAll(':scope > .section').forEach((fs) => {
+      [...fs.children].forEach((child) => container.append(child));
+    });
+  }
+
+  // Start all fragment fetches in parallel immediately
+  const fragPromises = sections.map((sec) => loadFragment(sec.path, sec.blockType).catch(() => null));
+
+  // Pre-append only the first section container so its anchor is in the DOM
+  // immediately (for the progress strip + "N pieces" scroll button) and its
+  // content can paint as soon as the first fragment resolves (LCP path).
+  const firstContainer = makeSectionContainer(sections[0]);
+  main.append(firstContainer);
+
+  // ── IntersectionObserver for section progress ──────────────────────────
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -400,11 +407,7 @@ export default async function decorate(block) {
     },
     { rootMargin: '-64px 0px -50% 0px', threshold: 0 },
   );
-
-  sections.forEach((sec) => {
-    const anchor = document.getElementById(sec.id);
-    if (anchor) observer.observe(anchor);
-  });
+  observer.observe(firstContainer.querySelector('.issue-section-anchor'));
 
   // ── Hero observer — reveal sticky context bar on scroll ──
   const heroObserver = new IntersectionObserver(
@@ -416,17 +419,25 @@ export default async function decorate(block) {
   );
   heroObserver.observe(hero);
 
-  // Load fragments in parallel; fill each container as it resolves
-  sections.forEach(async (sec, i) => {
-    let fragment;
-    try {
-      fragment = await loadFragment(sec.path, sec.blockType);
-    } catch {
-      return;
-    }
-    if (!fragment) return;
-    fragment.querySelectorAll(':scope > .section').forEach((fs) => {
-      [...fs.children].forEach((child) => sectionContainers[i].append(child));
-    });
+  // Fill first container as soon as its fragment resolves (LCP path)
+  fragPromises[0].then((fragment) => {
+    if (fragment) fillSectionContainer(firstContainer, fragment);
+  });
+
+  // Remaining sections: append to the DOM only once their content is ready
+  // AND the previous section has already been inserted. This prevents the CLS
+  // caused by empty skeleton containers that grew from ~60px to ~600px as
+  // content filled in. Each section appears fully-rendered in one paint.
+  const appendReady = [Promise.resolve()];
+  sections.slice(1).forEach((sec, i) => {
+    const idx = i + 1;
+    const ready = Promise.all([appendReady[idx - 1], fragPromises[idx]])
+      .then(([, fragment]) => {
+        const container = makeSectionContainer(sec);
+        main.append(container);
+        observer.observe(container.querySelector('.issue-section-anchor'));
+        if (fragment) fillSectionContainer(container, fragment);
+      });
+    appendReady.push(ready);
   });
 }
