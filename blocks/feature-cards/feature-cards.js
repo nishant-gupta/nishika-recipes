@@ -6,16 +6,17 @@ export default function decorate(block) {
   const inner = document.createElement('div');
   inner.className = 'feature-cards-inner';
 
-  // Row 0: optional section heading (1 cell, no picture)
+  // Row 0: optional authored section heading (1 cell, no picture). Always
+  // render an h2 here regardless — without one, the card titles below
+  // (h3) would follow the page's h1 directly with no h2 in between.
   let startRow = 0;
   const firstCells = [...(rows[0]?.children || [])];
-  if (firstCells.length === 1 && !firstCells[0].querySelector('picture')) {
-    const heading = document.createElement('h2');
-    heading.className = 'feature-cards-heading';
-    heading.textContent = firstCells[0].textContent.trim();
-    inner.append(heading);
-    startRow = 1;
-  }
+  const hasAuthoredHeading = firstCells.length === 1 && !firstCells[0].querySelector('picture');
+  const heading = document.createElement('h2');
+  heading.className = 'feature-cards-heading';
+  heading.textContent = hasAuthoredHeading ? firstCells[0].textContent.trim() : 'What You’ll Find Here';
+  inner.append(heading);
+  if (hasAuthoredHeading) startRow = 1;
 
   const grid = document.createElement('div');
   grid.className = 'feature-cards-grid';

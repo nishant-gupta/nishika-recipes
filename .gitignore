@@ -11,3 +11,4 @@ helix-importer-ui
 docs/*.docx
 docs/restructure-plan.md
 *.docx
+*.csv

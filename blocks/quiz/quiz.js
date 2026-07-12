@@ -103,7 +103,7 @@ class QuizGame {
       iconImg.height = 140;
       icon.appendChild(iconImg);
 
-      const title = document.createElement('h2');
+      const title = document.createElement('h3');
       title.className = 'quiz-title';
       title.textContent = this.data.title;
 

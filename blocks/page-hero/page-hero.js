@@ -10,10 +10,10 @@ function getIssueNum(tag) {
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Row 0: desktop image | mobile image (optional second cell)
+  // Row 0: mobile image | desktop image (optional second cell)
   const imgCells = [...(rows[0]?.children || [])];
-  const desktopPicture = imgCells[0]?.querySelector('picture');
-  const mobilePicture = imgCells[1]?.querySelector('picture');
+  const mobilePicture = imgCells[0]?.querySelector('picture');
+  const desktopPicture = imgCells[1]?.querySelector('picture') || mobilePicture;
 
   // Row 1: title
   const titleText = rows[1]?.children[0]?.textContent.trim() || '';

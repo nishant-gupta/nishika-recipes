@@ -6,6 +6,13 @@
   outline: none;
 }
 
+.fact-cards-heading {
+  font-size: var(--heading-font-size-l);
+  color: var(--dark-color);
+  margin: 0 0 24px;
+  text-align: center;
+}
+
 /* ── Viewport — clips track to one card ──────────── */
 .fact-cards-viewport {
   position: relative;

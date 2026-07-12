@@ -17,6 +17,14 @@ function buildPostcard(postcard) {
   const body = document.createElement('div');
   body.className = 'hero-postcard-body';
   while (postcard.firstChild) body.appendChild(postcard.firstChild);
+
+  // Drop empty headings left over from document authoring (e.g. an
+  // accidental blank Heading 3 style) — an empty heading is never valid,
+  // regardless of level, and previously broke the page's H1→H2→H3 order.
+  body.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+    if (!h.textContent.trim()) h.remove();
+  });
+
   postcard.appendChild(imgWrap);
   postcard.appendChild(body);
 }

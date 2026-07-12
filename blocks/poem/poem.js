@@ -133,7 +133,7 @@ function buildPage(data) {
   const headingRow = document.createElement('div');
   headingRow.className = 'poem-page-heading';
   headingRow.innerHTML = BOOK_SVG;
-  const heading = document.createElement('h3');
+  const heading = document.createElement('h2');
   heading.className = 'poem-heading';
   heading.textContent = data.title;
   headingRow.appendChild(heading);

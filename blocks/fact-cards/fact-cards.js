@@ -67,6 +67,13 @@ export default function decorate(block) {
 
   block.textContent = '';
 
+  // Section heading for the whole carousel — without this, the first card's
+  // h3 title had no preceding h2 and broke the page's heading hierarchy.
+  const heading = document.createElement('h2');
+  heading.className = 'fact-cards-heading';
+  heading.textContent = 'Fun Facts';
+  block.append(heading);
+
   // Track
   const track = document.createElement('div');
   track.className = 'fact-cards-track';

@@ -61,7 +61,9 @@ function buildIssueCard(issue, featured) {
   eyebrow.append(issueBadge);
   content.append(eyebrow);
 
-  const title = document.createElement('h3');
+  // Featured card is the only heading before the grid's own h2, so it is
+  // promoted to h2 itself; grid cards stay h3, nested correctly under it.
+  const title = document.createElement(featured ? 'h2' : 'h3');
   title.className = 'listing-card-title';
   title.textContent = issue.title || `Issue ${issue.num}`;
   content.append(title);
@@ -118,7 +120,8 @@ function buildContentCard(item, featured) {
 
   body.append(typeRow);
 
-  const title = document.createElement('h3');
+  // See buildIssueCard — same reasoning: featured card is promoted to h2.
+  const title = document.createElement(featured ? 'h2' : 'h3');
   title.className = 'listing-card-title';
   title.textContent = item.title || '';
   body.append(title);
@@ -240,7 +243,7 @@ export default async function decorate(block) {
   block.append(featuredWrap);
 
   if (restItems.length > 0) {
-    const gridHeading = document.createElement('h3');
+    const gridHeading = document.createElement('h2');
     gridHeading.className = 'listing-grid-heading';
     gridHeading.textContent = gridHeadingText;
     block.append(gridHeading);
