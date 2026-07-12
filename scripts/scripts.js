@@ -8,7 +8,6 @@ import {
   decorateBlocks,
   decorateTemplateAndTheme,
   waitForFirstImage,
-  loadBlock,
   loadSection,
   loadSections,
   loadCSS,
@@ -81,17 +80,7 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
-    // Only load the first block eagerly (typically hero/issue-cover) before
-    // waiting for the LCP image. Loading the entire first section serialises
-    // ALL blocks and delays FCP when multiple blocks share one section.
-    const firstSection = main.querySelector('.section');
-    const firstBlock = firstSection?.querySelector('.block');
-    if (firstBlock) {
-      await loadBlock(firstBlock);
-      await waitForFirstImage(firstSection);
-    } else {
-      await loadSection(firstSection, waitForFirstImage);
-    }
+    await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
   try {
