@@ -67,7 +67,7 @@
 
 .issue-cover-date {
   font-size: 13px;
-  color: #888;
+  color: #595959;
 }
 
 .issue-cover-title {
@@ -210,7 +210,7 @@
 }
 
 .issue-hero-left.has-cover .issue-cover-date {
-  color: rgb(255 255 255 / 60%);
+  color: rgb(255 255 255 / 85%);
 }
 
 /* Decorative large issue number watermark */
@@ -274,7 +274,7 @@
 .issue-hero-content-item-more {
   justify-content: center;
   font-size: 12px;
-  color: #888;
+  color: #595959;
   background: #f9f9f9;
   border-style: dashed;
 }
@@ -380,7 +380,7 @@
   padding: 11px 14px;
   font-size: 13px;
   font-weight: 600;
-  color: #aaa;
+  color: #767676;
   text-decoration: none;
   border-bottom: 3px solid transparent;
   white-space: nowrap;
