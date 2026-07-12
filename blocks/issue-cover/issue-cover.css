@@ -166,9 +166,21 @@
 
 /* ── Left column: cover image as background ────────── */
 .issue-hero-left.has-cover {
-  background-size: cover;
-  background-position: center;
   position: relative;
+}
+
+.issue-hero-cover-picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+  z-index: 0;
+}
+
+.issue-hero-cover-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .issue-hero-left.has-cover::before {
@@ -177,11 +189,16 @@
   inset: 0;
   background: linear-gradient(160deg, rgb(120 60 0 / 60%) 0%, rgb(180 100 10 / 45%) 100%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .issue-hero-left.has-cover > * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+.issue-hero-left.has-cover .issue-hero-cover-picture {
+  z-index: 0;
 }
 
 .issue-hero-left.has-cover .issue-cover-title {

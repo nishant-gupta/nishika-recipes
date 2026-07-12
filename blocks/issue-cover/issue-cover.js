@@ -86,7 +86,12 @@ export default async function decorate(block) {
   const coverPicture = rows[2]?.querySelector('picture') || null;
   if (coverPicture) {
     const img = coverPicture.querySelector('img');
-    if (img) { img.loading = 'eager'; img.alt = img.alt || issueTitle; }
+    if (img) {
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+      img.decoding = 'async';
+      img.alt = img.alt || issueTitle;
+    }
   }
 
   // Issue tag derived from page URL: /issues/issue-1 → issue-1
@@ -216,8 +221,8 @@ export default async function decorate(block) {
 
   if (coverPicture) {
     heroLeft.classList.add('has-cover');
-    const img = coverPicture.querySelector('img');
-    if (img) heroLeft.style.backgroundImage = `url('${img.src}')`;
+    coverPicture.className = 'issue-hero-cover-picture';
+    heroLeft.prepend(coverPicture);
   }
 
   const MAX_TILES = 4;
