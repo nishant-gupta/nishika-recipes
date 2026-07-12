@@ -10,6 +10,13 @@ function groupButtons(container) {
 function buildPostcard(postcard) {
   const picture = postcard.querySelector('picture');
   if (!picture) return;
+  // Hero postcard image is above the fold — force eager load so the browser
+  // fetches it immediately rather than waiting until after layout (lazy default).
+  const img = picture.querySelector('img');
+  if (img) {
+    img.loading = 'eager';
+    img.fetchPriority = 'high';
+  }
   picture.remove();
   const imgWrap = document.createElement('div');
   imgWrap.className = 'hero-postcard-image';
