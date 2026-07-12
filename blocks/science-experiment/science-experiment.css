@@ -162,8 +162,7 @@
 
 .science-experiment .science-phase-label {
   font-size: 9px;
-  color: #888;
-  opacity: 0.5;
+  color: #767676;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
@@ -321,8 +320,7 @@
 .science-experiment .science-step-counter {
   font-size: var(--body-font-size-xs);
   font-weight: 700;
-  color: #888;
-  opacity: 0.65;
+  color: #595959;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;

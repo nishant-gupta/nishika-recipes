@@ -465,19 +465,30 @@ export default function decorate(block) {
   }
 
   block.textContent = '';
-  const game = new ScienceGame(block, data);
-  game.renderIntro();
 
-  let touchStartX = 0;
-  block.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  block.addEventListener('touchend', (e) => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) game.goTo(diff > 0 ? game.current + 1 : game.current - 1);
-  });
+  // Defer heavy class instantiation + DOM build until after first paint so it
+  // doesn't block the main thread during LCP / FCP (reduces TBT).
+  const init = () => {
+    const game = new ScienceGame(block, data);
+    game.renderIntro();
 
-  block.setAttribute('tabindex', '0');
-  block.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') game.goTo(game.current + 1);
-    if (e.key === 'ArrowLeft') game.goTo(game.current - 1);
-  });
+    let touchStartX = 0;
+    block.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    block.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) game.goTo(diff > 0 ? game.current + 1 : game.current - 1);
+    });
+
+    block.setAttribute('tabindex', '0');
+    block.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') game.goTo(game.current + 1);
+      if (e.key === 'ArrowLeft') game.goTo(game.current - 1);
+    });
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(init, { timeout: 3000 });
+  } else {
+    setTimeout(init, 0);
+  }
 }

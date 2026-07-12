@@ -112,42 +112,51 @@ export default function decorate(block) {
 
   block.append(prev, viewport, next, dots);
 
-  let current = 0;
+  // Defer interactive wiring until after first paint to reduce TBT
+  const initInteraction = () => {
+    let current = 0;
 
-  function goTo(index) {
-    current = (index + cards.length) % cards.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.querySelectorAll('.fact-dot').forEach((d, i) => d.classList.toggle('active', i === current));
-    counter.textContent = `${current + 1} / ${cards.length}`;
-    prev.disabled = false;
-    next.disabled = false;
-  }
-
-  prev.addEventListener('click', () => goTo(current - 1));
-  next.addEventListener('click', () => goTo(current + 1));
-  dots.querySelectorAll('.fact-dot').forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-
-  // Touch swipe — listen on viewport (track translates away after first swipe)
-  let touchStartX = 0;
-  let touchStartY = 0;
-  viewport.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-  viewport.addEventListener('touchend', (e) => {
-    const dx = touchStartX - e.changedTouches[0].clientX;
-    const dy = touchStartY - e.changedTouches[0].clientY;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-      goTo(dx > 0 ? current + 1 : current - 1);
+    function goTo(index) {
+      current = (index + cards.length) % cards.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.querySelectorAll('.fact-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      counter.textContent = `${current + 1} / ${cards.length}`;
+      prev.disabled = false;
+      next.disabled = false;
     }
-  });
 
-  // Keyboard
-  block.setAttribute('tabindex', '0');
-  block.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') goTo(current - 1);
-    if (e.key === 'ArrowRight') goTo(current + 1);
-  });
+    prev.addEventListener('click', () => goTo(current - 1));
+    next.addEventListener('click', () => goTo(current + 1));
+    dots.querySelectorAll('.fact-dot').forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-  goTo(0);
+    // Touch swipe — listen on viewport (track translates away after first swipe)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    viewport.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    viewport.addEventListener('touchend', (e) => {
+      const dx = touchStartX - e.changedTouches[0].clientX;
+      const dy = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        goTo(dx > 0 ? current + 1 : current - 1);
+      }
+    });
+
+    // Keyboard
+    block.setAttribute('tabindex', '0');
+    block.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    goTo(0);
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initInteraction, { timeout: 3000 });
+  } else {
+    setTimeout(initInteraction, 0);
+  }
 }
