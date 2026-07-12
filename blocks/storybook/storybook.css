@@ -168,8 +168,8 @@
   font-family: var(--body-font-family);
 }
 
-.storybook-page-content p:last-child {
-  margin-bottom: 0;
+.storybook-page-content strong {
+  color: var(--dark-color);
 }
 
 /* ── Headings — story title / chapter heading ── */
@@ -190,21 +190,6 @@
   margin: 0 0 6px;
 }
 
-/* ── Cover page — center content vertically and horizontally ── */
-.storybook-spread.cover .storybook-page-text .storybook-page-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.storybook-spread.cover .storybook-page-content h2 + p {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-}
-
 /* ── Author / subtitle — paragraph immediately after a heading ── */
 .storybook-page-content h2 + p,
 .storybook-page-content h3 + p {
@@ -215,20 +200,6 @@
   margin: 0 0 24px;
   padding-bottom: 18px;
   border-bottom: 1px solid rgb(0 0 0 / 9%);
-}
-
-/* ── Bold callout — paragraph whose only content is bold ("THE END") ── */
-.storybook-page-content p > strong:only-child {
-  display: block;
-  text-align: center;
-  font-family: var(--heading-font-family);
-  font-size: clamp(13px, 1.7vw, 19px);
-  letter-spacing: 3px;
-  color: var(--dark-color);
-  padding: 14px 0;
-  border-top: 1px solid rgb(0 0 0 / 12%);
-  border-bottom: 1px solid rgb(0 0 0 / 12%);
-  margin: 4px 0;
 }
 
 /* ── Bold + italic → decorative quote / moral ── */
@@ -245,8 +216,37 @@
   line-height: 1.65;
 }
 
-.storybook-page-content strong {
+.storybook-page-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Cover page — center content vertically and horizontally ── */
+.storybook-spread.cover .storybook-page-text .storybook-page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.storybook-spread.cover .storybook-page-content h2 + p {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+}
+
+/* ── Bold callout — paragraph whose only content is bold ("THE END") ── */
+.storybook-page-content p > strong:only-child {
+  display: block;
+  text-align: center;
+  font-family: var(--heading-font-family);
+  font-size: clamp(13px, 1.7vw, 19px);
+  letter-spacing: 3px;
   color: var(--dark-color);
+  padding: 14px 0;
+  border-top: 1px solid rgb(0 0 0 / 12%);
+  border-bottom: 1px solid rgb(0 0 0 / 12%);
+  margin: 4px 0;
 }
 
 /* ── Ending spread ──────────────────────────────────── */
@@ -272,6 +272,7 @@
 /* ── Turning page overlay ───────────────────────────── */
 .storybook-turn {
   position: absolute;
+
   /* use top+bottom instead of height:100% — height:100% is unreliable
      when the parent's height is derived from aspect-ratio */
   top: 0;
@@ -305,7 +306,6 @@
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   overflow: hidden;
 }
 
@@ -357,6 +357,11 @@
   white-space: nowrap;
 }
 
+.storybook-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
 .storybook-btn:hover:not(:disabled) {
   background: #5a1878;
   transform: translateY(-1px);
@@ -364,11 +369,6 @@
 
 .storybook-btn:active:not(:disabled) {
   transform: translateY(0);
-}
-
-.storybook-btn:disabled {
-  opacity: 0.35;
-  cursor: default;
 }
 
 .storybook-indicator {
@@ -391,6 +391,8 @@
     display: block;
     cursor: default;
     overflow: hidden; /* contain absolute spreads */
+    box-shadow: 0 4px 20px rgb(0 0 0 / 14%);
+    border-radius: 12px;
   }
 
   .storybook-book-wrap {
@@ -398,13 +400,27 @@
   }
 
   @keyframes sb-slide-in-right {
-    from { opacity: 0; transform: translateX(56px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from {
+      opacity: 0;
+      transform: translateX(56px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   @keyframes sb-slide-in-left {
-    from { opacity: 0; transform: translateX(-56px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from {
+      opacity: 0;
+      transform: translateX(-56px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   /* Spreads overlay each other — no height changes on turn */
@@ -471,10 +487,5 @@
   /* Disable 3D flip on mobile — only swipe slide */
   .storybook-turn {
     display: none !important;
-  }
-
-  .storybook-book {
-    box-shadow: 0 4px 20px rgb(0 0 0 / 14%);
-    border-radius: 12px;
   }
 }

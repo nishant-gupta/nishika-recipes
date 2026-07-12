@@ -74,6 +74,14 @@
   max-width: 520px;
 }
 
+/* paragraph whose only content is bold — treat as a label */
+.hero .hero-postcard p:has(> strong:only-child) {
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  color: var(--dark-color);
+  margin-bottom: 4px;
+}
+
 /* Eyebrow — first <p> before h1 (higher specificity, comes after base) */
 .hero .hero-content > p:first-child:not(:last-child) {
   display: inline-block;
@@ -117,14 +125,6 @@
 .hero .hero-postcard em {
   font-style: italic;
   font-family: var(--body-font-family); /* heading font has no italic variant */
-}
-
-/* paragraph whose only content is bold — treat as a label */
-.hero .hero-postcard p:has(> strong:only-child) {
-  font-size: var(--body-font-size-s);
-  font-weight: 700;
-  color: var(--dark-color);
-  margin-bottom: 4px;
 }
 
 /* ── CTA buttons ─────────────────────────────────── */

@@ -91,6 +91,70 @@
   z-index: 2;
 }
 
+/* ── Card eyebrow ───────────────────────────────────── */
+.listing-card-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Issue badge ────────────────────────────────────── */
+.listing-issue-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--accent-yellow);
+  border: none;
+  border-radius: 8px;
+  padding: 3px 10px;
+  color: #1a1a1a;
+}
+
+/* ── Card title ─────────────────────────────────────── */
+.listing-card-title {
+  font-size: var(--heading-font-size-s);
+  color: var(--dark-color);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ── Card types row ─────────────────────────────────── */
+.listing-card-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── Card meta ──────────────────────────────────────── */
+.listing-card-meta {
+  font-size: 13px;
+  color: #888;
+}
+
+/* ── Card link ──────────────────────────────────────── */
+.listing-card-link {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 700;
+  color: #7c3aed;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.listing-card-link:hover {
+  text-decoration: underline;
+}
+
+/* Stretch link to cover entire card */
+.listing-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
 /* ── Featured issue card ────────────────────────────── */
 .listing-card-issue.listing-card-featured {
   background: linear-gradient(135deg, #2d0a3e 0%, #5a1878 50%, #7c3f87 100%);
@@ -167,70 +231,6 @@
   padding: 32px;
 }
 
-
-/* ── Card eyebrow ───────────────────────────────────── */
-.listing-card-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* ── Issue badge ────────────────────────────────────── */
-.listing-issue-badge {
-  display: inline-flex;
-  align-items: center;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  background: var(--accent-yellow);
-  border: none;
-  border-radius: 8px;
-  padding: 3px 10px;
-  color: #1a1a1a;
-}
-
-/* ── Card title ─────────────────────────────────────── */
-.listing-card-title {
-  font-size: var(--heading-font-size-s);
-  color: var(--dark-color);
-  margin: 0;
-  line-height: 1.3;
-}
-
-/* ── Card types row ─────────────────────────────────── */
-.listing-card-types {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* ── Card meta ──────────────────────────────────────── */
-.listing-card-meta {
-  font-size: 13px;
-  color: #888;
-}
-
-/* ── Card link ──────────────────────────────────────── */
-.listing-card-link {
-  align-self: flex-start;
-  font-size: 13px;
-  font-weight: 700;
-  color: #7c3aed;
-  text-decoration: none;
-  margin-top: auto;
-}
-
-.listing-card-link:hover {
-  text-decoration: underline;
-}
-
-/* Stretch link to cover entire card */
-.listing-card-link::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-}
 
 /* ── Type pills ─────────────────────────────────────── */
 .listing-type-pill {
