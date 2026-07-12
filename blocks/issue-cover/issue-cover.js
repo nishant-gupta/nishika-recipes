@@ -372,16 +372,12 @@ export default async function decorate(block) {
   const main = document.querySelector('main');
   if (!main) return;
 
-  // Load all fragments in parallel, preserve order
-  const loadedSections = await Promise.all(sections.map(async (sec) => {
-    let fragment;
-    try {
-      fragment = await loadFragment(sec.path, sec.blockType);
-    } catch {
-      return null;
-    }
-    if (!fragment) return null;
-
+  // Pre-append section containers in canonical order immediately so the page
+  // structure (anchors, headings) is in the DOM without waiting for any fetch.
+  // Each container is filled in as its fragment resolves — the first section's
+  // content appears as soon as it loads instead of waiting for all of them,
+  // which was the root cause of the 12s+ LCP on this page.
+  const sectionContainers = sections.map((sec) => {
     const section = document.createElement('div');
     section.className = 'section';
 
@@ -391,20 +387,11 @@ export default async function decorate(block) {
     anchor.setAttribute('aria-hidden', 'true');
 
     section.append(anchor, buildSectionHeading(sec));
-
-    fragment.querySelectorAll(':scope > .section').forEach((fs) => {
-      [...fs.children].forEach((child) => section.append(child));
-    });
-
+    main.append(section);
     return section;
-  }));
-
-  // Append in canonical order
-  loadedSections.forEach((section) => {
-    if (section) main.append(section);
   });
 
-  // ── IntersectionObserver for section progress (set up after sections are in DOM) ──
+  // ── IntersectionObserver for section progress — anchors already in DOM ──
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -428,4 +415,18 @@ export default async function decorate(block) {
     },
   );
   heroObserver.observe(hero);
+
+  // Load fragments in parallel; fill each container as it resolves
+  sections.forEach(async (sec, i) => {
+    let fragment;
+    try {
+      fragment = await loadFragment(sec.path, sec.blockType);
+    } catch {
+      return;
+    }
+    if (!fragment) return;
+    fragment.querySelectorAll(':scope > .section').forEach((fs) => {
+      [...fs.children].forEach((child) => sectionContainers[i].append(child));
+    });
+  });
 }

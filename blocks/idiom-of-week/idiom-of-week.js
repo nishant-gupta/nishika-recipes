@@ -516,9 +516,9 @@ export default function decorate(block) {
   }
 
   block.textContent = '';
-  const game = new IdiomGame(block, data);
-  game.renderIdiom();
 
+  // Mark decorated synchronously so carousel detection still works correctly
+  // even though the game itself is initialized after first paint.
   block.dataset.idiomDecorated = 'true';
 
   const section = block.closest('.section') || block.parentNode;
@@ -527,5 +527,17 @@ export default function decorate(block) {
 
   if (decorated.length === allInSection.length && allInSection.length >= 2) {
     buildCarouselForGroup(allInSection);
+  }
+
+  // Defer heavy game init until after first paint to reduce TBT
+  const init = () => {
+    const game = new IdiomGame(block, data);
+    game.renderIdiom();
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(init, { timeout: 3000 });
+  } else {
+    setTimeout(init, 0);
   }
 }
