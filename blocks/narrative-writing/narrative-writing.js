@@ -1,10 +1,13 @@
 function loadHandwritingFont() {
-  if (!document.querySelector('link[href*="Caveat"]')) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap';
-    document.head.appendChild(link);
-  }
+  if (document.querySelector('link[href*="Caveat"]')) return;
+  // preload → stylesheet swap avoids injecting a render-blocking stylesheet
+  // mid-page, which can add hundreds of ms to TBT on mobile
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'style';
+  link.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap';
+  link.onload = () => { link.rel = 'stylesheet'; };
+  document.head.appendChild(link);
 }
 
 function parseNarrative(block) {
