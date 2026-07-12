@@ -390,7 +390,8 @@ export default async function decorate(block) {
   }
 
   // Start all fragment fetches in parallel immediately
-  const fragPromises = sections.map((sec) => loadFragment(sec.path, sec.blockType).catch(() => null));
+  const fragPromises = sections.map((sec) =>
+    loadFragment(sec.path, sec.blockType).catch(() => null));
 
   // Pre-append only the first section container so its anchor is in the DOM
   // immediately (for the progress strip + "N pieces" scroll button) and its
