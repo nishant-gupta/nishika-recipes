@@ -28,6 +28,10 @@ export default function decorate(block) {
     a.className = `featured-pick cat-${slugify(card.tag)}`;
 
     if (card.picture) {
+      // Set alt on the img if empty — the link wraps the image so the image
+      // alt serves as part of the accessible name when no other text precedes it.
+      const img = card.picture.querySelector('img');
+      if (img && !img.alt) img.alt = card.title;
       const imgWrap = document.createElement('div');
       imgWrap.className = 'featured-pick-image';
       imgWrap.appendChild(card.picture);

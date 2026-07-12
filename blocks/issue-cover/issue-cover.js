@@ -385,6 +385,14 @@ export default async function decorate(block) {
 
   function fillSectionContainer(container, fragment) {
     fragment.querySelectorAll(':scope > .section').forEach((fs) => {
+      // Demote any H1 inside the fragment — the issue page already has its own
+      // H1 from the cover block, so fragment titles must not create a second one.
+      fs.querySelectorAll('h1').forEach((h1) => {
+        const h2 = document.createElement('h2');
+        [...h1.attributes].forEach((a) => h2.setAttribute(a.name, a.value));
+        h2.innerHTML = h1.innerHTML;
+        h1.replaceWith(h2);
+      });
       [...fs.children].forEach((child) => container.append(child));
     });
   }
