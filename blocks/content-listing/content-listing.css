@@ -17,7 +17,7 @@
   font-weight: 800;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: #888;
+  color: #767676;
   margin: 0 0 16px;
 }
 
@@ -131,7 +131,7 @@
 /* ── Card meta ──────────────────────────────────────── */
 .listing-card-meta {
   font-size: 13px;
-  color: #888;
+  color: #767676;
 }
 
 /* ── Card link ──────────────────────────────────────── */
