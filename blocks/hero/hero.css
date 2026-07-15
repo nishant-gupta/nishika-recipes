@@ -74,6 +74,12 @@
   max-width: 520px;
 }
 
+.hero.no-card .hero-content > p {
+  max-width: unset;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* paragraph whose only content is bold — treat as a label */
 .hero .hero-postcard p:has(> strong:only-child) {
   font-size: var(--body-font-size-s);
@@ -233,6 +239,23 @@
   border-color: var(--dark-color);
   background: rgb(80 20 110 / 5%);
   text-decoration: none;
+}
+
+/* ── No-card variant — full-width centered CTA ───── */
+.hero.no-card {
+  justify-content: center;
+  text-align: center;
+  min-height: unset;
+  padding: 72px 56px;
+}
+
+.hero.no-card .hero-content {
+  max-width: 680px;
+}
+
+
+.hero.no-card .hero-buttons {
+  justify-content: center;
 }
 
 /* ── Responsive ──────────────────────────────────── */

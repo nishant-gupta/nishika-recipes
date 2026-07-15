@@ -41,25 +41,20 @@ export default function decorate(block) {
   if (!row) return;
 
   const cells = [...row.children];
+  const noCard = block.classList.contains('no-card');
 
-  if (cells.length >= 2) {
-    const content = document.createElement('div');
-    content.className = 'hero-content';
-    while (cells[0].firstChild) content.append(cells[0].firstChild);
+  const content = document.createElement('div');
+  content.className = 'hero-content';
+  while (cells[0].firstChild) content.append(cells[0].firstChild);
+  block.textContent = '';
+  block.append(content);
 
+  if (cells.length >= 2 && !noCard) {
     const postcard = document.createElement('div');
     postcard.className = 'hero-postcard';
     while (cells[1].firstChild) postcard.append(cells[1].firstChild);
-
-    block.textContent = '';
-    block.append(content, postcard);
+    block.append(postcard);
     buildPostcard(postcard);
-  } else {
-    const content = document.createElement('div');
-    content.className = 'hero-content';
-    while (cells[0].firstChild) content.append(cells[0].firstChild);
-    block.textContent = '';
-    block.append(content);
   }
 
   const heroContent = block.querySelector('.hero-content');
