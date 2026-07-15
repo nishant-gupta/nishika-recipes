@@ -12,3 +12,4 @@ docs/*.docx
 docs/restructure-plan.md
 *.docx
 *.csv
+seo-reports/*
