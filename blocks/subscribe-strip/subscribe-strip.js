@@ -41,15 +41,24 @@ export default function decorate(block) {
   inner.append(formWrap);
   block.append(inner);
 
-  if (window.location.hash === '#subscribe') {
+  function loadKit() {
+    if (formWrap.querySelector('script')) return; // already injected
     const kitScript = document.createElement('script');
     kitScript.async = true;
     kitScript.dataset.uid = KIT_UID;
     kitScript.src = `https://nishikas-notebook.kit.com/${KIT_UID}/index.js`;
     formWrap.append(kitScript);
-    // Re-scroll after the Kit form has had time to render and expand the section
+    // Re-scroll after the Kit form has rendered and expanded the section
     kitScript.addEventListener('load', () => {
       setTimeout(() => anchor.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
     });
   }
+
+  // Direct URL load: /#subscribe
+  if (window.location.hash === '#subscribe') loadKit();
+
+  // In-page CTA click: hash changes to #subscribe after the footer is already rendered
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#subscribe') loadKit();
+  });
 }
