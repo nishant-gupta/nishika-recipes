@@ -127,7 +127,14 @@ export default function decorate(block) {
 
     prev.addEventListener('click', () => goTo(current - 1));
     next.addEventListener('click', () => goTo(current + 1));
-    dots.querySelectorAll('.fact-dot').forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    dots.querySelectorAll('.fact-dot').forEach((dot, i) => dot.addEventListener('click', () => {
+      goTo(i);
+      // Some browsers (notably Safari) keep showing the focus ring on a
+      // button after a mouse/touch click regardless of :focus-visible, so
+      // it looks like it's stuck "highlighted" until something else is
+      // clicked. Blurring right after activation clears it reliably.
+      dot.blur();
+    }));
 
     // Touch swipe — listen on viewport (track translates away after first swipe)
     let touchStartX = 0;

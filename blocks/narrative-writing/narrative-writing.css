@@ -87,7 +87,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #e65100;
+  color: #c8460a; /* darkened from #e65100 — 3.79:1 on white failed WCAG AA (4.5:1); this clears it at 4.84:1 */
   margin-bottom: 4px;
 }
 

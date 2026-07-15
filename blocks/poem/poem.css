@@ -2,7 +2,7 @@
 .poem {
   --page-cream: #fbf4e8;
   --accent-peach: #e7c0aa;
-  --accent-peach-deep: #a8623f;
+  --accent-peach-deep: #8f502e; /* darkened from #a8623f — 4.28:1 on cream failed WCAG AA (4.5:1); this clears it at 5.73:1 */
   --accent-sage: #cfe0cf;
   --accent-sage-deep: #4c7a53;
   --accent-sky: #c7cfe3;

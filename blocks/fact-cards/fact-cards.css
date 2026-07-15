@@ -140,21 +140,74 @@
   margin-top: 20px;
 }
 
+/* Button itself is a full 24x24 tap target (WCAG 2.5.8 / Lighthouse
+   target-size minimum — the old 8x8px box was too small to tap reliably
+   on mobile); the small visible dot is drawn via ::after so the look is
+   unchanged. */
 .fact-dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The sitewide `button:hover, button:focus { background-color: ... }`
+   rule in styles.css (specificity 0,1,1) beats this class's own
+   `background: transparent` (0,1,0), so without this override, sitting
+   the mouse on a dot after clicking it paints the whole 24x24 button
+   solid — the real cause of the "stuck highlight" look. */
+.fact-dot:hover,
+.fact-dot:focus,
+.fact-dot:active {
+  background-color: transparent;
+}
+
+/* Keyboard-only focus ring (not shown on mouse/touch clicks) — sized to
+   the visible dot rather than the full 24x24 tap target, so it doesn't
+   look like a second, conflicting indicator on top of the active pill. */
+.fact-dot:focus-visible {
+  outline: 2px solid var(--dark-color);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+.fact-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: none;
   background: #d8b4fe;
-  cursor: pointer;
-  padding: 0;
   transition: all 0.25s ease;
 }
 
-.fact-dot.active {
+/* Real hover feedback lives on the visible dot, not the button's own
+   background (which must stay transparent — see above) */
+.fact-dot.active::after {
   background: var(--dark-color);
   width: 24px;
+  height: 8px;
   border-radius: 4px;
+}
+
+/* Real hover feedback lives on the visible dot, not the button's own
+   background (which must stay transparent — see above) */
+.fact-dot:hover::after {
+  background: #c084fc;
+  transform: translate(-50%, -50%) scale(1.35);
+}
+
+.fact-dot.active:hover::after {
+  background: var(--link-hover-color);
 }
 
 /* ── Counter badge ───────────────────────────────── */
