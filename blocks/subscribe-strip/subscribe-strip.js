@@ -5,6 +5,12 @@ export default function decorate(block) {
 
   block.textContent = '';
 
+  // Anchor so hero CTAs can deep-link with href="#subscribe"
+  const anchor = document.createElement('span');
+  anchor.id = 'subscribe';
+  anchor.setAttribute('aria-hidden', 'true');
+  block.append(anchor);
+
   const inner = document.createElement('div');
   inner.className = 'subscribe-inner';
 
