@@ -21,21 +21,12 @@ export default function decorate(block) {
     inner.append(p);
   }
 
-  // Kit (ConvertKit) inline form embed. The UID/src is hardcoded here rather
-  // than read from the authored block content — anyone with edit access to
-  // the source document should not be able to point this block at an
-  // arbitrary third-party script by editing a table cell.
-  const KIT_FORM_UID = '2dfb239125';
-  const KIT_SCRIPT_SRC = `https://nishikas-notebook.kit.com/${KIT_FORM_UID}/index.js`;
-
+  // Form embed placeholder — the Kit script is injected during the delayed
+  // phase (scripts/delayed.js) so reCAPTCHA and third-party assets don't
+  // block the lazy render or affect CWV scores.
   const formWrap = document.createElement('div');
   formWrap.className = 'subscribe-form-embed';
-
-  const script = document.createElement('script');
-  script.async = true;
-  script.dataset.uid = KIT_FORM_UID;
-  script.src = KIT_SCRIPT_SRC;
-  formWrap.append(script);
+  formWrap.dataset.kitUid = '2dfb239125';
 
   inner.append(formWrap);
   block.append(inner);

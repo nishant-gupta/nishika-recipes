@@ -14,6 +14,18 @@ window.gtag = gtag;
 gtag('js', new Date());
 gtag('config', GA_ID);
 
+// ── Newsletter form (Kit / ConvertKit) ──────────────────────────────────────
+// Inject the Kit embed script into every subscribe-strip placeholder so that
+// third-party assets (reCAPTCHA etc.) load after the page is interactive.
+document.querySelectorAll('.subscribe-form-embed[data-kit-uid]').forEach((wrap) => {
+  const uid = wrap.dataset.kitUid;
+  const kitScript = document.createElement('script');
+  kitScript.async = true;
+  kitScript.dataset.uid = uid;
+  kitScript.src = `https://nishikas-notebook.kit.com/${uid}/index.js`;
+  wrap.append(kitScript);
+});
+
 // ── Click tracking ───────────────────────────────────────────────────────────
 
 /**
