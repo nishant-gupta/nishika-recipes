@@ -17,7 +17,9 @@ gtag('config', GA_ID);
 // ── Newsletter form (Kit / ConvertKit) ──────────────────────────────────────
 // Inject the Kit embed script into every subscribe-strip placeholder so that
 // third-party assets (reCAPTCHA etc.) load after the page is interactive.
+// Skip placeholders that already had the script injected early (e.g. #subscribe direct link)
 document.querySelectorAll('.subscribe-form-embed[data-kit-uid]').forEach((wrap) => {
+  if (wrap.querySelector('script')) return;
   const uid = wrap.dataset.kitUid;
   const kitScript = document.createElement('script');
   kitScript.async = true;

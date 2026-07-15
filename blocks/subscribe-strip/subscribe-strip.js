@@ -27,13 +27,29 @@ export default function decorate(block) {
     inner.append(p);
   }
 
-  // Form embed placeholder — the Kit script is injected during the delayed
-  // phase (scripts/delayed.js) so reCAPTCHA and third-party assets don't
-  // block the lazy render or affect CWV scores.
+  // Form embed placeholder — the Kit script is normally injected during the
+  // delayed phase (scripts/delayed.js) so reCAPTCHA and third-party assets
+  // don't block the lazy render or affect CWV scores.
+  // Exception: if the page was opened with #subscribe in the URL, load the
+  // Kit script immediately so the form is visible when the browser scrolls
+  // to the anchor, then re-scroll once the form has rendered.
+  const KIT_UID = '2dfb239125';
   const formWrap = document.createElement('div');
   formWrap.className = 'subscribe-form-embed';
-  formWrap.dataset.kitUid = '2dfb239125';
+  formWrap.dataset.kitUid = KIT_UID;
 
   inner.append(formWrap);
   block.append(inner);
+
+  if (window.location.hash === '#subscribe') {
+    const kitScript = document.createElement('script');
+    kitScript.async = true;
+    kitScript.dataset.uid = KIT_UID;
+    kitScript.src = `https://nishikas-notebook.kit.com/${KIT_UID}/index.js`;
+    formWrap.append(kitScript);
+    // Re-scroll after the Kit form has had time to render and expand the section
+    kitScript.addEventListener('load', () => {
+      setTimeout(() => anchor.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    });
+  }
 }
